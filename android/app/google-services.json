@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "849554784287",
+    "project_id": "druk-paytem-users",
+    "storage_bucket": "druk-paytem-users.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:849554784287:android:62e994053f7f828db5552a",
+        "android_client_info": {
+          "package_name": "com.example.first_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "849554784287-0hfg8m9t09kat51ueg3553pgucnkhqru.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.first_app",
+            "certificate_hash": "f202760f0176b8f7340589ae091c4ff0e39d17b7"
+          }
+        },
+        {
+          "client_id": "849554784287-c7nt1e1f5u50qfdnulmtse19hl75eab1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBk6oV9LnPluD3IAlpM9u4_Y06Ur-GL9lQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "849554784287-c7nt1e1f5u50qfdnulmtse19hl75eab1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
