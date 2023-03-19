@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:first_app/components/about_us.dart';
 import 'package:flutter/material.dart';
 
@@ -14,6 +15,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  AudioPlayer audioPlayer = AudioPlayer();
+
   int currentPage = 0;
 
   List<Widget> pages = const [

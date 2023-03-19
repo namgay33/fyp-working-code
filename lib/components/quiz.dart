@@ -1,172 +1,136 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 
-class Quiz extends StatefulWidget {
-  const Quiz({super.key});
+class QuizScreen extends StatefulWidget {
+  const QuizScreen({super.key});
 
   @override
-  State<Quiz> createState() => _QuizState();
+  State<QuizScreen> createState() => _QuizScreenState();
 }
 
-class _QuizState extends State<Quiz> {
+class _QuizScreenState extends State<QuizScreen> {
+  int _score = 0;
+  int _coins = 0;
+  int _currentQuestionIndex = 0;
+  Timer? _timer;
+  final int _timeLimit = 60; // in seconds
+  final List<Map<String, dynamic>> _quizQuestions = [
+    {
+      'question': 'What is the capital of France?',
+      'answers': ['Paris', 'London', 'New York', 'Tokyo'],
+      'correctAnswer': 'Paris',
+    },
+    {
+      'question': 'What is the tallest mountain in the world?',
+      'answers': ['Everest', 'K2', 'Kilimanjaro', 'Denali'],
+      'correctAnswer': 'Everest',
+    },
+    {
+      'question': 'What is the largest animal on Earth?',
+      'answers': ['Elephant', 'Blue Whale', 'Giraffe', 'Hippopotamus'],
+      'correctAnswer': 'Blue Whale',
+    },
+  ];
+
+  @override
+  void initState() {
+    super.initState();
+    _startTimer();
+  }
+
+  void _startTimer() {
+    _timer = Timer(Duration(seconds: _timeLimit), () {
+      _endQuiz();
+    });
+  }
+
+  void _endQuiz() {
+    _timer?.cancel();
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Quiz Over'),
+          content: Text('Your score is $_score and you earned $_coins coins.'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+                Navigator.of(context).pop();
+              },
+              child: const Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _checkAnswer(String answer) {
+    if (_quizQuestions[_currentQuestionIndex]['correctAnswer'] == answer) {
+      setState(() {
+        _score++;
+        _coins += 10;
+      });
+    }
+  }
+
+  void _nextQuestion() {
+    if (_currentQuestionIndex == _quizQuestions.length - 1) {
+      _endQuiz();
+    } else {
+      setState(() {
+        _currentQuestionIndex++;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 255, 152, 18),
-        bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(10.0),
-          child: Container(),
-        ),
+        title: const Text('Quiz'),
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(10),
+      body: Center(
         child: Column(
-          children: <Widget>[
-            Row(children: <Widget>[
-              const Text('Time: '),
-              Container(
-                  margin: const EdgeInsets.all(5),
-                  padding: const EdgeInsets.all(5),
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    style: ButtonStyle(
-                        padding:
-                            MaterialStateProperty.all(const EdgeInsets.all(10)),
-                        backgroundColor:
-                            MaterialStateProperty.all(Colors.white70),
-                        minimumSize:
-                            MaterialStateProperty.all(const Size(30, 30)),
-                        shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(100),
-                        ))),
-                    child: const Text(
-                      '+30s',
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.black,
-                      ),
-                    ),
-                  )),
-            ]),
-            const Text('Question I: '),
-            Container(
-              margin: const EdgeInsets.all(10),
-              child: const Text('---------question---------'),
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'Question ${_currentQuestionIndex + 1}',
+              style: const TextStyle(fontSize: 20),
             ),
-            Container(
-                margin: const EdgeInsets.all(5),
-                padding: const EdgeInsets.all(5),
-                child: ElevatedButton(
-                  onPressed: () {},
-                  style: ButtonStyle(
-                      padding:
-                          MaterialStateProperty.all(const EdgeInsets.all(10)),
-                      backgroundColor:
-                          MaterialStateProperty.all(Colors.white),
-                      minimumSize:
-                          MaterialStateProperty.all(const Size(300, 20)),
-                      shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(100),
-                      ))),
-                  child: const Text(
-                    'A Option',
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.black,
-                    ),
-                  ),
-                )),
-            Container(
-                margin: const EdgeInsets.all(5),
-                padding: const EdgeInsets.all(5),
-                child: ElevatedButton(
-                  onPressed: () {},
-                  style: ButtonStyle(
-                      padding:
-                          MaterialStateProperty.all(const EdgeInsets.all(10)),
-                      backgroundColor:
-                          MaterialStateProperty.all(Colors.white),
-                      minimumSize:
-                          MaterialStateProperty.all(const Size(300, 20)),
-                      shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(100),
-                      ))),
-                  child: const Text(
-                    'B Option',
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.black,
-                    ),
-                  ),
-                )),
-            Container(
-                margin: const EdgeInsets.all(5),
-                padding: const EdgeInsets.all(5),
-                child: ElevatedButton(
-                  onPressed: () {},
-                  style: ButtonStyle(
-                      padding:
-                          MaterialStateProperty.all(const EdgeInsets.all(10)),
-                      backgroundColor: MaterialStateProperty.all(Colors.white),
-                      minimumSize:
-                          MaterialStateProperty.all(const Size(300, 20)),
-                      shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(100),
-                      ))),
-                  child: const Text(
-                    'C Option',
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.black,
-                    ),
-                  ),
-                )),
-            Container(
-                margin: const EdgeInsets.all(5),
-                padding: const EdgeInsets.all(5),
-                child: ElevatedButton(
-                  onPressed: () {},
-                  style: ButtonStyle(
-                      padding:
-                          MaterialStateProperty.all(const EdgeInsets.all(10)),
-                      backgroundColor:
-                          MaterialStateProperty.all(Colors.white),
-                      minimumSize:
-                          MaterialStateProperty.all(const Size(300, 20)),
-                      shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(100),
-                      ))),
-                  child: const Text(
-                    'D Option',
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.black,
-                    ),
-                  ),
-                )),
-            Container(
-                margin: const EdgeInsets.all(5),
-                padding: const EdgeInsets.all(5),
-                child: ElevatedButton(
-                  onPressed: () {},
-                  style: ButtonStyle(
-                      padding:
-                          MaterialStateProperty.all(const EdgeInsets.all(10)),
-                      backgroundColor:
-                          MaterialStateProperty.all(const Color.fromARGB(255, 255, 187, 131)),
-                      minimumSize:
-                          MaterialStateProperty.all(const Size(180, 20)),
-                      shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(100),
-                      ))),
-                  child: const Text(
-                    'NEXT',
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.black,
-                    ),
-                  ),
-                )),
+            const SizedBox(height: 10),
+            Text(
+              _quizQuestions[_currentQuestionIndex]['question'],
+              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 20),
+            ...(_quizQuestions[_currentQuestionIndex]['answers']
+                    as List<String>)
+                .map((answer) {
+              return ElevatedButton(
+                onPressed: () {
+                  _checkAnswer(answer);
+                  _nextQuestion();
+                },
+                child: Text(answer),
+              );
+            }).toList(),
+            const SizedBox(height: 20),
+            Text(
+              'Time left: ${_timer?.tick ?? _timeLimit} seconds',
+              style: const TextStyle(fontSize: 20),
+            ),
+            const SizedBox(height: 10),
+            Text(
+              'Score: $_score',
+              style: const TextStyle(fontSize: 20),
+            ),
+            const SizedBox(height: 10),
+            Text(
+              'Coins: $_coins',
+              style: const TextStyle(fontSize: 20),
+            ),
           ],
         ),
       ),

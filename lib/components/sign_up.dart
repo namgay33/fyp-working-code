@@ -116,7 +116,7 @@ class _SignUpState extends State<SignUp> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const Quiz(),
+                              builder: (context) => const QuizScreen(),
                             ));
                       },
                       icon: const Icon(Icons.g_mobiledata_outlined,

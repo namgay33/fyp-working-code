@@ -1,5 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:first_app/components/rank.dart';
+import 'package:first_app/components/quiz.dart';
 import 'package:flutter/material.dart';
 
 import 'sign_up.dart';
@@ -81,7 +81,7 @@ class _LogInState extends State<LogIn> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => const Rank(),
+                                builder: (context) => const QuizScreen(),
                               ));
                         });
                       },
