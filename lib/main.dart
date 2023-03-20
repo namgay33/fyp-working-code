@@ -5,22 +5,27 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'components/home_main.dart';
+import 'package:flutter/foundation.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    name: "Druk Peytam",
-    options: const FirebaseOptions(
-      apiKey: 'AIzaSyA8-WvSPSOqOn87gRu5H_uqJNxgikdasqc',
-      authDomain: 'paytam-490fa.firebaseapp.com',
-      databaseURL: 'https://paytam-490fa-default-rtdb.firebaseio.com',
-      projectId: 'paytam-490fa',
-      storageBucket: 'paytam-490fa.appspot.com',
-      messagingSenderId: '702069271398',
-      appId: '1:702069271398:web:8f1b722ae39f5d0745b6a7',
-      measurementId: 'G-0KBGM51WV2',
-    ),
-  );
+  if (kIsWeb) {
+    await Firebase.initializeApp(
+      name: "Druk Peytam",
+      options: const FirebaseOptions(
+        apiKey: 'AIzaSyA8-WvSPSOqOn87gRu5H_uqJNxgikdasqc',
+        authDomain: 'paytam-490fa.firebaseapp.com',
+        databaseURL: 'https://paytam-490fa-default-rtdb.firebaseio.com',
+        projectId: 'paytam-490fa',
+        storageBucket: 'paytam-490fa.appspot.com',
+        messagingSenderId: '702069271398',
+        appId: '1:702069271398:web:8f1b722ae39f5d0745b6a7',
+        measurementId: 'G-0KBGM51WV2',
+      ),
+    );
+  } else {
+    await Firebase.initializeApp();
+  }
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
