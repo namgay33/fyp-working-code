@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 
 class DetailScreen extends StatefulWidget {
@@ -6,17 +7,22 @@ class DetailScreen extends StatefulWidget {
     required this.dzongkhaText,
     required this.englishText,
     required this.description,
+    required this.image,
+    required this.audio,
   });
 
   final String dzongkhaText;
   final String englishText;
   final String description;
+  final String image;
+  final String audio;
 
   @override
   State<DetailScreen> createState() => _DetailScreenState();
 }
 
 class _DetailScreenState extends State<DetailScreen> {
+  AudioPlayer audioPlayer = AudioPlayer();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +37,7 @@ class _DetailScreenState extends State<DetailScreen> {
         child: Padding(
           padding: const EdgeInsets.all(15.0),
           child: Wrap(
-            children: [
+            children: <Widget>[
               Row(
                 children: <Widget>[
                   Flexible(
@@ -43,22 +49,35 @@ class _DetailScreenState extends State<DetailScreen> {
                   ),
                   IconButton(
                     icon: const Icon(Icons.mic_sharp),
-                    onPressed: () {},
+                    onPressed: () async {
+                      await audioPlayer.play(UrlSource(widget.audio));
+                      debugPrint(widget.audio);
+                    },
                   ),
                 ],
               ),
-              Text(
-                widget.englishText,
-                style:
-                    const TextStyle(height: 1.5, fontWeight: FontWeight.bold),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    widget.englishText,
+                    style: const TextStyle(
+                        height: 1.5, fontWeight: FontWeight.bold),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+                    child: Center(
+                      child: Image.network(
+                        widget.image, height: 500,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Text(widget.description, style: const TextStyle(height: 1.5)),
+                ],
               ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-                child: Image.network(
-                  'https://docs.flutter.dev/assets/images/dash/dash-fainting.gif',
-                ),
-              ),
-              Text(widget.description, style: const TextStyle(height: 1.5)),
             ],
           ),
         ),

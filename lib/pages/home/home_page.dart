@@ -1,6 +1,7 @@
 import 'dart:convert';
 
-import 'package:first_app/components/detailed_screen.dart';
+import 'package:audioplayers/audioplayers.dart';
+import 'package:first_app/pages/home/detailed_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -22,6 +23,9 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  final audioUrl = '';
+  AudioPlayer audioPlayer = AudioPlayer();
+
   //
   // List<dynamic> _innerValues = [];
   final List<dynamic> _outerValues = [];
@@ -39,7 +43,7 @@ class _HomeState extends State<Home> {
     final responseData = json.decode(response.body);
 
     responseData.forEach((outerKey, outerValue) {
-      debugPrint('Outer Key: $outerKey');
+      // debugPrint('Outer Key: $outerKey');
 
       setState(() {
         _outerValues.add(outerValue);
@@ -71,6 +75,8 @@ class _HomeState extends State<Home> {
                             dzongkhaText: _outerValues[index]['dzongkha'],
                             englishText: _outerValues[index]['english'],
                             description: _outerValues[index]['description'],
+                            image: _outerValues[index]['image'],
+                            audio: _outerValues[index]['audio'],
                           ),
                         ),
                       );
@@ -92,7 +98,11 @@ class _HomeState extends State<Home> {
                                 ),
                                 IconButton(
                                   icon: const Icon(Icons.mic_sharp),
-                                  onPressed: () {},
+                                  onPressed: () async {
+                                    await audioPlayer.play(UrlSource(
+                                        _outerValues[index]['audio']));
+                                    debugPrint(_outerValues[index]['audio']);
+                                  },
                                 ),
                               ],
                             ),
@@ -103,17 +113,6 @@ class _HomeState extends State<Home> {
                             const SizedBox(
                               height: 10,
                             ),
-                            // Image.network(
-                            //   'https://docs.flutter.dev/assets/images/dash/dash-fainting.gif',
-                            // ),
-                            // const SizedBox(
-                            //   height: 10,
-                            // ),
-                            // const Text(
-                            //   'Description',
-                            //   style: TextStyle(fontStyle: FontStyle.italic),
-                            // ),
-                            // Text(_outerValues[index]['description']),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: <Widget>[

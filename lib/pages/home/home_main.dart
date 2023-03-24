@@ -1,10 +1,12 @@
-import 'package:first_app/components/about_us.dart';
+import 'package:audioplayers/audioplayers.dart';
+import 'package:first_app/pages/drawer_items/about_us.dart';
+import 'package:first_app/service/auth_service.dart';
 import 'package:flutter/material.dart';
 
-import 'categories.dart';
+import '../categories/categories.dart';
 import 'home_page.dart';
-import 'rank.dart';
-import 'favorite.dart';
+import '../favorite/favorite.dart';
+import '../rank/rank_main.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -14,6 +16,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  AudioPlayer audioPlayer = AudioPlayer();
+  AuthService authService = AuthService();
+
   int currentPage = 0;
 
   List<Widget> pages = const [
@@ -24,7 +29,7 @@ class _HomePageState extends State<HomePage> {
       image: '',
     ),
     Categories(),
-    Rank(),
+    RankHome(),
     Favorite(),
   ];
 
@@ -81,11 +86,13 @@ class _HomePageState extends State<HomePage> {
               },
             ),
             ListTile(
-              title: const Text('Item 2'),
+              title: const Text('Log Out'),
               onTap: () {
                 // Update the state of the app
                 // ...
+                authService.signOut();
                 // Then close the drawer
+
                 Navigator.pop(context);
               },
             ),
