@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:audioplayers/audioplayers.dart';
-import 'package:first_app/components/detailed_screen.dart';
+import 'package:first_app/pages/home/detailed_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -43,7 +43,7 @@ class _HomeState extends State<Home> {
     final responseData = json.decode(response.body);
 
     responseData.forEach((outerKey, outerValue) {
-      debugPrint('Outer Key: $outerKey');
+      // debugPrint('Outer Key: $outerKey');
 
       setState(() {
         _outerValues.add(outerValue);

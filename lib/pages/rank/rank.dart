@@ -1,4 +1,4 @@
-import 'package:first_app/components/log_in.dart';
+import 'package:first_app/pages/rank/quiz.dart';
 import 'package:flutter/material.dart';
 
 const int itemCOunt = 10;
@@ -20,7 +20,7 @@ class Rank extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const LogIn()),
+                  MaterialPageRoute(builder: (context) => const QuizScreen()),
                 );
               },
             ),
