@@ -97,7 +97,7 @@ class _HomeState extends State<Home> {
                                   ),
                                 ),
                                 IconButton(
-                                  icon: const Icon(Icons.mic_sharp),
+                                  icon: const Icon(Icons.volume_up),
                                   onPressed: () async {
                                     await audioPlayer.play(UrlSource(
                                         _outerValues[index]['audio']));

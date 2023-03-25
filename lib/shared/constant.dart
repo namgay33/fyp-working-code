@@ -12,5 +12,6 @@ class Constants {
   static String authDomain = 'paytam-490fa.firebaseapp.com';
   static String measurementId = 'G-0KBGM51WV2';
 
-  final primaryColor = const Color(0xFFee7b64);
+  // final primaryColor = const Color(0xFFee7b64);
+  final primaryColor = const Color(0xFFFFCC33);
 }

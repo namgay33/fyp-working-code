@@ -63,11 +63,12 @@ class _RegisterPageState extends State<RegisterPage> {
                         // ),
                         // const SizedBox(height: 50),
                         TextFormField(
+                          style: const TextStyle(height: 0.5),
                           decoration: textInputDecoration.copyWith(
                             labelText: "Full Name",
-                            prefixIcon: Icon(
+                            prefixIcon: const Icon(
                               Icons.person,
-                              color: Theme.of(context).primaryColor,
+                              color: Color(0xFFFFCC33),
                             ),
                           ),
                           onChanged: (value) {
@@ -87,11 +88,12 @@ class _RegisterPageState extends State<RegisterPage> {
                           height: 15,
                         ),
                         TextFormField(
+                          style: const TextStyle(height: 0.5),
                           decoration: textInputDecoration.copyWith(
                             labelText: "Email",
-                            prefixIcon: Icon(
+                            prefixIcon: const Icon(
                               Icons.email,
-                              color: Theme.of(context).primaryColor,
+                              color: Color(0xFFFFCC33),
                             ),
                           ),
                           onChanged: (value) {
@@ -109,12 +111,13 @@ class _RegisterPageState extends State<RegisterPage> {
                         ),
                         const SizedBox(height: 15),
                         TextFormField(
+                          style: const TextStyle(height: 0.5),
                           obscureText: true,
                           decoration: textInputDecoration.copyWith(
                             labelText: "Password",
-                            prefixIcon: Icon(
+                            prefixIcon: const Icon(
                               Icons.lock,
-                              color: Theme.of(context).primaryColor,
+                              color: Color(0xFFFFCC33),
                             ),
                           ),
                           validator: (value) {
@@ -137,7 +140,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           width: double.infinity,
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: Theme.of(context).primaryColor,
+                              backgroundColor: const Color(0xFFFFCC33),
                               elevation: 0,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(30),

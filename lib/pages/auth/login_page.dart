@@ -7,7 +7,7 @@ import '../../helper/helper_function.dart';
 import '../../service/auth_service.dart';
 import '../../service/database_service.dart';
 import '../../widgets/widget.dart';
-import '../rank/rank.dart';
+import '../levels/level_cards.dart';
 import 'register_page.dart';
 
 class LoginPage extends StatefulWidget {
@@ -49,7 +49,7 @@ class _LoginPageState extends State<LoginPage> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         const Text(
-                          'Druk Pey Tam',
+                          'Druk PeyTam',
                           style: TextStyle(
                               fontSize: 40, fontWeight: FontWeight.bold),
                         ),
@@ -66,11 +66,12 @@ class _LoginPageState extends State<LoginPage> {
                         // ),
                         // const SizedBox(height: 50),
                         TextFormField(
+                          style: const TextStyle(height: 0.5),
                           decoration: textInputDecoration.copyWith(
                             labelText: "Email",
-                            prefixIcon: Icon(
+                            prefixIcon: const Icon(
                               Icons.email,
-                              color: Theme.of(context).primaryColor,
+                              color: Color(0xFFFFCC33),
                             ),
                           ),
                           onChanged: (value) {
@@ -88,12 +89,13 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         const SizedBox(height: 15),
                         TextFormField(
+                          style: const TextStyle(height: 0.5),
                           obscureText: true,
                           decoration: textInputDecoration.copyWith(
                             labelText: "Password",
-                            prefixIcon: Icon(
+                            prefixIcon: const Icon(
                               Icons.lock,
-                              color: Theme.of(context).primaryColor,
+                              color: Color(0xFFFFCC33),
                             ),
                           ),
                           validator: (value) {
@@ -116,7 +118,7 @@ class _LoginPageState extends State<LoginPage> {
                           width: double.infinity,
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: Theme.of(context).primaryColor,
+                              backgroundColor: const Color(0xFFFFCC33),
                               elevation: 0,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(30),
@@ -182,7 +184,7 @@ class _LoginPageState extends State<LoginPage> {
             await HelperFunctions.saveUserEmailSF(email);
             await HelperFunctions.saveUserNameSF(snapshot.docs[0]["fullName"]);
 
-            nextScreenReplace(context, const Rank());
+            nextScreenReplace(context, const LevelsHome());
           } else {
             showSnackBar(context, Colors.red, value);
             setState(() {

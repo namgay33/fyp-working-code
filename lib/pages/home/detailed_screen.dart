@@ -48,7 +48,7 @@ class _DetailScreenState extends State<DetailScreen> {
                     ),
                   ),
                   IconButton(
-                    icon: const Icon(Icons.mic_sharp),
+                    icon: const Icon(Icons.volume_up),
                     onPressed: () async {
                       await audioPlayer.play(UrlSource(widget.audio));
                       debugPrint(widget.audio);

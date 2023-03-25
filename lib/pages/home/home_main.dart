@@ -4,9 +4,9 @@ import 'package:first_app/service/auth_service.dart';
 import 'package:flutter/material.dart';
 
 import '../categories/categories.dart';
+import '../levels/level_cards.dart';
 import 'home_page.dart';
 import '../favorite/favorite.dart';
-import '../rank/rank_main.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -28,8 +28,8 @@ class _HomePageState extends State<HomePage> {
       dzongkhaText: '',
       image: '',
     ),
+    LevelsHome(),
     Categories(),
-    RankHome(),
     Favorite(),
   ];
 
@@ -107,7 +107,7 @@ class _HomePageState extends State<HomePage> {
           ),
           NavigationDestination(
             icon: Icon(Icons.category),
-            label: "Category",
+            label: "Level",
           ),
           NavigationDestination(
             icon: Icon(Icons.bar_chart),
