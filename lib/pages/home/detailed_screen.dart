@@ -66,11 +66,14 @@ class _DetailScreenState extends State<DetailScreen> {
                   ),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-                    child: Center(
-                      child: Image.network(
-                        widget.image, height: 500,
-                      ),
-                    ),
+                    child: (widget.image).isNotEmpty
+                        ? Center(
+                            child: Image.network(
+                              widget.image,
+                              height: 500,
+                            ),
+                          )
+                        : const Center(child: CircularProgressIndicator()),
                   ),
                   const SizedBox(
                     height: 20,

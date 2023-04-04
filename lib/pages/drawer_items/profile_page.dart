@@ -1,92 +1,42 @@
-import 'package:audioplayers/audioplayers.dart';
-import 'package:first_app/pages/drawer_items/about_us.dart';
-import 'package:first_app/service/auth_service.dart';
 import 'package:flutter/material.dart';
 
-import '../../helper/helper_function.dart';
+import '../../service/auth_service.dart';
 import '../../widgets/widget.dart';
-import '../auth/login_page.dart';
-import '../categories/categories.dart';
-import '../drawer_items/profile_page.dart';
-import '../levels/level_cards.dart';
-import 'home_page.dart';
-import '../favorite/favorite.dart';
+import '../home/home_main.dart';
+import 'about_us.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class ProfilePage extends StatefulWidget {
+  final String userName;
+  final String email;
+
+  const ProfilePage({
+    Key? key,
+    required this.userName,
+    required this.email,
+  }) : super(key: key);
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<ProfilePage> createState() => _ProfilePageState();
 }
 
-class _HomePageState extends State<HomePage> {
-  String userName = "";
-  String email = "";
-  AudioPlayer audioPlayer = AudioPlayer();
+class _ProfilePageState extends State<ProfilePage> {
   AuthService authService = AuthService();
-
-  @override
-  void initState() {
-    super.initState();
-    gettingUserData();
-  }
-
-  gettingUserData() async {
-    await HelperFunctions.getUserEmailFromSF().then((value) {
-      setState(() {
-        email = value!;
-      });
-    });
-    await HelperFunctions.getUserNameFromSF().then((value) {
-      setState(() {
-        userName = value!;
-      });
-    });
-  }
-
-  int currentPage = 0;
-
-  List<Widget> pages = const [
-    Home(
-      description: '',
-      englishText: '',
-      dzongkhaText: '',
-      image: '',
-    ),
-    LevelsHome(),
-    Categories(),
-    Favorite(),
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
+        backgroundColor: Theme.of(context).primaryColor,
         elevation: 0,
-        backgroundColor: const Color.fromARGB(255, 255, 152, 18),
-        bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(10.0),
-          child: Container(),
+        title: const Text(
+          "Profile",
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 27,
+            fontWeight: FontWeight.bold,
+          ),
         ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.attach_money),
-            onPressed: () {
-              debugPrint("Pressed on Coin");
-              // Do something when the search icon is tapped
-            },
-          ),
-          const SizedBox(width: 16),
-          IconButton(
-            icon: const Icon(Icons.flag),
-            onPressed: () {
-              // Do something when the more_vert icon is tapped
-            },
-          ),
-          const SizedBox(width: 16),
-        ],
       ),
-      body: pages[currentPage],
       drawer: Drawer(
         child: ListView(
           padding: const EdgeInsets.symmetric(vertical: 50),
@@ -100,7 +50,7 @@ class _HomePageState extends State<HomePage> {
               height: 15,
             ),
             Text(
-              userName,
+              widget.userName,
               textAlign: TextAlign.center,
               style: const TextStyle(fontWeight: FontWeight.bold),
             ),
@@ -111,9 +61,10 @@ class _HomePageState extends State<HomePage> {
               height: 2,
             ),
             ListTile(
-              onTap: () {},
+              onTap: () {
+                nextScreen(context, const HomePage());
+              },
               selectedColor: Theme.of(context).primaryColor,
-              selected: true,
               contentPadding:
                   const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
               leading: const Icon(Icons.group),
@@ -123,18 +74,12 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             ListTile(
-              onTap: () {
-                nextScreenReplace(
-                    context,
-                    ProfilePage(
-                      userName: userName,
-                      email: email,
-                    ));
-              },
+              onTap: () {},
               selectedColor: Theme.of(context).primaryColor,
               contentPadding:
                   const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
               leading: const Icon(Icons.person),
+              selected: true,
               title: const Text(
                 "Profile",
                 style: TextStyle(color: Colors.black),
@@ -142,7 +87,7 @@ class _HomePageState extends State<HomePage> {
             ),
             ListTile(
               onTap: () {
-                nextScreenReplace(context, const AboutUs());
+                nextScreen(context, const AboutUs());
               },
               selectedColor: Theme.of(context).primaryColor,
               contentPadding:
@@ -197,43 +142,6 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      bottomNavigationBar: NavigationBar(
-        destinations: const [
-          NavigationDestination(
-            icon: Icon(Icons.home),
-            label: "Home",
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.category),
-            label: "Level",
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.bar_chart),
-            label: "Leaderboard",
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.favorite),
-            label: "Favorite",
-          ),
-        ],
-        onDestinationSelected: (int index) {
-          setState(() {
-            currentPage = index;
-          });
-        },
-        selectedIndex: currentPage,
-      ),
     );
   }
 }
-
-
-
-      // apiKey: 'AIzaSyA8-WvSPSOqOn87gRu5H_uqJNxgikdasqc',
-      // authDomain: 'paytam-490fa.firebaseapp.com',
-      // databaseURL: 'https://paytam-490fa-default-rtdb.firebaseio.com',
-      // projectId: 'paytam-490fa',
-      // storageBucket: 'paytam-490fa.appspot.com',
-      // messagingSenderId: '702069271398',
-      // appId: '1:702069271398:web:8f1b722ae39f5d0745b6a7',
-      // measurementId: 'G-0KBGM51WV2',
