@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
+
 
 //class AboutUs {
 class AboutUs extends StatelessWidget {
@@ -7,81 +8,162 @@ class AboutUs extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-        statusBarColor: Color.fromARGB(255, 255, 152, 18)));
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('About Us'),
-          centerTitle: true,
-          backgroundColor: const Color.fromARGB(255, 255, 152, 18),
+      appBar: AppBar(
+        centerTitle: true,
+        iconTheme: const IconThemeData(color: Colors.black),
+        automaticallyImplyLeading: true,
+        backgroundColor: Colors.white,
+        elevation: 0.5,
+        title: Text(
+          'About Us',
+          style: GoogleFonts.kleeOne(
+            textStyle: const TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+            ),
+          ),
         ),
-        body: SingleChildScrollView(
-          child: Column(children: <Widget>[
-            Container(
-                padding: const EdgeInsets.all(20),
-                child: Column(children: <Widget>[
-                  Container(
-                      margin: const EdgeInsets.fromLTRB(0, 0, 0, 5),
-                      child: const Text(
-                          'Druk Paytam was created by a group of final year students from College of Science and Technology. It is a product of the final year project. ')),
-                  Container(
-                      margin: const EdgeInsets.fromLTRB(0, 0, 0, 5),
-                      child: const Text(
-                          'Druk Paytam app contains the intellectual sayings and proverbs that has been passed down from generations.')),
-                  Container(
-                      margin: const EdgeInsets.fromLTRB(0, 0, 0, 5),
-                      child: const Text(
-                          'The main aim is to promote and preserve the cultural aspect of our country, Bhutan'))
-                ])),
-            Container(
-                padding: const EdgeInsets.all(20),
-                child: Column(
-                  children: <Widget>[
-                    const Divider(
-                      color: Colors.black,
-                      thickness: 1,
+      ),
+      body: SingleChildScrollView(
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 30,vertical: 10),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    'assets/images/peytamlogo.PNG',
+                    height: 32,
+                  ),
+                  Text(
+                    'DrukPeytam',
+                    style: GoogleFonts.oswald(
+                        textStyle: TextStyle(
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey.shade700,
+                        )
                     ),
-                    Container(
-                        margin: const EdgeInsets.fromLTRB(0, 0, 0, 5),
-                        child: const Text(
-                          'Developers',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
-                        )),
-                    const SizedBox(child: Text('Tashi Wangchuk')),
-                    const SizedBox(child: Text('Tashi Pelden')),
-                    const SizedBox(child: Text('Namagay Wangchuk'))
-                  ],
-                )),
-            Container(
-                padding: const EdgeInsets.all(20),
-                child: Column(
-                  children: <Widget>[
-                    Container(
-                        margin: const EdgeInsets.fromLTRB(0, 0, 0, 5),
-                        child: const Text('Project Guide',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ))),
-                    const SizedBox(child: Text('Mrs.Kezang Dema')),
-                  ],
-                )),
-            Container(
-                padding: const EdgeInsets.all(20),
-                child: Column(
-                  children: <Widget>[
-                    Container(
-                        margin: const EdgeInsets.fromLTRB(0, 0, 0, 5),
-                        child: const Text('Special Thanks to:',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ))),
-                    const SizedBox(child: Text('Dr.Dorji Thinley')),
-                  ],
-                ))
-          ]),
-        ));
+                  )
+                ],
+              ),
+              const SizedBox(height: 10,),
+              Text(
+                'Druk Peytam was created by a group of final year IT students from College of Science and Technology. It is a product of our final year project.\n\nDruk Peytam app contains the intellectual sayings and proverbs that has been passed down from generations.\n\nThe main aim is to promote and preserve this cultural aspect of our country, Bhutan.',
+                textAlign: TextAlign.justify,
+                style: GoogleFonts.kleeOne(
+                  textStyle: TextStyle(
+                    fontSize: 16,
+                    color: Colors.grey.shade700,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 10),
+              const Divider(),
+              ListTile(
+                title: Text(
+                  'Developers:',
+                  style: GoogleFonts.kleeOne(
+                    textStyle: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.grey.shade700,
+                    ),
+                  ),
+                ),
+              ),
+              ListTile(
+                title: Text(
+                  'Tashi Wangchuk',
+                  style: GoogleFonts.kleeOne(
+                    textStyle: const TextStyle(
+                      fontSize: 16,
+                      color: Colors.blue,
+                    ),
+                  ),
+                ),
+                onTap: () {
+                  // Logout functionality
+                },
+                trailing: const Icon(
+                  Icons.mail_rounded,
+                  color: Colors.blue,
+                ),
+              ),
+              ListTile(
+                title: Text(
+                  'Tashi Pelden',
+                  style: GoogleFonts.kleeOne(
+                    textStyle: const TextStyle(
+                      fontSize: 16,
+                      color: Colors.blue,
+                    ),
+                  ),
+                ),
+                onTap: () {
+                  // Logout functionality
+                },
+                trailing: const Icon(
+                  Icons.mail_rounded,
+                  color: Colors.blue,
+                ),
+              ),
+              ListTile(
+                title: Text(
+                  'Namgay Wangchuk',
+                  style: GoogleFonts.kleeOne(
+                    textStyle: const TextStyle(
+                      fontSize: 16,
+                      color: Colors.blue,
+                    ),
+                  ),
+                ),
+                onTap: () {
+                  // Logout functionality
+                },
+                trailing: const Icon(
+                  Icons.mail_rounded,
+                  color: Colors.blue,
+                ),
+              ),
+              const Divider(),
+              ListTile(
+                title: Text(
+                  'Project Guide:',
+                  style: GoogleFonts.kleeOne(
+                    textStyle: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.grey.shade700,
+                    ),
+                  ),
+                ),
+              ),
+              ListTile(
+                title: Text(
+                  'Kezang Dema',
+                  style: GoogleFonts.kleeOne(
+                    textStyle: const TextStyle(
+                      fontSize: 16,
+                      color: Colors.blue,
+                    ),
+                  ),
+                ),
+                onTap: () {
+                  // Logout functionality
+                },
+                trailing: const Icon(
+                  Icons.mail_rounded,
+                  color: Colors.blue,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
-//}

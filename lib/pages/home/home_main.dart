@@ -1,12 +1,14 @@
 import 'package:audioplayers/audioplayers.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'package:first_app/pages/drawer_items/about_us.dart';
 import 'package:first_app/service/auth_service.dart';
 import 'package:flutter/material.dart';
 
+import '../../leaderboard/leaderboard.dart';
 import '../../helper/helper_function.dart';
 import '../../widgets/widget.dart';
-import '../auth/login_page.dart';
-import '../categories/categories.dart';
 import '../drawer_items/profile_page.dart';
 import '../levels/level_cards.dart';
 import 'home_page.dart';
@@ -20,6 +22,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  int _quizPoint = 0;
   String userName = "";
   String email = "";
   AudioPlayer audioPlayer = AudioPlayer();
@@ -29,6 +32,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     gettingUserData();
+    gettingQuizPointsFromFireStore();
   }
 
   gettingUserData() async {
@@ -44,6 +48,17 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  void gettingQuizPointsFromFireStore() async {
+    final currentUser = FirebaseAuth.instance.currentUser;
+    final userSnapshot = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(currentUser!.uid)
+        .get();
+    setState(() {
+      _quizPoint = userSnapshot.data()!['quizPoint'];
+    });
+  }
+
   int currentPage = 0;
 
   List<Widget> pages = const [
@@ -54,7 +69,7 @@ class _HomePageState extends State<HomePage> {
       image: '',
     ),
     LevelsHome(),
-    Categories(),
+    LeaderBoard(),
     Favorite(),
   ];
 
@@ -68,23 +83,6 @@ class _HomePageState extends State<HomePage> {
           preferredSize: const Size.fromHeight(10.0),
           child: Container(),
         ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.attach_money),
-            onPressed: () {
-              debugPrint("Pressed on Coin");
-              // Do something when the search icon is tapped
-            },
-          ),
-          const SizedBox(width: 16),
-          IconButton(
-            icon: const Icon(Icons.flag),
-            onPressed: () {
-              // Do something when the more_vert icon is tapped
-            },
-          ),
-          const SizedBox(width: 16),
-        ],
       ),
       body: pages[currentPage],
       drawer: Drawer(
@@ -103,6 +101,36 @@ class _HomePageState extends State<HomePage> {
               userName,
               textAlign: TextAlign.center,
               style: const TextStyle(fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Image.asset(
+                        'assets/point.png',
+                        height: 32,
+                      ),
+                      Text(_quizPoint.toString()),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Image.asset(
+                        'assets/coin.png',
+                        height: 32,
+                      ),
+                      const Text("coins"),
+                    ],
+                  ),
+                ],
+              ),
             ),
             const SizedBox(
               height: 30,

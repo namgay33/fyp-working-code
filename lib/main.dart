@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -8,6 +6,7 @@ import 'pages/home/home_main.dart';
 import 'package:flutter/foundation.dart';
 
 import 'shared/constant.dart';
+import 'splashscreen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,14 +14,6 @@ void main() async {
     await Firebase.initializeApp(
       name: "Druk Peytam",
       options: FirebaseOptions(
-        // apiKey: 'AIzaSyA8-WvSPSOqOn87gRu5H_uqJNxgikdasqc',
-        // authDomain: 'paytam-490fa.firebaseapp.com',
-        // databaseURL: 'https://paytam-490fa-default-rtdb.firebaseio.com',
-        // projectId: 'paytam-490fa',
-        // storageBucket: 'paytam-490fa.appspot.com',
-        // messagingSenderId: '702069271398',
-        // appId: '1:702069271398:web:8f1b722ae39f5d0745b6a7',
-        // measurementId: 'G-0KBGM51WV2',
         apiKey: Constants.apiKey,
         authDomain: Constants.authDomain,
         projectId: Constants.projectId,
@@ -51,13 +42,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     // SystemChrome.setSystemUIOverlayStyle(
     //     const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
-    return MaterialApp(
-      title: 'Flutter Demo',
+    return const MaterialApp(
+      title: 'Druk Peytam',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: Splashscreen(),
     );
   }
 }
@@ -75,22 +63,12 @@ class SplashScreenState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
-
-    Timer(
-        const Duration(seconds: 3),
-        () => Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (context) => const HomePage())));
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        color: Colors.yellow,
-        child: FractionallySizedBox(
-          widthFactor: 0.70,
-          child: Image.asset(
-            'assets/logo.png',
-          ),
-        ));
+    return const Scaffold(
+      body: HomePage(),
+    );
   }
 }

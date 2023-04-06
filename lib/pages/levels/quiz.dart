@@ -1,5 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:flutter/cupertino.dart';
@@ -50,6 +52,21 @@ class _QuizScreenState extends State<QuizScreen> {
       var data = jsonDecode(res.body.toString());
       return data;
     }
+  }
+
+  addQuizPoints() {
+    CollectionReference usersRef =
+        FirebaseFirestore.instance.collection('users');
+
+    FirebaseAuth auth = FirebaseAuth.instance;
+    String userUid = auth.currentUser!.uid;
+
+    usersRef.doc(userUid).set({'quizPoint': FieldValue.increment(points)},
+        SetOptions(merge: true)).then((value) {
+      // print("Quiz point updated for user $userUid");
+    }).catchError((error) {
+      // print("Failed to update quiz point for user $userUid: $error");
+    });
   }
 
   @override
@@ -109,7 +126,7 @@ class _QuizScreenState extends State<QuizScreen> {
             gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
-          colors: [blue, darkBlue],
+          colors: [quizBgColor, quizBgColorDark],
         )),
         child: FutureBuilder(
           future: quiz,
@@ -165,15 +182,18 @@ class _QuizScreenState extends State<QuizScreen> {
                         ),
                         Container(
                           decoration: BoxDecoration(
+                            color: quizBgColorDark,
                             borderRadius: BorderRadius.circular(16),
-                            border: Border.all(color: lightgrey, width: 2),
+                            border: Border.all(color: quizBgColor, width: 2),
                           ),
                           child: TextButton.icon(
                               onPressed: null,
-                              icon: const Icon(CupertinoIcons.heart_fill,
+                              icon: const Icon(CupertinoIcons.time,
                                   color: Colors.white, size: 18),
                               label: normalText(
-                                  color: Colors.white, size: 14, text: "Like")),
+                                  color: Colors.white,
+                                  size: 14,
+                                  text: "Extend Time")),
                         ),
                       ],
                     ),
@@ -217,7 +237,8 @@ class _QuizScreenState extends State<QuizScreen> {
                                 });
                               } else {
                                 timer!.cancel();
-                                //here you can do whatever you want with the results
+                                addQuizPoints();
+                                Navigator.pop(context);
                               }
                             });
                           },

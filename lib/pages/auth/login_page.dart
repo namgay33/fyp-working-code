@@ -7,7 +7,7 @@ import '../../helper/helper_function.dart';
 import '../../service/auth_service.dart';
 import '../../service/database_service.dart';
 import '../../widgets/widget.dart';
-import '../levels/level_cards.dart';
+import '../home/home_main.dart';
 import 'register_page.dart';
 
 class LoginPage extends StatefulWidget {
@@ -184,7 +184,7 @@ class _LoginPageState extends State<LoginPage> {
             await HelperFunctions.saveUserEmailSF(email);
             await HelperFunctions.saveUserNameSF(snapshot.docs[0]["fullName"]);
 
-            nextScreenReplace(context, const LevelsHome());
+            nextScreen(context, const HomePage());
           } else {
             showSnackBar(context, Colors.red, value);
             setState(() {
