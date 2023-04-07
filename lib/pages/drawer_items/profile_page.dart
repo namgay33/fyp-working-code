@@ -26,7 +26,7 @@ class _ProfilePageState extends State<ProfilePage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: Theme.of(context).primaryColor,
+        backgroundColor: const Color.fromARGB(255, 255, 152, 18),
         elevation: 0,
         title: const Text(
           "Profile",
@@ -37,7 +37,7 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
         ),
       ),
-      drawer: Drawer(
+      endDrawer: Drawer(
         child: ListView(
           padding: const EdgeInsets.symmetric(vertical: 50),
           children: <Widget>[
@@ -67,7 +67,7 @@ class _ProfilePageState extends State<ProfilePage> {
               selectedColor: Theme.of(context).primaryColor,
               contentPadding:
                   const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-              leading: const Icon(Icons.group),
+              leading: const Icon(Icons.home),
               title: const Text(
                 "Home",
                 style: TextStyle(color: Colors.black),

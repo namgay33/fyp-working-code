@@ -51,7 +51,6 @@ class _DetailScreenState extends State<DetailScreen> {
                     icon: const Icon(Icons.volume_up),
                     onPressed: () async {
                       await audioPlayer.play(UrlSource(widget.audio));
-                      debugPrint(widget.audio);
                     },
                   ),
                 ],
@@ -70,7 +69,7 @@ class _DetailScreenState extends State<DetailScreen> {
                         ? Center(
                             child: Image.network(
                               widget.image,
-                              height: 500,
+                              height: 400,
                             ),
                           )
                         : const Center(child: CircularProgressIndicator()),

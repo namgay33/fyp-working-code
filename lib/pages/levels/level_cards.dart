@@ -34,34 +34,44 @@ class _LevelsHomeState extends State<LevelsHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView.builder(
-        itemCount: itemCOunt,
-        itemBuilder: (BuildContext context, int index) {
-          return Padding(
-            padding: const EdgeInsets.fromLTRB(40.0, 10, 40, 0),
-            child: Card(
-              elevation: 4,
-              child: ListTile(
-                title: Center(
-                  child: Text('Level ${(index + 1)}'),
+      body: Stack(
+        children: [
+          // Image.asset(
+          //   'assets/bgcolor.PNG',
+          //   fit: BoxFit.cover,
+          //   width: double.infinity,
+          //   height: double.infinity,
+          // ),
+          ListView.builder(
+            itemCount: itemCOunt,
+            itemBuilder: (BuildContext context, int index) {
+              return Padding(
+                padding: const EdgeInsets.fromLTRB(40.0, 10, 40, 0),
+                child: Card(
+                  elevation: 4,
+                  child: ListTile(
+                    title: Center(
+                      child: Text('Level ${(index + 1)}'),
+                    ),
+                    leading: const Icon(Icons.lock),
+                    onTap: () {
+                      _isSignedIn
+                          ? Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const QuizScreen()),
+                            )
+                          : Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const LoginPage()));
+                    },
+                  ),
                 ),
-                leading: const Icon(Icons.lock),
-                onTap: () {
-                  _isSignedIn
-                      ? Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const QuizScreen()),
-                        )
-                      : Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const LoginPage()));
-                },
-              ),
-            ),
-          );
-        },
+              );
+            },
+          ),
+        ],
       ),
     );
   }

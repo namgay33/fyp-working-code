@@ -203,7 +203,7 @@ class _QuizScreenState extends State<QuizScreen> {
                     Align(
                         alignment: Alignment.centerLeft,
                         child: normalText(
-                            color: lightgrey,
+                            color: const Color.fromARGB(255, 39, 35, 35),
                             size: 18,
                             text:
                                 "Question ${currentQuestionIndex + 1} of ${data.length}")),
@@ -226,7 +226,7 @@ class _QuizScreenState extends State<QuizScreen> {
                               if (answer.toString() ==
                                   optionsList[index].toString()) {
                                 optionsColor[index] = Colors.green;
-                                points = points + 10;
+                                points = points + 3;
                               } else {
                                 optionsColor[index] = Colors.red;
                               }

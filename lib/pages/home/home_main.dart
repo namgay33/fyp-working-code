@@ -69,7 +69,7 @@ class _HomePageState extends State<HomePage> {
       image: '',
     ),
     LevelsHome(),
-    LeaderBoard(),
+    Leaderboard(),
     Favorite(),
   ];
 
@@ -79,13 +79,26 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: const Color.fromARGB(255, 255, 152, 18),
-        bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(10.0),
-          child: Container(),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Image.asset(
+              'assets/peytamlogo.PNG',
+              height: 40,
+            ),
+            const SizedBox(
+              width: 5,
+            ),
+            const Text(
+              "DrukPeytam",
+              style: TextStyle(fontSize: 30),
+            ),
+          ],
         ),
+        centerTitle: true,
       ),
       body: pages[currentPage],
-      drawer: Drawer(
+      endDrawer: Drawer(
         child: ListView(
           padding: const EdgeInsets.symmetric(vertical: 50),
           children: <Widget>[
@@ -115,16 +128,19 @@ class _HomePageState extends State<HomePage> {
                     children: [
                       Image.asset(
                         'assets/point.png',
-                        height: 32,
+                        height: 28,
                       ),
-                      Text(_quizPoint.toString()),
+                      Text(
+                        _quizPoint.toString(),
+                        style: const TextStyle(fontWeight: FontWeight.bold),
+                      ),
                     ],
                   ),
                   Row(
                     children: [
                       Image.asset(
                         'assets/coin.png',
-                        height: 32,
+                        height: 28,
                       ),
                       const Text("coins"),
                     ],
@@ -135,8 +151,12 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(
               height: 30,
             ),
-            const Divider(
-              height: 2,
+            const Padding(
+              padding: EdgeInsets.symmetric(vertical: 1, horizontal: 20),
+              child: Divider(
+                height: 4,
+                color: Colors.black,
+              ),
             ),
             ListTile(
               onTap: () {},
@@ -144,7 +164,7 @@ class _HomePageState extends State<HomePage> {
               selected: true,
               contentPadding:
                   const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-              leading: const Icon(Icons.group),
+              leading: const Icon(Icons.home),
               title: const Text(
                 "Home",
                 style: TextStyle(color: Colors.black),

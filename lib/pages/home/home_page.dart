@@ -63,7 +63,7 @@ class _HomeState extends State<Home> {
               itemCount: _outerValues.length,
               itemBuilder: (BuildContext context, int index) {
                 return Card(
-                  elevation: 4,
+                  elevation: 2,
                   borderOnForeground: true,
                   shadowColor: const Color.fromARGB(0, 89, 89, 91),
                   child: InkWell(
@@ -81,56 +81,69 @@ class _HomeState extends State<Home> {
                         ),
                       );
                     },
-                    child: ListTile(
-                      title: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: <Widget>[
-                                Flexible(
-                                  child: Text(
-                                    _outerValues[index]['dzongkha'],
-                                    style: const TextStyle(height: 1.7),
+                    child: Card(
+                      elevation: 0,
+                      child: ListTile(
+                        title: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: <Widget>[
+                                  Flexible(
+                                    child: Text(
+                                      _outerValues[index]['dzongkha'],
+                                      style: const TextStyle(height: 1.7),
+                                    ),
                                   ),
-                                ),
-                                IconButton(
-                                  icon: const Icon(Icons.volume_up),
-                                  onPressed: () async {
-                                    await audioPlayer.play(UrlSource(
-                                        _outerValues[index]['audio']));
-                                    debugPrint(_outerValues[index]['audio']);
-                                  },
-                                ),
-                              ],
-                            ),
-                            Text(
-                              _outerValues[index]['english'],
-                              style: const TextStyle(height: 1.5),
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: <Widget>[
-                                IconButton(
-                                  onPressed: () {
-                                    setState(() {});
-                                  },
-                                  icon: const Icon(Icons.favorite_border),
-                                ),
-                                IconButton(
-                                  onPressed: () {
-                                    setState(() {});
-                                  },
-                                  icon: const Icon(Icons.share),
-                                ),
-                              ],
-                            )
-                          ],
+                                ],
+                              ),
+                              Text(
+                                _outerValues[index]['english'],
+                                style: const TextStyle(height: 1.5),
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: <Widget>[
+                                  IconButton(
+                                    onPressed: () {
+                                      setState(() {});
+                                    },
+                                    icon: const Icon(
+                                      Icons.favorite_border,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                  IconButton(
+                                    onPressed: () {
+                                      setState(() {});
+                                    },
+                                    icon: const Icon(
+                                      Icons.share,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                  IconButton(
+                                    icon: const Icon(
+                                      Icons.volume_up,
+                                      color: Colors.black,
+                                    ),
+                                    onPressed: () async {
+                                      await audioPlayer.play(UrlSource(
+                                          _outerValues[index]['audio']));
+                                      debugPrint(_outerValues[index]['audio']);
+                                    },
+                                  ),
+                                ],
+                              )
+                            ],
+                          ),
                         ),
                       ),
                     ),

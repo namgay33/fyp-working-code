@@ -35,7 +35,7 @@ class AboutUs extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Image.asset(
-                    'assets/images/peytamlogo.PNG',
+                    'assets/peytamlogo.PNG',
                     height: 32,
                   ),
                   Text(
