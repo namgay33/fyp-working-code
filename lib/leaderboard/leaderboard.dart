@@ -99,11 +99,19 @@ class _LeaderboardState extends State<Leaderboard> {
                               itemBuilder: (context, index) {
                                 final user = _users[index];
                                 return ListTile(
-                                  leading: Text(
-                                      '${index + 1}'), // display user's rank
-                                  title: Text(user.name),
+                                  leading: Text('${index + 1}'),
+                                  title: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      const SizedBox(width: 4),
+                                      const Icon(Icons.account_circle),
+                                      const SizedBox(width: 4),
+                                      Text(user.name),
+                                    ],
+                                  ),
                                   trailing: Text(
-                                      '${user.points}'), // display user's points
+                                    '${user.points}',
+                                  ),
                                 );
                               },
                             ),

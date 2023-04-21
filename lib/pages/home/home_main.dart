@@ -77,6 +77,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         elevation: 0,
         backgroundColor: const Color.fromARGB(255, 255, 152, 18),
         title: Row(
@@ -91,7 +92,7 @@ class _HomePageState extends State<HomePage> {
             ),
             const Text(
               "DrukPeytam",
-              style: TextStyle(fontSize: 30),
+              style: TextStyle(fontSize: 27),
             ),
           ],
         ),
@@ -123,6 +124,19 @@ class _HomePageState extends State<HomePage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
+                  // ElevatedButton(
+                  //   style: ElevatedButton.styleFrom(
+                  //       backgroundColor: const Color(0xFFFFCC33)),
+                  //   onPressed: () {
+                  //     nextScreenReplace(context, const LoginPage());
+                  //   },
+                  //   child: const Text(
+                  //     "Sign In",
+                  //     style: TextStyle(
+                  //       backgroundColor: Color(0xFFFFCC33),
+                  //     ),
+                  //   ),
+                  // ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [

@@ -54,6 +54,7 @@ class _ProfilePageState extends State<ProfilePage> {
               textAlign: TextAlign.center,
               style: const TextStyle(fontWeight: FontWeight.bold),
             ),
+            
             const SizedBox(
               height: 30,
             ),

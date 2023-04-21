@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-
 //class AboutUs {
 class AboutUs extends StatelessWidget {
   const AboutUs({super.key});
@@ -13,7 +12,7 @@ class AboutUs extends StatelessWidget {
         centerTitle: true,
         iconTheme: const IconThemeData(color: Colors.black),
         automaticallyImplyLeading: true,
-        backgroundColor: Colors.white,
+        backgroundColor: const Color.fromARGB(255, 238, 172, 59),
         elevation: 0.5,
         title: Text(
           'About Us',
@@ -27,7 +26,7 @@ class AboutUs extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 30,vertical: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -42,15 +41,16 @@ class AboutUs extends StatelessWidget {
                     'DrukPeytam',
                     style: GoogleFonts.oswald(
                         textStyle: TextStyle(
-                          fontSize: 25,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.grey.shade700,
-                        )
-                    ),
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.grey.shade700,
+                    )),
                   )
                 ],
               ),
-              const SizedBox(height: 10,),
+              const SizedBox(
+                height: 10,
+              ),
               Text(
                 'Druk Peytam was created by a group of final year IT students from College of Science and Technology. It is a product of our final year project.\n\nDruk Peytam app contains the intellectual sayings and proverbs that has been passed down from generations.\n\nThe main aim is to promote and preserve this cultural aspect of our country, Bhutan.',
                 textAlign: TextAlign.justify,

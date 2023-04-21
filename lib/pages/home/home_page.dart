@@ -4,6 +4,7 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:first_app/pages/home/detailed_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:share_plus/share_plus.dart';
 
 class Home extends StatefulWidget {
   final String dzongkhaText;
@@ -23,6 +24,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+
   final audioUrl = '';
   AudioPlayer audioPlayer = AudioPlayer();
 
@@ -87,16 +89,28 @@ class _HomeState extends State<Home> {
                         title: Padding(
                           padding: const EdgeInsets.all(10.0),
                           child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: <Widget>[
                                   Flexible(
                                     child: Text(
                                       _outerValues[index]['dzongkha'],
                                       style: const TextStyle(height: 1.7),
                                     ),
+                                  ),
+                                  IconButton(
+                                    icon: const Icon(
+                                      Icons.volume_up,
+                                      color: Colors.black,
+                                    ),
+                                    onPressed: () async {
+                                      await audioPlayer.play(UrlSource(
+                                          _outerValues[index]['audio']));
+                                      debugPrint(_outerValues[index]['audio']);
+                                    },
                                   ),
                                 ],
                               ),
@@ -105,7 +119,7 @@ class _HomeState extends State<Home> {
                                 style: const TextStyle(height: 1.5),
                               ),
                               const SizedBox(
-                                height: 10,
+                                height: 20,
                               ),
                               Row(
                                 mainAxisAlignment:
@@ -122,23 +136,15 @@ class _HomeState extends State<Home> {
                                   ),
                                   IconButton(
                                     onPressed: () {
-                                      setState(() {});
+                                      // setState(() {});
+                                      final String text =
+                                          "PROVERBS FOR YOU FROM DRUKPEYTAM \n\n\n${_outerValues[index]['dzongkha']} \n ${_outerValues[index]['english']}";
+                                      Share.share(text);
                                     },
                                     icon: const Icon(
                                       Icons.share,
                                       color: Colors.black,
                                     ),
-                                  ),
-                                  IconButton(
-                                    icon: const Icon(
-                                      Icons.volume_up,
-                                      color: Colors.black,
-                                    ),
-                                    onPressed: () async {
-                                      await audioPlayer.play(UrlSource(
-                                          _outerValues[index]['audio']));
-                                      debugPrint(_outerValues[index]['audio']);
-                                    },
                                   ),
                                 ],
                               )

@@ -1,8 +1,8 @@
-import 'package:first_app/pages/levels/quiz.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import '../../helper/helper_function.dart';
-import '../auth/login_page.dart';
+import 'pages/level_pages.dart';
 
 const int itemCOunt = 10;
 
@@ -14,34 +14,29 @@ class LevelsHome extends StatefulWidget {
 }
 
 class _LevelsHomeState extends State<LevelsHome> {
-  bool _isSignedIn = false;
+  // int _quizPoint = 0;
+
   @override
   void initState() {
     super.initState();
-    getUserLoggedInStatus();
   }
 
-  getUserLoggedInStatus() async {
-    await HelperFunctions.getUserLoggedInStatus().then((value) {
-      if (value != null) {
-        setState(() {
-          _isSignedIn = value;
-        });
-      }
-    });
-  }
+  // void gettingQuizPointsFromFireStore() async {
+  //   final currentUser = FirebaseAuth.instance.currentUser;
+  //   final userSnapshot = await FirebaseFirestore.instance
+  //       .collection('users')
+  //       .doc(currentUser!.uid)
+  //       .get();
+  //   setState(() {
+  //     _quizPoint = userSnapshot.data()!['quizPoint'];
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
         children: [
-          // Image.asset(
-          //   'assets/bgcolor.PNG',
-          //   fit: BoxFit.cover,
-          //   width: double.infinity,
-          //   height: double.infinity,
-          // ),
           ListView.builder(
             itemCount: itemCOunt,
             itemBuilder: (BuildContext context, int index) {
@@ -53,18 +48,13 @@ class _LevelsHomeState extends State<LevelsHome> {
                     title: Center(
                       child: Text('Level ${(index + 1)}'),
                     ),
-                    leading: const Icon(Icons.lock),
+                    // leading: const Icon(Icons.lock),
                     onTap: () {
-                      _isSignedIn
-                          ? Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const QuizScreen()),
-                            )
-                          : Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const LoginPage()));
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => LevelPages(index: index + 1)),
+                      );
                     },
                   ),
                 ),
