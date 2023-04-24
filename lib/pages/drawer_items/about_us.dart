@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-//class AboutUs {
 class AboutUs extends StatelessWidget {
   const AboutUs({super.key});
 

@@ -187,7 +187,7 @@ class _LevelPagesState extends State<LevelPages> {
             child: ElevatedButton(
               onPressed: () {
                 _isSignedIn
-                    ? nextScreen(context, const QuizScreen())
+                    ? nextScreen(context, QuizScreen(index: widget.index))
                     : Navigator.push(
                         context,
                         MaterialPageRoute(

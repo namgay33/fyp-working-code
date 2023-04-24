@@ -12,8 +12,8 @@ import 'const/images.dart';
 import 'const/text_styles.dart';
 
 class QuizScreen extends StatefulWidget {
-  const QuizScreen({Key? key}) : super(key: key);
-
+  final int index;
+  const QuizScreen({Key? key, required this.index}) : super(key: key);
   @override
   State<QuizScreen> createState() => _QuizScreenState();
 }
@@ -132,7 +132,10 @@ class _QuizScreenState extends State<QuizScreen> {
           future: quiz,
           builder: (BuildContext context, AsyncSnapshot snapshot) {
             if (snapshot.hasData) {
-              var data = snapshot.data["results"];
+              var data = snapshot.data["results"]
+                  .where(
+                      (element) => element['difficulty'] == '${widget.index}')
+                  .toList();
 
               if (isLoaded == false) {
                 optionsList = data[currentQuestionIndex]["incorrect_answers"];
