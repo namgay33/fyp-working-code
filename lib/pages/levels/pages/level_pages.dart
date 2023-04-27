@@ -31,8 +31,8 @@ class _LevelPagesState extends State<LevelPages> {
   @override
   void initState() {
     super.initState();
-    getUserLoggedInStatus();
     getDataFromAPI();
+    getUserLoggedInStatus();
   }
 
   getUserLoggedInStatus() async {
@@ -56,6 +56,7 @@ class _LevelPagesState extends State<LevelPages> {
         _outerValues.add(outerValue);
       });
     });
+    setState(() {});
   }
 
   @override

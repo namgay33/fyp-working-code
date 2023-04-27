@@ -174,7 +174,7 @@ class _LoginPageState extends State<LoginPage> {
 
       await authService.loginWithUserNameAndPassword(email, password).then(
         (value) async {
-          if (value == true) {
+          if (value==true) {
             QuerySnapshot snapshot = await DatabaseService(
                     uid: FirebaseAuth.instance.currentUser!.uid)
                 .gettingUserData(email);
