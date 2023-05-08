@@ -67,6 +67,7 @@ class _HomePageState extends State<HomePage> {
       englishText: '',
       dzongkhaText: '',
       image: '',
+      audio: '',
     ),
     LevelsHome(),
     Leaderboard(),

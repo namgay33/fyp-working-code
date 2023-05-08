@@ -7,13 +7,13 @@ class AuthService {
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
 
   // login
-  Future<String?> loginWithUserNameAndPassword(
-      String email, String password) async {
+  Future loginWithUserNameAndPassword(String email, String password) async {
     try {
       User user = (await firebaseAuth.signInWithEmailAndPassword(
               email: email, password: password))
           .user!;
-      return null; // return null if login successful
+
+      return true;
     } on FirebaseAuthException catch (e) {
       switch (e.code) {
         case 'invalid-email':
