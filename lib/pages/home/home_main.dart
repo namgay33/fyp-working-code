@@ -71,7 +71,13 @@ class _HomePageState extends State<HomePage> {
     ),
     LevelsHome(),
     Leaderboard(),
-    Favorite(),
+    Favorite(
+      dzongkhaText: '',
+      englishText: '',
+      description: '',
+      image: '',
+      audio: '',
+    ),
   ];
 
   @override
@@ -289,14 +295,3 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
-
-
-
-      // apiKey: 'AIzaSyA8-WvSPSOqOn87gRu5H_uqJNxgikdasqc',
-      // authDomain: 'paytam-490fa.firebaseapp.com',
-      // databaseURL: 'https://paytam-490fa-default-rtdb.firebaseio.com',
-      // projectId: 'paytam-490fa',
-      // storageBucket: 'paytam-490fa.appspot.com',
-      // messagingSenderId: '702069271398',
-      // appId: '1:702069271398:web:8f1b722ae39f5d0745b6a7',
-      // measurementId: 'G-0KBGM51WV2',

@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:share_plus/share_plus.dart';
 
+import '../auth/login_page.dart';
+
 class Home extends StatefulWidget {
   final String dzongkhaText;
   final String englishText;
@@ -31,25 +33,37 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   final audioUrl = '';
   AudioPlayer audioPlayer = AudioPlayer();
-
-  late CollectionReference _favoritesRef;
+  late CollectionReference favoritesRef;
 
   //
   // List<dynamic> _innerValues = [];
 
   final List<dynamic> _outerValues = [];
+  List<Map<String, dynamic>> favoriteItems = [];
   late List<bool> isFavoritedList;
+  late bool isFavorite;
 
   @override
   void initState() {
     super.initState();
+
+    // Check if the user is logged in
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      // Load favorites and set up favoritesRef
+      loadFavorites();
+      setFavorites();
+
+      final String userId = getUserId();
+
+      favoritesRef = FirebaseFirestore.instance
+          .collection('users')
+          .doc(userId)
+          .collection('favorites');
+    }
+
+    // Always get data from the API
     getDataFromAPI();
-    setFavorites();
-    final String userId = getUserId();
-    _favoritesRef = FirebaseFirestore.instance
-        .collection('users')
-        .doc(userId)
-        .collection('favorites');
   }
 
   String getUserId() {
@@ -85,9 +99,31 @@ class _HomeState extends State<Home> {
     setState(() {});
   }
 
+  Future<void> loadFavorites() async {
+    // Load favorites from Firestore
+    final user = FirebaseAuth.instance.currentUser;
+    final favoritesRef = FirebaseFirestore.instance
+        .collection('users')
+        .doc(user!.uid)
+        .collection('favorites');
+    final querySnapshot = await favoritesRef.get();
+    setState(() {
+      favoriteItems = querySnapshot.docs.map((doc) => doc.data()).toList();
+      isFavoritedList = List.filled(_outerValues.length, false);
+      for (var i = 0; i < _outerValues.length; i++) {
+        final isFavorite = favoriteItems
+            .any((item) => item['dzongkha'] == _outerValues[i]['dzongkha']);
+        if (isFavorite) {
+          isFavoritedList[i] = true;
+        }
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    isFavoritedList = List.filled(_outerValues.length, false);
+    User? user = FirebaseAuth.instance.currentUser;
+
     return Scaffold(
       body: _outerValues.isEmpty
           ? const Center(
@@ -158,10 +194,48 @@ class _HomeState extends State<Home> {
                                     MainAxisAlignment.spaceEvenly,
                                 children: <Widget>[
                                   IconButton(
-                                    onPressed: () {
-                                      _favoritesRef.add({
-                                        'favorites': FieldValue.arrayUnion([
-                                          {
+                                    onPressed: () async {
+                                      if (user == null) {
+                                        // Show login dialog
+                                        showDialog(
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            return AlertDialog(
+                                              title:
+                                                  const Text("Login required"),
+                                              content: const Text(
+                                                  "Please log in to add to favorites."),
+                                              actions: <Widget>[
+                                                TextButton(
+                                                  child: const Text("Cancel"),
+                                                  onPressed: () {
+                                                    Navigator.pop(context);
+                                                  },
+                                                ),
+                                                TextButton(
+                                                  child: const Text("Log in"),
+                                                  onPressed: () {
+                                                    // Navigate to login screen
+                                                    Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              const LoginPage()),
+                                                    );
+                                                  },
+                                                ),
+                                              ],
+                                            );
+                                          },
+                                        );
+                                      } else {
+                                        // Perform favorite or share action
+                                        loadFavorites();
+                                        isFavorite = favoriteItems.any((item) =>
+                                            item['dzongkha'] ==
+                                            _outerValues[index]['dzongkha']);
+                                        if (!isFavorite) {
+                                          await favoritesRef.add({
                                             'dzongkha': _outerValues[index]
                                                 ['dzongkha'],
                                             'english': _outerValues[index]
@@ -172,31 +246,77 @@ class _HomeState extends State<Home> {
                                                 ['image'],
                                             'audio': _outerValues[index]
                                                 ['audio'],
+                                          });
+                                          await loadFavorites();
+                                        } else {
+                                          QuerySnapshot querySnapshot =
+                                              await favoritesRef
+                                                  .where('dzongkha',
+                                                      isEqualTo:
+                                                          _outerValues[index]
+                                                              ['dzongkha'])
+                                                  .get();
+                                          for (var doc in querySnapshot.docs) {
+                                            doc.reference.delete();
                                           }
-                                        ])
-                                      }).then((value) {
-                                        setState(() {
-                                          isFavoritedList[index] = true;
-                                        });
-                                      });
+                                          loadFavorites();
+                                        }
+                                      }
                                     },
                                     icon: Icon(
-                                      isFavoritedList[
-                                              index] // Use the favorite status of the item at the given index to set the icon color
+                                      favoriteItems.any((item) =>
+                                              item['dzongkha'] ==
+                                              _outerValues[index]['dzongkha'])
                                           ? Icons.favorite
                                           : Icons.favorite_border,
-                                      color: isFavoritedList[
-                                              index] // Use the favorite status of the item at the given index to set the icon color
+                                      color: favoriteItems.any((item) =>
+                                              item['dzongkha'] ==
+                                              _outerValues[index]['dzongkha'])
                                           ? Colors.red
                                           : Colors.black,
                                     ),
                                   ),
                                   IconButton(
                                     onPressed: () {
-                                      // setState(() {});
-                                      final String text =
-                                          "PROVERBS FOR YOU FROM DRUKPEYTAM \n\n\n${_outerValues[index]['dzongkha']} \n ${_outerValues[index]['english']}";
-                                      Share.share(text);
+                                      if (user == null) {
+                                        // Show login dialog
+                                        showDialog(
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            return AlertDialog(
+                                              title:
+                                                  const Text("Login required"),
+                                              content: const Text(
+                                                  "Please log in to share."),
+                                              actions: <Widget>[
+                                                TextButton(
+                                                  child: const Text("Cancel"),
+                                                  onPressed: () {
+                                                    Navigator.pop(context);
+                                                  },
+                                                ),
+                                                TextButton(
+                                                  child: const Text("Log in"),
+                                                  onPressed: () {
+                                                    // Navigate to login screen
+                                                    Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              const LoginPage()),
+                                                    );
+                                                  },
+                                                ),
+                                              ],
+                                            );
+                                          },
+                                        );
+                                      } else {
+                                        // Perform share action
+                                        final String text =
+                                            "PROVERBS FOR YOU FROM DRUKPEYTAM \n\n\n${_outerValues[index]['dzongkha']} \n ${_outerValues[index]['english']}";
+                                        Share.share(text);
+                                      }
                                     },
                                     icon: const Icon(
                                       Icons.share,
