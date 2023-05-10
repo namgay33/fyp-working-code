@@ -128,12 +128,47 @@ class _FavoriteState extends State<Favorite> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: <Widget>[
                             IconButton(
-                              onPressed: () {
-                                setState(() {});
+                              onPressed: () async {
+                                // collection reference is already stored in `_collectionReference`, proceeding further:
+
+                                final docIdToDelete = document.id;
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      title: const Text('Confirm Deletion'),
+                                      content: const Text(
+                                          'Are you sure you want to remove this from favorites?'),
+                                      actions: <Widget>[
+                                        TextButton(
+                                          onPressed: () {
+                                            Navigator.of(context)
+                                                .pop(); // Close the dialog
+                                          },
+                                          child: const Text('Cancel'),
+                                        ),
+                                        TextButton(
+                                          onPressed: () async {
+                                            // Delete the document from Firestore
+                                            await _collectionReference
+                                                .doc(docIdToDelete)
+                                                .delete();
+                                            setState(() {
+                                              // Call setState to update the UI after deleting the document
+                                            });
+                                            Navigator.of(context)
+                                                .pop(); // Close the dialog
+                                          },
+                                          child: const Text('Yes'),
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
                               },
                               icon: const Icon(
-                                Icons.favorite_outline,
-                                color: Colors.black,
+                                Icons.favorite,
+                                color: Colors.red,
                               ),
                             ),
                             IconButton(

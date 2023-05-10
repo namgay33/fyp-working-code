@@ -20,7 +20,7 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  AuthService authService = AuthService();
+  AuthService authService = AuthService(uid: '');
   @override
   Widget build(BuildContext context) {
     return Scaffold(

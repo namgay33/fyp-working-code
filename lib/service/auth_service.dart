@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '../helper/helper_function.dart';
@@ -5,6 +6,34 @@ import 'database_service.dart';
 
 class AuthService {
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+
+  final String uid;
+  AuthService({required this.uid});
+
+  final CollectionReference usersCollection =
+      FirebaseFirestore.instance.collection('users');
+
+  // Check if user exists in the database
+  Future<bool> checkUserExists() async {
+    DocumentSnapshot doc = await usersCollection.doc(uid).get();
+    return doc.exists;
+  }
+
+  // Add coins to user's account
+  Future<void> addCoins(int coinsToAdd) async {
+    CollectionReference usersRef =
+        FirebaseFirestore.instance.collection('users');
+
+    FirebaseAuth auth = FirebaseAuth.instance;
+    String userUid = auth.currentUser!.uid;
+
+    usersRef.doc(userUid).set({'coins': FieldValue.increment(coinsToAdd)},
+        SetOptions(merge: true)).then((value) {
+      // print("Quiz point updated for user $userUid");
+    }).catchError((error) {
+      // print("Failed to update quiz point for user $userUid: $error");
+    });
+  }
 
   // login
   Future loginWithUserNameAndPassword(String email, String password) async {
@@ -33,12 +62,34 @@ class AuthService {
   }
 
   // register
+  // Future registerUserWithEmailAndPassword(
+  //     String fullName, String email, String password) async {
+  //   try {
+  //     User user = (await firebaseAuth.createUserWithEmailAndPassword(
+  //             email: email, password: password))
+  //         .user!;
+  //     await DatabaseService(uid: user.uid).savingUserData(fullName, email);
+  //     return true;
+  //   } on FirebaseAuthException catch (e) {
+  //     return e.message;
+  //   }
+  // }
+
   Future registerUserWithEmailAndPassword(
       String fullName, String email, String password) async {
     try {
       User user = (await firebaseAuth.createUserWithEmailAndPassword(
               email: email, password: password))
           .user!;
+
+      // Check if user already exists in the database
+      bool userExists = await AuthService(uid: user.uid).checkUserExists();
+
+      // If user does not exist, add 5 coins to their account
+      if (!userExists) {
+        await AuthService(uid: user.uid).addCoins(5);
+      }
+
       await DatabaseService(uid: user.uid).savingUserData(fullName, email);
       return true;
     } on FirebaseAuthException catch (e) {

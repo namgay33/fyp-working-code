@@ -23,16 +23,18 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _quizPoint = 0;
+  int _coinPoints = 0;
   String userName = "";
   String email = "";
+
   AudioPlayer audioPlayer = AudioPlayer();
-  AuthService authService = AuthService();
+  AuthService authService = AuthService(uid: '');
 
   @override
   void initState() {
     super.initState();
     gettingUserData();
-    gettingQuizPointsFromFireStore();
+    gettingQuizPointsAndCoinsFromFireStore();
   }
 
   gettingUserData() async {
@@ -48,7 +50,7 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  void gettingQuizPointsFromFireStore() async {
+  void gettingQuizPointsAndCoinsFromFireStore() async {
     final currentUser = FirebaseAuth.instance.currentUser;
     final userSnapshot = await FirebaseFirestore.instance
         .collection('users')
@@ -56,6 +58,7 @@ class _HomePageState extends State<HomePage> {
         .get();
     setState(() {
       _quizPoint = userSnapshot.data()!['quizPoint'];
+      _coinPoints = userSnapshot.data()!['coins'];
     });
   }
 
@@ -149,11 +152,15 @@ class _HomePageState extends State<HomePage> {
                     children: [
                       Image.asset(
                         'assets/point.png',
-                        height: 28,
+                        height: 20,
                       ),
-                      Text(
-                        _quizPoint.toString(),
-                        style: const TextStyle(fontWeight: FontWeight.bold),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(8.0, 0, 0, 0),
+                        child: Text(
+                          _quizPoint.toString(),
+                          style: const TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 20),
+                        ),
                       ),
                     ],
                   ),
@@ -161,9 +168,16 @@ class _HomePageState extends State<HomePage> {
                     children: [
                       Image.asset(
                         'assets/coin.png',
-                        height: 28,
+                        height: 20,
                       ),
-                      const Text("coins"),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(8.0, 0, 0, 0),
+                        child: Text(
+                          _coinPoints.toString(),
+                          style: const TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 20),
+                        ),
+                      ),
                     ],
                   ),
                 ],

@@ -23,7 +23,7 @@ class _LoginPageState extends State<LoginPage> {
   String password = "";
   bool _isLoading = false;
 
-  AuthService authService = AuthService();
+  AuthService authService = AuthService(uid: '');
 
   @override
   Widget build(BuildContext context) {
