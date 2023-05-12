@@ -46,6 +46,7 @@ class _QuizScreenState extends State<QuizScreen> {
 // https://extendsclass.com/jsonstorage/fcddd3efa56d
 
   var link = "https://json.extendsclass.com/bin/fcddd3efa56d";
+  // var link = "https://json.extendsclass.com/bin/28d963e9580c";
 
   getQuiz() async {
     var res = await http.get(Uri.parse(link));
@@ -69,6 +70,19 @@ class _QuizScreenState extends State<QuizScreen> {
       // print("Failed to update quiz point for user $userUid: $error");
     });
   }
+
+  // addQuizPoints(int level, int points) {
+  //   CollectionReference usersRef =
+  //       FirebaseFirestore.instance.collection('users');
+
+  //   FirebaseAuth auth = FirebaseAuth.instance;
+  //   String userUid = auth.currentUser!.uid;
+
+  //   // Add the quiz points for the specified level as a field in the "quizPoints" collection
+  //   usersRef.doc(userUid).collection('quizPoints').doc('level$level').set({
+  //     'points': FieldValue.increment(points),
+  //   }, SetOptions(merge: true));
+  // }
 
   @override
   void initState() {
@@ -149,7 +163,6 @@ class _QuizScreenState extends State<QuizScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
     return Scaffold(
       body: SafeArea(
           child: Container(
@@ -280,6 +293,7 @@ class _QuizScreenState extends State<QuizScreen> {
                                   timer!.cancel();
 
                                   addQuizPoints();
+                                  // addQuizPoints(widget.index, points);
 
                                   showDialog(
                                     context: context,
