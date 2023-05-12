@@ -19,6 +19,8 @@ class DatabaseService {
       "groups": [],
       "profilePic": "",
       'uid': uid,
+      'coins': 0,
+      'quizPoint': 0
     });
   }
 

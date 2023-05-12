@@ -25,6 +25,7 @@ class _QuizScreenState extends State<QuizScreen> {
   late Future quiz;
 
   int points = 0;
+  int coinAmount = 0;
 
   var isLoaded = false;
 
@@ -73,6 +74,8 @@ class _QuizScreenState extends State<QuizScreen> {
   void initState() {
     super.initState();
     quiz = getQuiz();
+    getCoinAmount();
+
     startTimer();
   }
 
@@ -80,6 +83,37 @@ class _QuizScreenState extends State<QuizScreen> {
   void dispose() {
     timer!.cancel();
     super.dispose();
+  }
+
+  getCoinAmount() async {
+    CollectionReference usersRef =
+        FirebaseFirestore.instance.collection('users');
+
+    FirebaseAuth auth = FirebaseAuth.instance;
+    String userUid = auth.currentUser!.uid;
+
+    var userData = await usersRef.doc(userUid).get();
+    Map<String, dynamic> userDataMap = userData.data() as Map<String, dynamic>;
+    if (userData.exists) {
+      setState(() {
+        coinAmount = userDataMap['coins'] ?? 0;
+      });
+    }
+  }
+
+  extendTime() {
+    setState(() {
+      seconds += 10;
+      coinAmount -= 3;
+    });
+
+    CollectionReference usersRef =
+        FirebaseFirestore.instance.collection('users');
+
+    FirebaseAuth auth = FirebaseAuth.instance;
+    String userUid = auth.currentUser!.uid;
+
+    usersRef.doc(userUid).set({'coins': coinAmount}, SetOptions(merge: true));
   }
 
   resetColors() {
@@ -190,13 +224,15 @@ class _QuizScreenState extends State<QuizScreen> {
                             border: Border.all(color: quizBgColor, width: 2),
                           ),
                           child: TextButton.icon(
-                              onPressed: null,
-                              icon: const Icon(CupertinoIcons.time,
-                                  color: Colors.white, size: 18),
-                              label: normalText(
-                                  color: Colors.white,
-                                  size: 14,
-                                  text: "Extend Time")),
+                            onPressed: coinAmount >= 3 ? extendTime : null,
+                            icon: const Icon(CupertinoIcons.time,
+                                color: Colors.white, size: 18),
+                            label: normalText(
+                              color: Colors.white,
+                              size: 14,
+                              text: "Extend Time (-3 coins)",
+                            ),
+                          ),
                         ),
                       ],
                     ),
@@ -207,14 +243,15 @@ class _QuizScreenState extends State<QuizScreen> {
                         alignment: Alignment.centerLeft,
                         child: normalText(
                             color: const Color.fromARGB(255, 39, 35, 35),
-                            size: 18,
+                            size: 15,
                             text:
                                 "Question ${currentQuestionIndex + 1} of ${data.length}")),
                     const SizedBox(height: 20),
                     normalText(
-                        color: Colors.white,
-                        size: 20,
-                        text: data[currentQuestionIndex]["question"]),
+                      color: Colors.white,
+                      size: 15,
+                      text: data[currentQuestionIndex]["question"],
+                    ),
                     const SizedBox(height: 20),
                     ListView.builder(
                       shrinkWrap: true,
@@ -239,25 +276,55 @@ class _QuizScreenState extends State<QuizScreen> {
                                   gotoNextQuestion();
                                 });
                               } else {
-                                timer!.cancel();
-                                addQuizPoints();
-                                Navigator.pop(context);
+                                Future.delayed(const Duration(seconds: 1), () {
+                                  timer!.cancel();
+
+                                  addQuizPoints();
+
+                                  showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return AlertDialog(
+                                        title: const Text("Quiz completed"),
+                                        content: Text(
+                                            "Congratulations! You have completed the quiz.\n \n SCORE: $points/30"),
+                                        actions: <Widget>[
+                                          TextButton(
+                                            child: const Text("OK"),
+                                            onPressed: () {
+                                              Navigator.of(context).pop();
+                                              Navigator.of(context).pop();
+                                              Navigator.of(context).pop();
+                                            },
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
+                                });
                               }
                             });
                           },
                           child: Container(
                             margin: const EdgeInsets.only(bottom: 20),
                             alignment: Alignment.center,
-                            width: size.width - 100,
-                            padding: const EdgeInsets.all(16),
+                            width: 200,
+                            height: 50,
+                            padding: const EdgeInsets.all(8),
                             decoration: BoxDecoration(
                               color: optionsColor[index],
                               borderRadius: BorderRadius.circular(12),
                             ),
-                            child: headingText(
-                              color: blue,
-                              size: 18,
-                              text: optionsList[index].toString(),
+                            child: Text(
+                              optionsList[index].toString(),
+                              style: const TextStyle(
+                                color: blue,
+                                fontSize: 15,
+                                fontFamily:
+                                    'Roboto', // replace with the desired font family
+                                fontWeight: FontWeight
+                                    .normal, // replace with the desired font weight
+                              ),
                             ),
                           ),
                         );

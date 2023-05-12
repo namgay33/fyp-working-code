@@ -91,8 +91,8 @@ class _LeaderboardState extends State<Leaderboard> {
                       Card(
                         elevation: 5,
                         child: SizedBox(
-                          height: 400,
-                          width: 300,
+                          height: MediaQuery.of(context).size.height * 0.5,
+                          width: MediaQuery.of(context).size.width * 0.9,
                           child: SizedBox(
                             child: ListView.builder(
                               itemCount: _users.length,
@@ -103,7 +103,6 @@ class _LeaderboardState extends State<Leaderboard> {
                                   title: Row(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
-                                      const SizedBox(width: 4),
                                       const Icon(Icons.account_circle),
                                       const SizedBox(width: 4),
                                       Text(user.name),

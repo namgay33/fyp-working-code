@@ -24,14 +24,11 @@ class AuthService {
     CollectionReference usersRef =
         FirebaseFirestore.instance.collection('users');
 
-    FirebaseAuth auth = FirebaseAuth.instance;
-    String userUid = auth.currentUser!.uid;
-
-    usersRef.doc(userUid).set({'coins': FieldValue.increment(coinsToAdd)},
+    usersRef.doc(uid).set({'coins': FieldValue.increment(coinsToAdd)},
         SetOptions(merge: true)).then((value) {
-      // print("Quiz point updated for user $userUid");
+      // print("Quiz point updated for user $uid");
     }).catchError((error) {
-      // print("Failed to update quiz point for user $userUid: $error");
+      // print("Failed to update quiz point for user $uid: $error");
     });
   }
 

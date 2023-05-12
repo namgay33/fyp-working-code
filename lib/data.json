@@ -1,0 +1,1571 @@
+{
+    "response_code": 0,
+    "results": [
+        {
+            "difficulty": "1",
+            "question": "ས་སྟོང་བསུབ། “དུས་ནི་མི་འགྱུར་་་་་་་་་་་་་་་་་རྣམས་འགྱུར།།”",
+            "correct_answer": "མི།",
+            "incorrect_answers": [
+                "ང་བཅས།",
+                "ཀུན་མཉམ།",
+                "ཕྱག་མཉམ།"
+            ]
+        },
+        {
+            "difficulty": "1",
+            "question": "ས་སྟོང་བསུབ། “་་་་་་་་་་་་་་ནི་མི་འགྱུར་མི་རྣམས་འགྱུར།།”",
+            "correct_answer": "དུས།",
+            "incorrect_answers": [
+                "དུག།",
+                "ས།",
+                "གནས།"
+            ]
+        },
+        {
+            "difficulty": "1",
+            "question": "“དུས་ནི་མི་འགྱུར་མི་རྣམས་འགྱུར།།” ཟེར་མི་འདི་ ཨིང་སྐད་ནང་ལས་འབད་བ་ཅིན་",
+            "correct_answer": "It’s not the times that change but the people who change.",
+            "incorrect_answers": [
+                "It's not the people who change but the time that changes.",
+                "It’s both the time and the people that change.",
+                "It’s neither time nor people that change."
+            ]
+        },
+        {
+            "difficulty": "1",
+            "question": "ས་སྟོང་བསུབ། “དུས་ནི་མི་འགྱུར་མི་རྣམས་་་་་་་་་་་་་།།”",
+            "correct_answer": "འགྱུར།",
+            "incorrect_answers": [
+                "གྱུར།",
+                "བྱུར།",
+                "འབྱུར།"
+            ]
+        },
+        {
+            "difficulty": "1",
+            "question": "“དུས་ནི་མི་འགྱུར་མི་རྣམས་འགྱུར།།” ནང་ “དུས”  ཟེར་མི་འདི་ཨིང་སྐད་ལས་འབད་བ་ཅིན",
+            "correct_answer": "Time",
+            "incorrect_answers": [
+                "Person",
+                "Place",
+                "Location"
+            ]
+        },
+        {
+            "difficulty": "1",
+            "question": "ས་སྟོང་བསུབ། “་་་་་་་་་་་མེད་པའི་འགན་མ་འབག། ཆུ་མེད་པའི་ཟམ་མ་རྐྱབ།།”",
+            "correct_answer": "ཁག་",
+            "incorrect_answers": [
+                "ཁ་",
+                "མཁའ་",
+                "ཁཱག་"
+            ]
+        },
+        {
+            "difficulty": "1",
+            "question": "ས་སྟོང་བསུབ། “ཁག་མེད་པའི་་་་་་་་་་མ་འབག། ཆུ་མེད་པའི་ཟམ་མ་རྐྱབ།།”",
+            "correct_answer": "འགན་",
+            "incorrect_answers": [
+                "གན་",
+                "བགན་",
+                "གཱན་"
+            ]
+        },
+        {
+            "difficulty": "1",
+            "question": "ས་སྟོང་བསུབ། “ཁག་མེད་པའི་འགན་མ་་་་་་་་་་། ཆུ་མེད་པའི་ཟམ་མ་རྐྱབ།།”",
+            "correct_answer": "འབག་",
+            "incorrect_answers": [
+                "བ་",
+                "བག་",
+                "བགས་"
+            ]
+        },
+        {
+            "difficulty": "1",
+            "question": "ས་སྟོང་བསུབ། “ཁག་མེད་པའི་འགན་མ་འབག་། ་་་་་་་་་་་མེད་པའི་ཟམ་མ་རྐྱབ།།”",
+            "correct_answer": "ཆུ་",
+            "incorrect_answers": [
+                "འཁྱུ་",
+                "ཕྱུ་",
+                "འཆུ་"
+            ]
+        },
+        {
+            "difficulty": "1",
+            "question": "ས་སྟོང་བསུབ། “ཁག་མེད་པའི་འགན་མ་འབག་། ཆུ་མེད་པའི་་་་་་་་་་མ་རྐྱབ།།”",
+            "correct_answer": "ཟམ་",
+            "incorrect_answers": [
+                "འཛམ་",
+                "ཛམ་",
+                "བཛཱམ་"
+            ]
+        },
+        {
+            "difficulty": "1",
+            "question": "ས་སྟོང་བསུབ། “་་་་་་་་་་་་་་ཀྱིས་མནོ་ཚད་མ་འབད།། ཁ་ལས་འཐོན་ཚད་མ་སླབ།།”",
+            "correct_answer": "སེམས་",
+            "incorrect_answers": [
+                "སེམ་",
+                "བསེམ་",
+                "གསེམ་"
+            ]
+        },
+        {
+            "difficulty": "1",
+            "question": "ས་སྟོང་བསུབ། “སེམས་ཀྱིས་་་་་་་་་་་་་་་མ་འབད།། ཁ་ལས་འཐོན་ཚད་མ་སླབ།།”",
+            "correct_answer": "མནོ་ཚད་",
+            "incorrect_answers": [
+                "ཤེས་ཚད་",
+                "མཐོང་ཚད་",
+                "ག་མནོཝ་"
+            ]
+        },
+        {
+            "difficulty": "1",
+            "question": "ས་སྟོང་བསུབ། “སེམས་ཀྱིས་མནོ་ཚད་མ་་་་་་་་་་་་།། ཁ་ལས་འཐོན་ཚད་མ་སླབ།།”",
+            "correct_answer": "འབད",
+            "incorrect_answers": [
+                "སྦེ",
+                "འབདན",
+                "བེད་"
+            ]
+        },
+        {
+            "difficulty": "1",
+            "question": "ས་སྟོང་བསུབ། “སེམས་ཀྱིས་མནོ་ཚད་མ་འབད།། ་་་་་་་་་་་་་་་འཐོན་ཚད་མ་སླབ།།”",
+            "correct_answer": "ཁ་ལས་",
+            "incorrect_answers": [
+                "ཁ་ནང་",
+                "ཁཱ་ནང་",
+                "ཁཱ་ལས་"
+            ]
+        },
+        {
+            "difficulty": "1",
+            "question": "ས་སྟོང་བསུབ། “སེམས་ཀྱིས་མནོ་ཚད་མ་འབད།། ཁ་ལས་འཐོན་ཚད་་་་་་་་་་་་་།།”",
+            "correct_answer": "མ་སླབ",
+            "incorrect_answers": [
+                "སླབ་དགོ",
+                "སླབ་བཏུབ",
+                "སླབ་མི་བཏུབ"
+            ]
+        },
+        {
+            "difficulty": "1",
+            "question": "ས་སྟོང་བསུབ། “བསམ་པ་་་་་་་་་་་་་ན་ས་དང་ལམ་ཡང་་་་་་་་་་་་།། བསམ་པ་ངན་ན་ས་དང་ལམ་ཡང་ངན།།”",
+            "correct_answer": "བཟང་",
+            "incorrect_answers": [
+                "ལེགས་",
+                "ཕན་",
+                "འཟང་"
+            ]
+        },
+        {
+            "difficulty": "1",
+            "question": "ས་སྟོང་བསུབ། “བསམ་པ་བཟང་ན་ས་དང་་་་་་་་་་་་ཡང་བཟང་།། བསམ་པ་ངན་ན་ས་དང་་་་་་་་་་་ཡང་ངན།།”",
+            "correct_answer": "ལམ་",
+            "incorrect_answers": [
+                "གནམ་",
+                "ནམས་",
+                "ལཱམ་"
+            ]
+        },
+        {
+            "difficulty": "1",
+            "question": "ས་སྟོང་བསུབ། “་་་་་་་་་་་་་་བཟང་ན་ས་དང་ལམ་ཡང་བཟང་།། ་་་་་་་་་་་་་་་ངན་ན་ས་དང་ལམ་ཡང་ངན།།”",
+            "correct_answer": "བསམ་པ་",
+            "incorrect_answers": [
+                "འསམ་པ་",
+                "སམས་པ་",
+                "འཙམ་པ་"
+            ]
+        },
+        {
+            "difficulty": "1",
+            "question": "ས་སྟོང་བསུབ། “བསམ་པ་བཟང་ན་ས་དང་ལམ་ཡང་བཟང་།། བསམ་པ་་་་་་་་་་་་ན་ས་དང་ལམ་ཡང་་་་་་་་་་་་་།།”",
+            "correct_answer": "ངན་",
+            "incorrect_answers": [
+                "ཉན་",
+                "འངན་",
+                "ངནན་"
+            ]
+        },
+        {
+            "difficulty": "1",
+            "question": "“བསམ་པ་བཟང་ན་ས་དང་ལམ་ཡང་བཟང་།། བསམ་པ་ངན་ན་ས་དང་ལམ་ཡང་ངན།།” ཟེར་མི་འདི་ ཨིང་སྐད་ནང་ལས་འབད་བ་ཅིན་",
+            "correct_answer": "If the intentions are good, Even the land and the path are good; If the intentions are evil, Even the land and the path are evil.",
+            "incorrect_answers": [
+                "If the character is good, even the appearance doesn’t matter; If the character is worse, even the beauty gets hidden. ",
+                "If the works are good, even the product is good; if the works are bad, even the result will be bad. ",
+                "If the speech is good, even an enemy can be trapped; if the speech is harsh, even the closest won’t listen. "
+            ]
+        },
+        {
+            "difficulty": "1",
+            "question": "ས་སྟོང་བསུབ། “་་་་་་་་་་་་་་ལུ་མ་བརྩི།། དོན་ལུ་བརྩི།།”",
+            "correct_answer": "ཞག་",
+            "incorrect_answers": [
+                "གཞག་",
+                "བཞག་",
+                "ཞགས་"
+            ]
+        },
+        {
+            "difficulty": "1",
+            "question": "ས་སྟོང་བསུབ། “ཞག་ལུ་་་་་་་་་་་་་།། དོན་ལུ་བརྩི།།”",
+            "correct_answer": "མ་བརྩི",
+            "incorrect_answers": [
+                "བརྩི་དགོ",
+                "བརྩི་ནི་མི་འོང",
+                "བརྩི་འབད"
+            ]
+        },
+        {
+            "difficulty": "1",
+            "question": "ས་སྟོང་བསུབ། “ཞག་ལུ་མ་བརྩི།། ་་་་་་་་་་་་་་་ལུ་བརྩི།།”",
+            "correct_answer": "དོན་",
+            "incorrect_answers": [
+                "གདན་",
+                "དན་",
+                "བདན་"
+            ]
+        },
+        {
+            "difficulty": "1",
+            "question": "ས་སྟོང་བསུབ། “ཞག་ལུ་མ་བརྩི།། དོན་ལུ་་་་་་་་་་་།།”",
+            "correct_answer": "བརྩི",
+            "incorrect_answers": [
+                "མ་བརྩི",
+                "བརྩི་དགོ",
+                "བརྩི་ད"
+            ]
+        },
+        {
+            "difficulty": "1",
+            "question": "“ཞག་ལུ་མ་བརྩི།། དོན་ལུ་བརྩི།།” ཟེར་མི་འདི་ ཨིང་སྐད་ནང་ལས་འབད་བ་ཅིན་",
+            "correct_answer": "Do not consider the number of days, consider the purpose.",
+            "incorrect_answers": [
+                "Do not count the number of days, but the number of nights.",
+                "Do not count the number of lights, but consider its illumination power. ",
+                "Do not consider the number of nights, but consider its darkness. "
+            ]
+        },
+        {
+            "difficulty": "1",
+            "question": "ས་སྟོང་བསུབ། “་་་་་་་་་་་་ཞིམ་རོགས་ལུ་བྱིན།། ལུས་དལཝ་རང་སྡོད།།”",
+            "correct_answer": "ཟས་",
+            "incorrect_answers": [
+                "བཟས་",
+                "གཟས་",
+                "གཟེས་"
+            ]
+        },
+        {
+            "difficulty": "1",
+            "question": "ས་སྟོང་བསུབ། “ཟས་ཞིམ་་་་་་་་་་་ལུ་བྱིན།། ལུས་དལཝ་རང་སྡོད།།”",
+            "correct_answer": "རོགས་",
+            "incorrect_answers": [
+                "རོ་",
+                "ག་ར་",
+                "གེ ར་ "
+            ]
+        },
+        {
+            "difficulty": "1",
+            "question": "ས་སྟོང་བསུབ། “ཟས་ཞིམ་རོགས་ལུ་་་་་་་་་་་།། ལུས་དལཝ་རང་སྡོད།།”",
+            "correct_answer": "བྱིན",
+            "incorrect_answers": [
+                "སྤྲོད",
+                "སྤྲོལ",
+                "སྦྱིན"
+            ]
+        },
+        {
+            "difficulty": "1",
+            "question": "ས་སྟོང་བསུབ། “ཟས་ཞིམ་རོགས་ལུ་བྱིན།། ་་་་་་་་་་དལཝ་རང་སྡོད།།”",
+            "correct_answer": "ལུས་",
+            "incorrect_answers": [
+                "ལུད་",
+                "གཟུགས་",
+                "སྐུ་གཟུགས་"
+            ]
+        },
+        {
+            "difficulty": "1",
+            "question": "ས་སྟོང་བསུབ། “ཟས་ཞིམ་རོགས་ལུ་བྱིན།། ལུས་དལཝ་རང་་་་་་་་་་།།”",
+            "correct_answer": "སྡོད",
+            "incorrect_answers": [
+                "བཞག",
+                "གཞུགས",
+                "གཞག"
+            ]
+        },
+        {
+            "difficulty": "1",
+            "question": "ས་སྟོང་བསུབ། “་་་་་་་་་་་་་་་ཁ་མ་ཤེས།། རང་ཁ་བྱང་།།”",
+            "correct_answer": "རོགས་",
+            "incorrect_answers": [
+                "གཞན་",
+                "རོ་",
+                "ཞན་"
+            ]
+        },
+        {
+            "difficulty": "1",
+            "question": "ས་སྟོང་བསུབ། “རོགས་ཁ་་་་་་་་་་།། རང་ཁ་བྱང་།།”",
+            "correct_answer": "མ་ཤེས",
+            "incorrect_answers": [
+                "མི་ཤེས",
+                "མ་ཤེསན",
+                "མ་ཤེས་བར"
+            ]
+        },
+        {
+            "difficulty": "1",
+            "question": "ས་སྟོང་བསུབ། “རོགས་ཁ་མ་ཤེས།། ་་་་་་་་་་་་ཁ་བྱང་།།”",
+            "correct_answer": "རང་",
+            "incorrect_answers": [
+                "ང་བཅས་རའི་",
+                "རང་གི་",
+                "ང་བཅས་"
+            ]
+        },
+        {
+            "difficulty": "1",
+            "question": "ས་སྟོང་བསུབ། “རོགས་ཁ་མ་ཤེས།། རང་ཁ་་་་་་་་་་་་།།”",
+            "correct_answer": "བྱང",
+            "incorrect_answers": [
+                "གྱང",
+                "གྱངས",
+                "བྱངས"
+            ]
+        },
+        {
+            "difficulty": "1",
+            "question": "“རོགས་ཁ་མ་ཤེས།། རང་ཁ་བྱང་།།” ཟེར་མི་འདི་ ཨིང་སྐད་ནང་ལས་འབད་བ་ཅིན་",
+            "correct_answer": "Does not know other people’s language; Has lost one’s own language!",
+            "incorrect_answers": [
+                "Knowing other people’s language; Helps in conversing with other people!",
+                "Not knowing other people’s language; It will affect your communication skill!",
+                "Knowing other people’s language; it will affect your own language!"
+            ]
+        },
+        {
+            "difficulty": "1",
+            "question": "ས་སྟོང་བསུབ། “་་་་་་་་་་་་་་་་་་་གཏད་པའི་མི་གིས་ཧིང་བརྐུ།།”",
+            "correct_answer": "བློ་",
+            "incorrect_answers": [
+                "ལོ་",
+                "རློ་",
+                "སློ་"
+            ]
+        },
+        {
+            "difficulty": "1",
+            "question": "ས་སྟོང་བསུབ། “བློ་་་་་་་་་་་་་་་་པའི་མི་གིས་ཧིང་བརྐུ།།”",
+            "correct_answer": "གཏད་",
+            "incorrect_answers": [
+                "སླབ་",
+                "གསང་",
+                "གཡིབ་"
+            ]
+        },
+        {
+            "difficulty": "1",
+            "question": "ས་སྟོང་བསུབ། “བློ་གཏད་པའི་མི་གིས་་་་་་་་་་་བརྐུ།།”",
+            "correct_answer": "ཧིང་",
+            "incorrect_answers": [
+                "སྙིང་",
+                "སེམས་",
+                "དོན་ཧིང་"
+            ]
+        },
+        {
+            "difficulty": "1",
+            "question": "ས་སྟོང་བསུབ། “བློ་གཏད་པའི་མི་གིས་ཧིང་་་་་་་་་་་།།”",
+            "correct_answer": "བརྐུ",
+            "incorrect_answers": [
+                "རྐུ",
+                "དཀྲུགས",
+                "བརྐོ"
+            ]
+        },
+        {
+            "difficulty": "1",
+            "question": "“བློ་གཏད་པའི་མི་གིས་ཧིང་བརྐུ།།” ཟེར་མི་འདི་ ཨིང་སྐད་ནང་ལས་འབད་བ་ཅིན་",
+            "correct_answer": "He who is trusted steals one’s heart secrets. ",
+            "incorrect_answers": [
+                "He who is trusted gives one the happiness. ",
+                "He who trusts too much is betrayed.",
+                "He who trusts too much is a loyal person. "
+            ]
+        },
+        {
+            "difficulty": "1",
+            "question": "ས་སྟོང་བསུབ། བུ་་་་་་་་་་་་་་་རུང་ཕ་མའི་བསྐོར་གཏམ་དགོ།",
+            "correct_answer": "མཁས་",
+            "incorrect_answers": [
+                "མན་",
+                "ལེགས་",
+                "བཟང་"
+            ]
+        },
+        {
+            "difficulty": "1",
+            "question": "ས་སྟོང་བསུབ། བུ་མཁས་རུང་་་་་་་་་་་་་་་་་་བསྐོར་གཏམ་དགོ།",
+            "correct_answer": "ཕ་མའི་",
+            "incorrect_answers": [
+                "བླ་མའི་",
+                "ཆ་རོགས་ཀྱི་",
+                "སློབ་དཔོན་གྱི་"
+            ]
+        },
+        {
+            "difficulty": "1",
+            "question": "ས་སྟོང་བསུབ། བུ་མཁས་རུང་ཕ་མའི་་་་་་་་་་་་་་་་་གཏམ་དགོ།",
+            "correct_answer": "བསྐོར་",
+            "incorrect_answers": [
+                "ཀོར་",
+                "བསྐར་",
+                "ཀར་"
+            ]
+        },
+        {
+            "difficulty": "1",
+            "question": "ས་སྟོང་བསུབ། བུ་མཁས་རུང་ཕ་མའི་བསྐོར་་་་་་་་་་་་་་་་་་དགོ།",
+            "correct_answer": "གཏམ་",
+            "incorrect_answers": [
+                "བཏམ་",
+                "ཏམ་",
+                "དམ་"
+            ]
+        },
+        {
+            "difficulty": "1",
+            "question": "བུ་མཁས་རུང་ཕ་མའི་བསྐོར་གཏམ་དགོ།  ཟེར་མི་འདི་ ཨིང་སྐད་ནང་ལས་འབད་བ་ཅིན་",
+            "correct_answer": "Even if learned, the child will need the parent’s good counsel",
+            "incorrect_answers": [
+                "Even if learned, the child will not need the parent’s good counsel",
+                "Even if learned, the parent will need the child’s good counsel",
+                "Even if learned, the child will need the parent’s bad counsel"
+            ]
+        },
+        {
+            "difficulty": "1",
+            "question": "ས་སྟོང་བསུབ། གྱང་་་་་་་་་་་་་་རོ་བགོ་མ་གྱོན།།",
+            "correct_answer": "རུང་",
+            "incorrect_answers": [
+                "རང་",
+                "རིང་",
+                "རེང་"
+            ]
+        },
+        {
+            "difficulty": "1",
+            "question": "“ གྱང་རུང་རོ་བགོ་མ་གྱོན།། ” ནང་ “གྱང”  ཟེར་མི་འདི་ཨིང་སྐད་ལས་འབད་བ་ཅིན",
+            "correct_answer": "Feel cold",
+            "incorrect_answers": [
+                "Feel hot",
+                "Feel happy",
+                "Feel sad"
+            ]
+        },
+        {
+            "difficulty": "1",
+            "question": "གྱང་རུང་རོ་བགོ་མ་གྱོན།།  ཟེར་མི་འདི་ ཨིང་སྐད་ནང་ལས་འབད་བ་ཅིན་",
+            "correct_answer": "Do not wear the clothes of the dead, however cold.",
+            "incorrect_answers": [
+                "Wear the clothes of the dead when hot.",
+                "Wear the clothes of the dead, however cold.",
+                "None"
+            ]
+        },
+        {
+            "difficulty": "1",
+            "question": "གྱང་རུང་རོ་བགོ་མ་གྱོན།།  ནང་ “བགོ”  ཟེར་མི་འདི་ཨིང་སྐད་ལས་འབད་བ་ཅིན",
+            "correct_answer": "Cloth",
+            "incorrect_answers": [
+                "Food",
+                "Money",
+                "Door"
+            ]
+        },
+        {
+            "difficulty": "1",
+            "question": "གྱང་རུང་རོ་བགོ་མ་གྱོན།།   ནང་ “གྱོན”  ཟེར་མི་འདི་ཨིང་སྐད་ལས་འབད་བ་ཅིན",
+            "correct_answer": "To wear",
+            "incorrect_answers": [
+                "Cucumber",
+                "To walk",
+                "None"
+            ]
+        },
+        {
+            "difficulty": "2",
+            "question": "ས་སྟོང་བསུབ “གཅེས་ཕྲུག་དགའ་ཞོར་སྐྱིད་ཞོར་ལ་་་་་་་་་་་་་་་་་་་།།” ",
+            "correct_answer": "ཡོན་ཏན་ཤེས་པ་མི་འོང",
+            "incorrect_answers": [
+                "བརྩེ་གདུང་ཆེ་བ་འོང་",
+                "ཡོན་ཏན་ཤེས་པ་ཟོང་",
+                "1བརྩེ་གདུང་མ་འོང་"
+            ]
+        },
+        {
+            "difficulty": "2",
+            "question": "“གཅེས་ཕྲུག་དགའ་ཞོར་སྐྱིད་ཞོར་ལ་ཡོན་ཏན་ཤེས་པ་མི་འོང་།།” ཟེར་མི་འདི་ ཨིང་སྐད་ནང་ལས་འབད་བ་ཅིན་ ",
+            "correct_answer": "A child who is shown love and affection through an excess of joy and peace will not be able to learn much.",
+            "incorrect_answers": [
+                "A child who is shown love and affection through an excess of joy and peace will be nurtured well. ",
+                "A child who is shown love and affection through an excess of joy and peace will not live an independent life. ",
+                "A child who is shown love and affection through an excess of joy and peace will not be a good leader. "
+            ]
+        },
+        {
+            "difficulty": "2",
+            "question": "“གཅེས་ཕྲུག་དགའ་ཞོར་སྐྱིད་ཞོར་ལ་ཡོན་ཏན་ཤེས་པ་མི་འོང་  ནང་ “དགའ་ཞོར་སྐྱིད་ཞོར”  ཟེར་མི་འདི་ཨིང་སྐད་ལས་འབད་བ་ཅིན ",
+            "correct_answer": "Joy and peace. ",
+            "incorrect_answers": [
+                "Laughter and peace.",
+                "Love and serenity. ",
+                "Laughter and comfort."
+            ]
+        },
+        {
+            "difficulty": "2",
+            "question": "What is the impact of excessive love and affection on a child's learning? ",
+            "correct_answer": "It has a negative impact. ",
+            "incorrect_answers": [
+                "It has no impact. ",
+                "It has a positive impact. ",
+                "Does not provide enough information to determine the impact. "
+            ]
+        },
+        {
+            "difficulty": "2",
+            "question": "What is the importance of the translated proverb “ It's not the times that change but the people who change ” ",
+            "correct_answer": "It emphasizes the role of personal responsibility in adapting to changing circumstances. ",
+            "incorrect_answers": [
+                "It encourages people to change with the times. ",
+                "It highlights the inevitability of change. ",
+                "It argues that people are more important than times."
+            ]
+        },
+        {
+            "difficulty": "2",
+            "question": "ས་སྟོང་བསུབ། “ ་་་་་་་་་་་་་་་་་་་་་་་་་་་་་་་་་་་་་།། ཕ་ཞིང་ཨིན་བྱག་ཡང་ཧྲམ།། རོགས་སྐལ་ཨིན་མར་ཡང་མི་བཞུ།།” ",
+            "correct_answer": "རང་སྐལ་ཨིན་རྡོ་ཡང་རྨུར ",
+            "incorrect_answers": [
+                "རང་གི་སྐལཝ་རྡོ་ཨིན་རུང་རྨུར་དགོ ",
+                "རང་སྐལ་ལྕགས་ཨིན་ཡང་རྨུར",
+                "རང་གི་སྐལཝ་ལྕགས་ཨིན་རུང་རྨུར་དགོ"
+            ]
+        },
+        {
+            "difficulty": "2",
+            "question": "“ རང་སྐལ་ཨིན་རྡོ་ཡང་རྨུར།། ཕ་ཞིང་ཨིན་བྱག་ཡང་ཧྲམ།། རོགས་སྐལ་ཨིན་མར་ཡང་མི་བཞུ།། ”  ནང་ “ རང་སྐལ་ཨིན་རྡོ་ཡང་རྨུར།། ”  ཟེར་མི་འདི་ཨིང་སྐད་ལས་འབད་བ་ཅིན ",
+            "correct_answer": "If it concerns one’s own interest, one can chew even a stone; ",
+            "incorrect_answers": [
+                "If it concerns one’s own responsibility, one should even chew a metal;",
+                "If it concerns one’s own interest, one should even swallow poison;",
+                "If it concerns one’s own responsibility, one should even chew betel nuts. "
+            ]
+        },
+        {
+            "difficulty": "2",
+            "question": "“ ཕ་ཞིང་ཨིན་བྱག་ཡང་ཧྲམ།།” ཟེར་མི་འདི་ ཨིང་སྐད་ནང་ལས་འབད་བ་ཅིན་",
+            "correct_answer": "One will do anything to protect their family’s property.  ",
+            "incorrect_answers": [
+                "One will only act in their family’s if it is easy to do so. ",
+                "One will only act in their family’s interest if they are not required to make sacrifices.",
+                "One will never do anything that is against their family’s interest."
+            ]
+        },
+        {
+            "difficulty": "2",
+            "question": "“རོགས་སྐལ་ཨིན་མར་ཡང་མི་བཞུ།།” ཟེར་མི་འདི་ ཨིང་སྐད་ནང་ལས་འབད་བ་ཅིན་",
+            "correct_answer": "One will never act in the interest of others. ",
+            "incorrect_answers": [
+                "One will always act in the interest of others, even if it is difficult. ",
+                "One will act in the interest of others only if they stand to benefit as well. ",
+                "One will act in the interest of others only if it is easy to do so."
+            ]
+        },
+        {
+            "difficulty": "2",
+            "question": "According to the translated proverb “ If it concerns one’s own interest, one can chew even a stone; If it concerns ancestral land, one can demolish even a cliff; If it concerns other’s interest, even the butter cannot melt. ”, what action would someone take if it concerns others’ interest?",
+            "correct_answer": "They would act in their own self-interest.  ",
+            "incorrect_answers": [
+                "They would prioritize the interest of others over their own. ",
+                "They would seek the advice of others before making a decision.",
+                "They would remain natural and take no action. ."
+            ]
+        },
+        {
+            "difficulty": "2",
+            "question": "ས་སྟོང་བསུབ། “་་་་་་་་་་་་་་་་་་་་་་་ ལྷ་པ་ལས་ཀྱིས་བཏགས་འོང་།། ”",
+            "correct_answer": "རུ་ཏོ་ཡོདན་",
+            "incorrect_answers": [
+                "ར་ཏོ་ཡོདན་",
+                "ཁ་ར་ཡོདན་",
+                "གདོང་ར་ཡོདན་"
+            ]
+        },
+        {
+            "difficulty": "2",
+            "question": "“ རུ་ཏོ་ཡོདན་ ལྷ་པ་ལས་ཀྱིས་བཏགས་འོང་།། ” ཟེར་མི་འདི་ ཨིང་སྐད་ནང་ལས་འབད་བ་ཅིན་",
+            "correct_answer": "If bone is there, the growth of flesh is natural. ",
+            "incorrect_answers": [
+                "Growth of muscles is dependent on the presence of bones.",
+                "Strong bones lead to growth of healthy flesh.",
+                "Bones and flesh have no correlation. "
+            ]
+        },
+        {
+            "difficulty": "2",
+            "question": "“ རུ་ཏོ་ཡོདན་ ལྷ་པ་ལས་ཀྱིས་བཏགས་འོང་།། ” ནང་ “ རུ་ཏོ ”  ཟེར་མི་འདི་ཨིང་སྐད་ལས་འབད་བ་ཅིན",
+            "correct_answer": "Bone",
+            "incorrect_answers": [
+                "Flesh",
+                "Blood",
+                "Nerve  "
+            ]
+        },
+        {
+            "difficulty": "2",
+            "question": "Which of the following is a natural consequence of the presence of bones:",
+            "correct_answer": "Growth of flesh",
+            "incorrect_answers": [
+                "Growth of hair",
+                "Growth of nails",
+                "None"
+            ]
+        },
+        {
+            "difficulty": "2",
+            "question": "Which of the following is a common interpretation of the proverb 'Do not perform whatever occurs in mind, Do not pronounce whatever in the mouth'?",
+            "correct_answer": "Think before you speak",
+            "incorrect_answers": [
+                "Always speak your mind",
+                "Act on impulse",
+                "None"
+            ]
+        },
+        {
+            "difficulty": "2",
+            "question": "ས་སྟོང་བསུབ། “ སྤྲང་པོའི་བུུ་་་་་་་་་་་་་་་་་་་་་། ཕྱུག་པོའི་བུ་གསོཝ་ཁག། ”",
+            "correct_answer": "བཀོལཝ་ཁག",
+            "incorrect_answers": [
+                "སྐྱོང་བ་ཁག",
+                "བཏུལ་བ་ཁག",
+                "གསོཝ་ཁག"
+            ]
+        },
+        {
+            "difficulty": "2",
+            "question": "“ སྤྲང་པོའི་བུུ་བཀོལཝ་ཁག། ཕྱུག་པོའི་བུ་གསོཝ་ཁག། ” ཟེར་མི་འདི་ ཨིང་སྐད་ནང་ལས་འབད་བ་ཅིན་",
+            "correct_answer": "Difficult to make a poor person’s son work; Difficult to to rear rich person’s son. ",
+            "incorrect_answers": [
+                "It is easy to make a poor person’s so work but difficult to rear a rich person’s son. ",
+                "It is difficult to make a rich person’s son work but easy to rear a poor person’s son. ",
+                "None"
+            ]
+        },
+        {
+            "difficulty": "2",
+            "question": "What does the proverb imply about the sons of poor people?",
+            "correct_answer": "They are difficult to motivate and get working. ",
+            "incorrect_answers": [
+                "They are lazy and unproductive.",
+                "They are born into privilege and have an entitled attitude. ",
+                " None"
+            ]
+        },
+        {
+            "difficulty": "2",
+            "question": "What does the proverb imply about the sons of rich people?",
+            "correct_answer": "They are more entitled and privileged than the sons of poor people.",
+            "incorrect_answers": [
+                "They are inherently lazy and unproductive.",
+                "They are difficult to motivate and get working. ",
+                " None"
+            ]
+        },
+        {
+            "difficulty": "2",
+            "question": "What is the importance of the 'land and the path' in the proverb?",
+            "correct_answer": "They represent external factors that can influence the outcome of an action.",
+            "incorrect_answers": [
+                "They represent internal factors that can influence the outcome of an action.",
+                "They have no significance in the proverb.",
+                " None"
+            ]
+        },
+        {
+            "difficulty": "2",
+            "question": "་ས་སྟོང་བསུབ། “ ་་་་་་་་་་་་་་་་་་་པར་མར་མི་བཞུ།། ”",
+            "correct_answer": "བྱི་ལི་ཁོག",
+            "incorrect_answers": [
+                "བྱི་ཙི་ཁོག",
+                "བྱ་ཡའི་ཁོག",
+                " བ་གི་ཁོག "
+            ]
+        },
+        {
+            "difficulty": "2",
+            "question": "“ བྱི་ལི་ཁོག་པར་མར་མི་བཞུ།། ” ཟེར་མི་འདི་ ཨིང་སྐད་ནང་ལས་འབད་བ་ཅིན་",
+            "correct_answer": "Difficult for the cat to digest butter. ",
+            "incorrect_answers": [
+                "Difficult for the cat to swallow butter. ",
+                "Difficult for the cat to eat butter.",
+                "Difficult for the cat to taste butter.  "
+            ]
+        },
+        {
+            "difficulty": "2",
+            "question": "“ བྱི་ལི་ཁོག་པར་མར་མི་བཞུ།། ” ཟེར་མི་དཔྱེ་གཏམ་ནང་ སེམས་ཅན་ག་འདི་ལུ་དཔྱེ་བཞག་ནུག? སེམས་ཅན་འདི་གི་མིང་ ཨིང་སྐད་ལས་འབད་བ་ཅིན་",
+            "correct_answer": "Cat.  ",
+            "incorrect_answers": [
+                "Rat.",
+                "Bird.",
+                "Cow "
+            ]
+        },
+        {
+            "difficulty": "2",
+            "question": "འོག་གི་གདམ་ཁ་ཚུ་ནང་ལས་ བྱི་ལི་མར་བཟའཝ་ད་ལཱ་ཁག་རྐྱབ་འོང་ ཟེར་མི་འདི་ངོས་འཛིན་འབད།",
+            "correct_answer": "བྱི་ལི་ཁོག་པར་མར་མི་བཞུ།།",
+            "incorrect_answers": [
+                "ཕག་ཤ་ཟ་ཚད་འཛུམ་སེག་སེ།། ཕག་རིན་འཇལ་ཚད་གནག་ལོག་ལོ།།",
+                "ཕྱི་མ་དགཔ་ཆུ་གིས་བཤལ།། ནང་མ་དགཔ་གཏམ་གྱིས་བཤལ།།",
+                "རུ་ཏོ་ཡོདན་ ལྷ་པ་ལས་ཀྱིས་བཏགས་འོང་།། "
+            ]
+        },
+        {
+            "difficulty": "2",
+            "question": "Who is most likely to appreciate the message of the translated proverb “Do not consider the number of days, consider the purpose”?",
+            "correct_answer": "Someone who is very busy.",
+            "incorrect_answers": [
+                "Someone who is retired.",
+                "Someone who is young.",
+                "Someone who is wealthy. "
+            ]
+        },
+        {
+            "difficulty": "2",
+            "question": "ས་སྟོང་བསུབ། “ ལ་གཅིག་བརྒལན།། ་་་་་་་་་་་་་་་་་་་་་་་་་་་་་།། ”",
+            "correct_answer": "ལུངམ་གཅིག་སྤུབས",
+            "incorrect_answers": [
+                "ལཱ་ཁག་མེད",
+                "རང་སེམས་དགའ",
+                "མར་ཁ་འགྱོ"
+            ]
+        },
+        {
+            "difficulty": "2",
+            "question": "“ ལ་གཅིག་བརྒལན།། ལུངམ་གཅིག་སྤུབས།། ” ཟེར་མི་འདི་ ཨིང་སྐད་ནང་ལས་འབད་བ་ཅིན་",
+            "correct_answer": "Cross one mountain pass; And there’s still the dark canopy of a valley to cross. ",
+            "incorrect_answers": [
+                "Get done one work; And then another difficult task comes. ",
+                "Cross one mountain pass; And then you reach a better place.",
+                "Get the difficult task done; And then you can easily do the easy one"
+            ]
+        },
+        {
+            "difficulty": "2",
+            "question": "“ ལ་གཅིག་བརྒལན།། ལུངམ་གཅིག་སྤུབས།། ” ནང་ “ ལ ”  ཟེར་མི་འདི་ཨིང་སྐད་ལས་འབད་བ་ཅིན",
+            "correct_answer": "Mountain Pass",
+            "incorrect_answers": [
+                "Task ",
+                "Honorific word",
+                "Dzongkha letter"
+            ]
+        },
+        {
+            "difficulty": "2",
+            "question": "What is the message of the translated proverb “ Cross one mountain pass; And there is still the dark canopy of a valley to cross ”?",
+            "correct_answer": "Obstacles are a natural part of the journey. ",
+            "incorrect_answers": [
+                "The journey is more important than the destination. ",
+                "Success is often followed by failure. ",
+                "Life is unpredictable. "
+            ]
+        },
+        {
+            "difficulty": "2",
+            "question": "What message does the translated proverb “ Let good food be given to others; Let freedom and leisure be one's own ” relay?",
+            "correct_answer": "It is important to balance one’s own needs with the needs of others. ",
+            "incorrect_answers": [
+                "It is important to share good things with others.  ",
+                "One should always prioritize their own needs over others. ",
+                "One should always be generous and selfless. "
+            ]
+        },
+        {
+            "difficulty": "2",
+            "question": "ས་སྟོང་བསུབ། “ ཆུ་མ་འོངམ་ལས་་་་་་་་་་་་་་་་་་་།། ནད་མ་འོངམ་ལས་རིམ་གྲོ་འབད།། ”",
+            "correct_answer": "གཡུར་བ་བསལ",
+            "incorrect_answers": [
+                "ཟམ་པ་རྐྱབ",
+                "གཡུ་བ་བསལ",
+                "རྫམ་པ་རྐྱབ"
+            ]
+        },
+        {
+            "difficulty": "2",
+            "question": " ཆུ་མ་འོངམ་ལས་གཡུར་བ་བསལ།། ” ཟེར་མི་འདི་ ཨིང་སྐད་ནང་ལས་འབད་བ་ཅིན་",
+            "correct_answer": "Clean up the drains before water arrives. ",
+            "incorrect_answers": [
+                "Clean up the turquoise with the clean water.",
+                "Clean up the blocked drainage with the water. ",
+                "Clean up the turquoise before it gets washed away by water."
+            ]
+        },
+        {
+            "difficulty": "2",
+            "question": " 'ནད་མ་འོངམ་ལས་རིམ་གྲོ་འབད།།' ཟེར་མི་འདི་ ཨིང་སྐད་ནང་ལས་འབད་བ་ཅིན་",
+            "correct_answer": "Carry Out the rituals before the disease arrives. ",
+            "incorrect_answers": [
+                "Carry Out the rituals only when a person is sick.",
+                "The patient must perform a ritual by themselves.",
+                "Never carry out the rituals. "
+            ]
+        },
+        {
+            "difficulty": "2",
+            "question": "What message do the translated proverb 'Clean up the drains before water arrives; Carry out the rituals before disease arrives' relay?",
+            "correct_answer": "Be proactive and take action before a problem occurs.",
+            "incorrect_answers": [
+                "Don't worry about it until it becomes a problem.",
+                " Let someone else deal with it.",
+                "It's too late to do anything once the problem has started."
+            ]
+        },
+        {
+            "difficulty": "2",
+            "question": "Which of the following best describes the significance of the translated proverb 'Does not know other people's language; Has lost one's own language'?",
+            "correct_answer": "The proverb emphasizes the importance of maintaining one's own cultural identity while also being open to other cultures.",
+            "incorrect_answers": [
+                "The proverb suggests that language is the most important factor in communication.",
+                " The proverb suggests that learning multiple languages is easy and should be a priority.",
+                " The proverb emphasizes the importance of being fluent in multiple languages for personal success."
+            ]
+        },
+        {
+            "difficulty": "2",
+            "question": "ས་སྟོང་བསུབ། 'ཕྱི་མ་དགཔ་་་་་་་་་་་་་་་་་་་་་།། ནང་མ་དགཔ་གཏམ་གྱིས་བཤལ།།'?",
+            "correct_answer": "ཆུ་གིས་བཤལ",
+            "incorrect_answers": [
+                "ཆརཔ་གི་བཤལ",
+                " རོང་ཆུ་གི་བཤལ",
+                " ཁྲི་ཆུ་གི་བཤལ"
+            ]
+        },
+        {
+            "difficulty": "2",
+            "question": "It was mentioned that water can clean the:",
+            "correct_answer": "External Dirt",
+            "incorrect_answers": [
+                "Internal Dirt",
+                " Both external and internal dirt",
+                " None of the above. "
+            ]
+        },
+        {
+            "difficulty": "2",
+            "question": " ནང་མ་དགཔ་གཏམ་གྱིས་བཤལ།། ” ཟེར་མི་འདི་ ཨིང་སྐད་ནང་ལས་འབད་བ་ཅིན་",
+            "correct_answer": "Clean the internal dirt with words. ",
+            "incorrect_answers": [
+                "Whether the inside is clean or not is known by words. ",
+                " Words cannot clean the internal dirt. ",
+                " Once the inside is filled with words, it is clean. "
+            ]
+        },
+        {
+            "difficulty": "2",
+            "question": "What does the translated proverb 'Clean the external dirt with water; Clean the internal dirt with words' suggest about the power of words?",
+            "correct_answer": "Words have the power to heal the internal wounds. ",
+            "incorrect_answers": [
+                "Words are useless when it comes to internal purity. ",
+                " Words can only make things worse.  ",
+                "Words are only useful for communication.  "
+            ]
+        },
+        {
+            "difficulty": "2",
+            "question": "“བློ་གཏད་པའི་མི་གིས་ཧིང་བརྐུ།།”  ཟེར་མི་འདི་ ཨིང་སྐད་ནང་ལས་འབད་བ་ཅིན་",
+            "correct_answer": "Trusted people can easily steal someone’s secrets. ",
+            "incorrect_answers": [
+                "One should trust everyone with their secrets.  ",
+                " People should be cautious before trusting others with their secrets. ",
+                "None  "
+            ]
+        },
+        {
+            "difficulty": "2",
+            "question": "ས་སྟོང་བསུབ། “ མང་མའི་སྦུག་ལས་གདམ།། ་་་་་་་་་་་་་་་་་་་་་་ལས་བསལ།། ”:",
+            "correct_answer": "ཉུང་མའི་སྦུག",
+            "incorrect_answers": [
+                "ཡོད་པའི་སྦུག",
+                "མེད་པའི་སྦུག",
+                "ལང་པའི་སྦུག "
+            ]
+        },
+        {
+            "difficulty": "2",
+            "question": "“མང་མའི་སྦུག་ལས་གདམ།།” ཟེར་མི་འདི་ ཨིང་སྐད་ནང་ལས་འབད་བ་ཅིན་",
+            "correct_answer": "Chosen from amongst many. ",
+            "incorrect_answers": [
+                "Need to be stingy when you have more. ",
+                "Avoid being choosy when you have many options. ",
+                "Need to be extravagant when you have more."
+            ]
+        },
+        {
+            "difficulty": "2",
+            "question": "According to the translated proverb “ Chosen from amongst many. Selected from amongst few “, which of the following is more valuable?",
+            "correct_answer": "Quality",
+            "incorrect_answers": [
+                "Quantity",
+                "Neither is more valuable ",
+                "It depends on the situation"
+            ]
+        },
+        {
+            "difficulty": "2",
+            "question": "“ ཉུང ” ཟེར་མི་འདི་ ཨིང་སྐད་ནང་ལས་འབད་བ་ཅིན་",
+            "correct_answer": "Less",
+            "incorrect_answers": [
+                "More",
+                "Big",
+                "Small"
+            ]
+        },
+        {
+            "difficulty": "2",
+            "question": "What does the translated proverb ”Even if learned, the child will need the parent’s good counsel ” imply?་",
+            "correct_answer": "Children need their parents' advice even if they are learned",
+            "incorrect_answers": [
+                "Children do not need their parents' advice",
+                "Parents do not have any influence on their children's decision-making",
+                "Parents' advice is not useful for children's growth"
+            ]
+        },
+        {
+            "difficulty": "2",
+            "question": "ས་སྟོང་བསུབ། 'ཕག་ཤ་ཟ་ཚད་་་་་་་་་་་་་་་་་་་་་་་་་།། ཕག་རིན་འཇལ་ཚད་གནག་ལོག་ལོ།།'",
+            "correct_answer": "འཛུམ་སེག་སེ",
+            "incorrect_answers": [
+                "ག་འཛུམ་མ་ཤོང་",
+                "ཉམས་བཏགས",
+                "གཟུགས་མ་བདེ"
+            ]
+        },
+        {
+            "difficulty": "2",
+            "question": "“ ཕག་རིན་འཇལ་ཚད་གནག་ལོག་ལོ།། “ ཟེར་མི་འདི་ ཨིང་སྐད་ནང་ལས་འབད་བ་ཅིན་",
+            "correct_answer": "But gloomy, when it is time to pay the price. ",
+            "incorrect_answers": [
+                "While measuring land for sale, shows a gloomy face. ་",
+                "But gloomy, when it is time to pay with land. ",
+                "Let others borrow money with a gloomy face."
+            ]
+        },
+        {
+            "difficulty": "2",
+            "question": "“What is the translated proverb “cheerful, when pork was eaten; But gloomy, when its time to pay the price “ about?",
+            "correct_answer": "Being happy when you receive something, but unhappy when you have to pay for it. ",
+            "incorrect_answers": [
+                "Eating pork. ",
+                "Being happy when you pay for something.  ",
+                "None"
+            ]
+        },
+        {
+            "difficulty": "2",
+            "question": "As per the proverb, what is the mood of the person when pork is eaten?",
+            "correct_answer": "Cheerful ",
+            "incorrect_answers": [
+                "Gloomy",
+                "Indifferent ",
+                "Annoyed"
+            ]
+        },
+        {
+            "difficulty": "2",
+            "question": "In which of the following situations would it be appropriate to wear the clothes of the dead?",
+            "correct_answer": "Never ",
+            "incorrect_answers": [
+                "When they are the only available clothes. ",
+                "When it is  a cultural tradition. ",
+                "When it is a requirement for a religious ceremony."
+            ]
+        },
+        
+{
+    "difficulty": "3",
+    "question": "ས་སྟོང་བསུབ། “ བླ་མའི་ཁྱི་བརྡུངན།། ་་་་་་་་་་་་་་་་་་་་་་་་་་་་་་་་་། “. ",
+    "correct_answer": "བླ་མའི་ཐུགས་ཁར་ཕོག",
+    "incorrect_answers": [
+        "རང་ལས་བསགས།",
+        "རང་སོ་བཏབཔ།",
+        "རང་ལུ་ལས་ངན་ཕོག"
+    ]
+},
+
+{
+    "difficulty": "3",
+    "question": "“ བླ་མའི་ཁྱི་བརྡུངན།། བླ་མའི་ཐུགས་ཁར་ཕོག། ” ཟེར་མི་འདི་ ཨིང་སྐད་ནང་ལས་འབད་བ་ཅིན་ ",
+    "correct_answer": "Cane the priest’s dog and earn his wrath. ",
+    "incorrect_answers": [
+        "Cane the priest and you will be bitten by his dog. ",
+        "Cane the priest’s dog and earn his forgiveness.",
+        "Can the priest and his dog take no action? "
+    ]
+},
+
+{
+    "difficulty": "3",
+    "question": "What does the phrase “ earn his wrath “ mean in the proverb translation?",
+    "correct_answer": "To make someone angry",
+    "incorrect_answers": [
+        "To impress someone",
+        "To make someone happy",
+        "To disappoint someone"
+    ]
+},
+
+{
+    "difficulty": "3",
+    "question": "What message does the translated proverb “Cane the priest’s dog and earn his wrath” convey?",
+    "correct_answer": "If you mistreat someone’s pet, you might make them angry. ",
+    "incorrect_answers": [
+        "If you scold a priest, he will become violent. ",
+        "If you  beat a dog, the priest will take the dog’s side.",
+        "If you harm someone’s pet, the priest will forgive you"
+    ]
+},
+
+{
+    "difficulty": "3",
+    "question": "As per one of the proverbs, which of the following will prevent a child from learning? ",
+    "correct_answer": "Excessive love and affection",
+    "incorrect_answers": [
+        "Too much studying",
+        "Lack of interest in the subject",
+        "All of the above"
+    ]
+},
+
+{
+    "difficulty": "3",
+    "question": "ས་སྟོང་བསུབ། “ ་་་་་་་་་་་་་་་་་་་་་་་་་་རྣམ་ཅོག་སྤུ་སོག་སོ།། དབང་མ་ཞུ་བའི་མགུ་ཏོག་ལེབ་ཏག་ག།”",
+    "correct_answer": "ཆོས་མ་གོ་བའི་",
+    "incorrect_answers": [
+        "ཧ་མ་གོ་བའི་",
+        "ཁུངས་མེད་པའི་",
+        "ཉན་ཁུངས་མེད་པའི་"
+    ]
+},
+
+{
+    "difficulty": "3",
+    "question": "“ དབང་མ་ཞུ་བའི་མགུ་ཏོག ” ཟེར་མི་འདི་ ཨིང་སྐད་ནང་ལས་འབད་བ་ཅིན་",
+    "correct_answer": "Head that has not received the sacred blessings. ",
+    "incorrect_answers": [
+        "Eyes that have not received the sacred blessings. ",
+        "Head that has no knowledge in it.",
+        "Eyes that have not seen anything. "
+    ]
+},
+
+{
+    "difficulty": "3",
+    "question": "What does 'Bristly the ear' represent in the proverb?",
+    "correct_answer": "A dull or uneducated ear",
+    "incorrect_answers": [
+        "A prickly or rough ear",
+        "An infected ear",
+        "A misshapen ear"
+    ]
+},
+
+{
+    "difficulty": "3",
+    "question": "What does 'Flat the head'represent in the proverb?",
+    "correct_answer": "A head that has not received education",
+    "incorrect_answers": [
+        "A head that has no thoughts or ideas",
+        "A head that is physically flat",
+        "A head that has not been blessed"
+    ]
+},
+
+{
+    "difficulty": "3",
+    "question": "What is the main idea behind 'If it concerns one's own interest, one can chew even a stone'?",
+    "correct_answer": "One should be willing to do anything, no matter how difficult, for their own benefit.",
+    "incorrect_answers": [
+        "One should always prioritize their own interests over others'.",
+        "One should be willing to make sacrifices for their own benefit.",
+        "One should only act in their own interest if it does not harm others."
+    ]
+},
+
+{
+    "difficulty": "3",
+    "question": "“དོམ་རྒྱབ་ཐལཝ་ད་དཔའ་རྟགས་འབལ།། བླམ་སྐུ་རྒྱབ་ཐལཝ་ད་་་་་་་་་་་།། ”",
+    "correct_answer": "བསང་གཏང་",
+    "incorrect_answers": [
+        "དངོས་གྲུབ་བཞུ",
+        "བྱིན་རླམས་བཞུ",
+        "རིམ་གྲོ་གཏང"
+    ]
+},
+{
+    "difficulty": "3",
+    "question": "“དོམ་རྒྱབ་ཐལཝ་ད་དཔའ་རྟགས་འབལ།། བླམ་སྐུ་རྒྱབ་ཐལཝ་ད་བསང་གཏང་།།” ཟེར་མི་དཔྱེ་གཏམ་ནང་ སེམས་ཅན་ག་འདི་ལུ་དཔྱེ་བཞག་ནུག? སེམས་ཅན་འདི་གི་མིང་ ཨིང་སྐད་ལས་འབད་བ་ཅིན་?",
+    "correct_answer": "Bear",
+    "incorrect_answers": [
+        "Dog",
+        "Fox",
+        "Wolf"
+    ]
+},
+
+{
+    "difficulty": "3",
+    "question": "What is the difference between 'Brandish the sword after the bear is departed' and 'Burn the incense after the lama is departed'?",
+    "correct_answer": "One is about being cautious and the other is about showing respect",
+    "incorrect_answers": [
+        "One is about taking action and the other is about waiting",
+        "One is about danger and the other is about peace",
+        "One is about animals and the other is about humans"
+    ]
+},
+
+{
+    "difficulty": "3",
+    "question": "What does the translated proverb 'Brandish the sword after the bear is departed; Burn the incense after the lama is departed' teach us?",
+    "correct_answer": "To act upon the situation ",
+    "incorrect_answers": [
+        "To be respectful towards others",
+        "To be brave and face danger head-on",
+        "To be opportunistic and take advantage of situations"
+    ]
+},
+
+{
+    "difficulty": "3",
+    "question": "Which of the following best describes the relationship between bone and flesh according to the translated proverb “ If bone is there, the growth of flesh is natural ”?",
+    "correct_answer": "Bone is necessary for the growth of flesh",
+    "incorrect_answers": [
+        "Bone and flesh have no relationship",
+        "Flesh grows first, and then bone develops",
+        "Flesh and bone grow simultaneously"
+    ]
+},
+
+{
+    "difficulty": "3",
+    "question": "ས་སྟོང་བསུབ། “ ཆུ་མའི་་་་་་་་་་་་་་་་་་་་།། ཕྱི་མའི་སྐྱིན་མ་འབྱོར་ཚུགས།། ”",
+    "correct_answer": "སྐྱིན་ཚབ་མ་འབྱོར་རུང་",
+    "incorrect_answers": [
+        "བྲོཝ་མ་ཤེས་རུང་",
+        "ལྟོ་མ་ཞིམ་རུང་",
+        "བྲོཝ་མ་དགའ་རུང་"
+    ]
+},
+
+{
+    "difficulty": "3",
+    "question": "“ སྐྱིན་མ་འབྱོར་ཚུགས ” ཟེར་མི་འདི་ ཨིང་སྐད་ནང་ལས་འབད་བ་ཅིན་",
+    "correct_answer": "Repayment possible.",
+    "incorrect_answers": [
+        "Repayment impossible. ",
+        "Borrowed flour able to be repaid. ",
+        "Borrowed rice not able to repay. "
+    ]
+},
+
+{
+    "difficulty": "3",
+    "question": "“ ཆུ་མའི་སྐྱིན་ཚབ་མ་འབྱོར་རུང་།། ཕྱི་མའི་སྐྱིན་མ་འབྱོར་ཚུགས།།” ཟེར་མི་འདི་ ཨིང་སྐད་ནང་ལས་འབད་བ་ཅིན་",
+    "correct_answer": "Borrowed rice may not be repaid; But borrowed flour can be repaid",
+    "incorrect_answers": [
+        "Borrowed flour may not be repaid; But the borrowed rice can be repaid. ",
+        "Borrowed water may not be repaid now; But can be repaid in the future once. ",
+        "Borrowed water may not be repaid; But can be repaid soon."
+    ]
+},
+
+{
+    "difficulty": "3",
+    "question": "In which context can the 'Borrowed rice may not be repaid; But borrowed flour can be repaid' be applied?",
+    "correct_answer": "When dealing with debts",
+    "incorrect_answers": [
+        "When borrowing from friends and family",
+        "When sharing resources in a community",
+        "When cooking with rice and flour"
+    ]
+},
+
+{
+    "difficulty": "3",
+    "question": "What is the reason behind the difficulty of making a poor person's son work?",
+    "correct_answer": "Laziness",
+    "incorrect_answers": [
+        "Lack of education and resources.",
+        "Health issues.",
+        "None"
+    ]
+},
+
+{
+    "difficulty": "3",
+    "question": "ས་སྟོང་བསུབ།  “ ཤེས་ཚད་རོགས་ལུ་མ་སྟོན།། ་་་་་་་་་་་་་་་་་་་་་་་་་་་་་་་་་་་་་།། མཐོང་ཚད་རོགས་ལུ་མ་སྟོན།། དྲགཔ་རོགས་ཀྱི་འབད་འོང་།། “",
+    "correct_answer": "མཁསཔ་རོགས་ཀྱི་འབད་འོང",
+    "incorrect_answers": [
+        "མཁསཔ་རང་ར་འབད་དགོ",
+        "མཁསཔ་རོགས་འགྱོ་འོང",
+        "རང་བ་མཁསཔ་འབད་འོང"
+    ]
+},
+
+{
+    "difficulty": "3",
+    "question": "“ ཤེས་ཚད་རོགས་ལུ་མ་སྟོན།། ” ཟེར་མི་འདི་ ཨིང་སྐད་ནང་ལས་འབད་བ་ཅིན་",
+    "correct_answer": "Do not teach everything that one knows. ",
+    "incorrect_answers": [
+        "Knowledge is power and it should be kept secret.",
+        "One should always trust others while sharing their knowledge. ",
+        "Teach everything one knows."
+    ]
+},
+{
+    "difficulty": "3",
+    "question": "'ཤེས་ཚད་རོགས་ལུ་མ་སྟོན།། མཁསཔ་རོགས་ཀྱི་འབད་འོང་།། མཐོང་ཚད་རོགས་ལུ་མ་སྟོན།། དྲགཔ་རོགས་ཀྱི་འབད་འོང་།།' ཟེར་མིའི་གོ་བ་འདི་ ཨིང་སྐད་ལས་འབད་བ་ཅིན་",
+    "correct_answer": "One should be selective in sharing knowledge and discoveries",
+    "incorrect_answers": [
+        "Knowledge is power and should be kept secret",
+        "Sharing knowledge and discoveries helps everyone",
+        "One should never trust others with their secrets"
+    ]
+},
+
+{
+    "difficulty": "3",
+    "question": "In which context can the 'Do not teach everything that one knows; Others might become learned; Do not show everything that one discovers; Others might own it' be applied?",
+    "correct_answer": "In business and entrepreneurship",
+    "incorrect_answers": [
+        "In academia and research",
+        "In personal relationships",
+        "In cultural traditions and practices"
+    ]
+},
+
+{
+    "difficulty": "3",
+    "question": "Which of the following best describes the message of the proverb 'Difficult for the cat to digest butter'?",
+    "correct_answer": "It is important to know your limits.",
+    "incorrect_answers": [
+        "To be successful, you must take risks.",
+        "Some things are impossible to achieve.",
+        "Success requires hard work and effort."
+    ]
+},
+
+{
+    "difficulty": "3",
+    "question": "ས་སྟོང་བསུབ། “ འཆམ་ཚེ་་་་་་་་་་་་་་་་་་་་་་་་་་་་་་།། རྒྱགས་ཚེ་ཁ་ལན་མི་འབྱོར།། “",
+    "correct_answer": "སྙིང་གཏམ་མ་བཤད",
+    "incorrect_answers": [
+        "ཧིང་གཏམ་མ་བཤད",
+        "ཧིང་གཏམ་མ་ཤེས",
+        "སྙིང་གཏམ་མ་ཤེས"
+    ]
+},
+
+{
+    "difficulty": "3",
+    "question": "“ འཆམ་ཚེ་སྙིང་གཏམ་མ་བཤད།། རྒྱགས་ཚེ་ཁ་ལན་མི་འབྱོར།། ” ཟེར་མིའི་གོ་བ་འདི་ ཨིང་སྐད་ལས་འབད་བ་ཅིན་",
+    "correct_answer": "It is important to be cautious about sharing secrets during different phases of a relationship. ",
+    "incorrect_answers": [
+        "It is important to keep secrets from friends and family",
+        "It is difficult to trust friends during times of quarrel",
+        "Friends should not be trusted during arguments"
+    ]
+},
+
+{
+    "difficulty": "3",
+    "question": "“ འཆམ་ཚེ་སྙིང་གཏམ་མ་བཤད།། ” ཟེར་མི་འདི་ ཨིང་སྐད་ནང་ལས་འབད་བ་ཅིན་",
+    "correct_answer": "Do not tell secret in times of friendship",
+    "incorrect_answers": [
+        "Do not talk in times of friendship",
+        "It is difficult to win an argument during times of quarrel",
+        "It is difficult to defeat during the times of war"
+    ]
+},
+
+{
+    "difficulty": "3",
+    "question": "“ རྒྱགས་ཚེ་ཁ་ལན་མི་འབྱོར།། ” ཟེར་མི་འདི་ ཨིང་སྐད་ནང་ལས་འབད་བ་ཅིན་",
+    "correct_answer": "It is difficult to win an argument during times of quarrel",
+    "incorrect_answers": [
+        "Do not tell secret in times of friendship",
+        "Do not talk in times of friendship",
+        "It is difficult to defeat during the times of war"
+    ]
+},
+
+{
+    "difficulty": "3",
+    "question": "Which of the following is the best example of the translated proverb “ Cross one mountain pass; And there is still the dark canopy of a valley to cross “?",
+    "correct_answer": "A worker getting a promotion, but then facing more challenging tasks",
+    "incorrect_answers": [
+        "A person successfully completing a marathon, but then facing a difficult recovery process",
+        "A student studying hard for an exam, but then finding out the exam has been postponed",
+        "A traveler arriving at their destination, bu then realizing they forgot their passport"
+    ]
+},
+
+{
+    "difficulty": "3",
+    "question": "ས་སྟོང་བསུབ།  '་་་་་་་་་་་་་་་་་་་་་།། ནོར་རང་དང་ཆ།།'",
+    "correct_answer": "བུ་རོགས་དང་ཆ",
+    "incorrect_answers": [
+        "ཨ་ལུ་རོགས་དང་ཆ",
+        "བུ་ཚུ་རོགས་དང་ཆ",
+        "བུ་བུམོ་རོགས་དང་ཆ"
+    ]
+},
+
+{
+    "difficulty": "3",
+    "question": "ནོར་རང་དང་ཆ།། ཟེར་མི་འདི་ ཨིང་སྐད་ནང་ལས་འབད་བ་ཅིན་:",
+    "correct_answer": "Cattle be with oneself",
+    "incorrect_answers": [
+        "Cattle be sold",
+        "Cattle be left to roam free",
+        "Cattle be with others"
+    ]
+},
+
+{
+    "difficulty": "3",
+    "question": "Which of the following is the most likely reason for the translated proverb “ Let children be with others and cattle be with oneself”?",
+    "correct_answer": "To emphasize the importance of socialization for children",
+    "incorrect_answers": [
+        "To encourage farmers to keep cattle",
+        "To discourage people from socializing",
+        "To discourage people from keeping cattle"
+    ]
+},
+
+{
+    "difficulty": "3",
+    "question": "བུ་རོགས་དང་ཆ།། ནོར་རང་དང་ཆ།། ཟེར་མི་འདི་ ཨིང་སྐད་ནང་ལས་འབད་བ་ཅིན་",
+    "correct_answer": "Children should be allowed to socialize with others while cattle should be kept to oneself",
+    "incorrect_answers": [
+        "Children should be kept away from others",
+        "Cattle should be kept away from others",
+        "Children should be kept to oneself while cattle should be allowed to socialize with others"
+    ]
+},
+
+{
+    "difficulty": "3",
+    "question": "Which of the following best describes the attitude implied by the translated proverb “ Clean up the drains before water arrives; Carry out the rituals before disease arrives ”?",
+    "correct_answer": "Be proactive and take action before a problem occurs",
+    "incorrect_answers": [
+        "Don’t worry about it until it becomes a problem",
+        "Let someone else deal with the problem",
+        "It’s too late to do anything once the problem has started"
+    ]
+},
+
+{
+    "difficulty": "3",
+    "question": "ས་སྟོང་བསུབ། 'མེ་ཆུང་ལས་བསད།། ་་་་་་་་་་་་་་་་་་་་་་་་་་་་་།།'",
+    "correct_answer": "དགྲ་ཆུང་ལས་བཏུལ",
+    "incorrect_answers": [
+        "དགྲ་ཐབས་ཀྱི་བཏུལ",
+        "རྩ་ཆུང་ལས་བཏོག",
+        "ཤིང་ཆུང་ལས་བཏོག"
+    ]
+},
+
+{
+    "difficulty": "3",
+    "question": "What’s the meaning of the translated proverb “ Douse the fire when it is small; Tame the enemy while still young ”?",
+    "correct_answer": "It is important to act quickly to address problems before they get worse",
+    "incorrect_answers": [
+        "Fires are more dangerous than enemies",
+        "Enemies cannot be tamed once they are old",
+        "It is better to let problems solve themselves"
+    ]
+},
+
+{
+    "difficulty": "3",
+    "question": "  མེ་ཆུང་ལས་བསད།། ཟེར་མི་འདི་ ཨིང་སྐད་ནང་ལས་འབད་བ་ཅིན་",
+    "correct_answer": "Douse the fire when it is small",
+    "incorrect_answers": [
+        "Tame the enemy while still young",
+        "Douse the enemy when still young",
+        "Tame the enemy when fire is till small"
+    ]
+},
+
+{
+    "difficulty": "3",
+    "question": "How might the translated proverb “ Douse the fire when it is small; Tame the enemy while still young  ” apply to personal relationships?",
+    "correct_answer": "It is important to address conflicts early, before they become more difficult to resolve",
+    "incorrect_answers": [
+        "It is better to wait for conflicts to resolve themselves ",
+        "Conflicts are not important in personal relationships",
+        "It is important to resolve conflicts in personal relationships"
+    ]
+},
+
+{
+    "difficulty": "3",
+    "question": "What is the significance of using water to clean external dirt in the proverb?",
+    "correct_answer": "Water is symbolic of purity",
+    "incorrect_answers": [
+        "Water is easily accessible",
+        "Water is a powerful cleaning agent",
+        "Water is the only way to clean external dirt"
+    ]
+},
+
+
+{
+    "difficulty": "3",
+    "question": "ས་སྟོང་བསུབ། “ ཆང་མར་འཛུལ།། ་་་་་་་་་་་་་་་་་་་་་་་།། ”",
+    "correct_answer": "བློ་ཡར་འཐོན",
+    "incorrect_answers": [
+        "བྲོཝ་ཡར་འཐོན",
+        "མགུ་ཏོ་ར་བཟི",
+        "འཐབ་ཚིག་ཡར་འཐོན"
+    ]
+},
+
+{
+    "difficulty": "3",
+    "question": "ཆང་མར་འཛུལ།། བློ་ཡར་འཐོན།། ཟེར་མིའི་གོ་བ་འདི་ ཨིང་སྐད་ལས་འབད་བ་ཅིན་",
+    "correct_answer": "Drinking alcohol can cause a person to become more talkative",
+    "incorrect_answers": [
+        "Drinking alcohol leads to silence",
+        "Drinking alcohol can cause a person to become more reserved",
+        "Drinking alcohol leads to talking"
+    ]
+},
+
+
+{
+    "difficulty": "3",
+    "question": " ‘ཆང་མར་འཛུལ།།’  ཟེར་མི་འདི་ ཨིང་སྐད་ནང་ལས་འབད་བ་ཅིན་ ",
+    "correct_answer": "Down goes alcohol",
+    "incorrect_answers": [
+        "Alcohol drips down bottle",
+        "IDown goes alcohol towards river",
+        "Alcohol drips down the machine"
+    ]
+},
+
+{
+    "difficulty": "3",
+    "question": "How does alcohol affect a person's behavior? ",
+    "correct_answer": "It makes them more outgoing and talkative",
+    "incorrect_answers": [
+        "It makes them more quiet and reserved",
+        "It makes them more argumentative",
+        "It has no effect on their behavior"
+    ]
+},
+
+
+
+{
+    "difficulty": "3",
+    "question": "Why do children need their parents' good counsel even if they are learned? ",
+    "correct_answer": "All the mentioned options",
+    "incorrect_answers": [
+        "Because parents have more life experience and wisdom",
+        "Because children lack the emotional maturity to make sound decisions",
+        "Because parents have a better understanding of the child's personality and capabilities"
+    ]
+},
+
+
+
+
+{
+    "difficulty": "3",
+    "question": "ས་སྟོང་བསུབ། ‘བུ་ལང་ཤོར་བཏང་པ་གཅེས་ཕྲུག་མེན།། རྒྱུ་ཆུད་ཟད་བཏང་པ་་་་་་་་་་་་་་་་་་་་་།།’  ",
+    "correct_answer": "སྦྱིན་པ་མེན",
+    "incorrect_answers": [
+        "བྱིན་པ་ཡིན",
+        "ལེགས་ཤོམ་ཡིན",
+        "བླུན་པོ་ཡིན"
+    ]
+},
+
+
+{
+    "difficulty": "3",
+    "question": " ‘བུ་ལང་ཤོར་བཏང་པ་གཅེས་ཕྲུག་མེན།།’   ཟེར་མི་འདི་ ཨིང་སྐད་ནང་ལས་འབད་བ་ཅིན་",
+    "correct_answer": "Encouraging reckless habits in the child is not affection",
+    "incorrect_answers": [
+        "Giving too much affection to a child can lead to reckless behavior",
+        "Being reckless with one’s wealth is form of charity.",
+        "Wasting money on charity is not helpful"
+    ]
+},
+
+
+
+{
+    "difficulty": "3",
+    "question": "How does the proverb ‘Encouraging reckless habits in the child is not affection; Squandering wealth without prudence is not charity’ apply to parenting?",
+    "correct_answer": "Parents should teach their children to be responsible and careful with their actions.",
+    "incorrect_answers": [
+        "Parents should let their children do whatever they want.",
+        "Parents should be reckless with their children's upbringing.",
+        "Parents should spend money on their children without thinking about the consequences."
+    ]
+},
+
+
+
+{
+    "difficulty": "3",
+    "question": "According to the proverb, what is not charity?",
+    "correct_answer": "Spending money recklessly",
+    "incorrect_answers": [
+        "Donating money to the poor",
+        "Investing in a business",
+        "Saving money for future generations"
+    ]
+},
+
+
+
+
+{
+    "difficulty": "3",
+    "question": "What lesson can be learned from the translated proverb “ cheerful, when pork was eaten; But gloomy, when its time to pay the price ”?",
+    "correct_answer": "Be prepared to pay the price for what you receive",
+    "incorrect_answers": [
+        "Don't eat pork",
+        "Always be happy when receiving something",
+        "None"
+    ]
+}
+
+
+
+    ]
+}
