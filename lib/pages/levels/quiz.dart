@@ -45,8 +45,8 @@ class _QuizScreenState extends State<QuizScreen> {
 // URI to access this JSON in a text editor:
 // https://extendsclass.com/jsonstorage/fcddd3efa56d
 
-  var link = "https://json.extendsclass.com/bin/fcddd3efa56d";
-  // var link = "https://json.extendsclass.com/bin/28d963e9580c";
+  // var link = "https://json.extendsclass.com/bin/fcddd3efa56d";
+  var link = "https://json.extendsclass.com/bin/28d963e9580c";
 
   getQuiz() async {
     var res = await http.get(Uri.parse(link));

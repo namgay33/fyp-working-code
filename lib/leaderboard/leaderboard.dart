@@ -30,10 +30,13 @@ class _LeaderboardState extends State<Leaderboard> {
     final querySnapshot =
         await FirebaseFirestore.instance.collection('users').get();
     final users = querySnapshot.docs
-        .map((doc) => User(
+        .map(
+          (doc) => User(
             id: doc.id,
-            name: doc.data()['fullName'],
-            points: doc.data()['quizPoint'] ?? 0))
+            name: doc.data()['fullName']?.toString() ?? '',
+            points: doc.data()['quizPoint']?.toInt() ?? 0,
+          ),
+        )
         .toList();
     users.sort((a, b) => b.points.compareTo(a.points)); // sort users by points
     setState(() {
