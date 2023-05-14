@@ -63,7 +63,7 @@ class _LevelPagesState extends State<LevelPages> {
     List<Map<String, dynamic>> items;
     if (widget.index == 1) {
       items = _outerValues.length >= 2
-          ? _outerValues.sublist(0, 1).cast<Map<String, dynamic>>()
+          ? _outerValues.sublist(0, 5).cast<Map<String, dynamic>>()
           : [];
     } else if (widget.index == 2) {
       items = _outerValues.length >= 4

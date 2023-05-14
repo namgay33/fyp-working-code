@@ -1,6 +1,8 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'package:first_app/pages/drawer_items/about_us.dart';
 import 'package:first_app/service/auth_service.dart';
@@ -64,6 +66,12 @@ class _HomePageState extends State<HomePage> {
 
   int currentPage = 0;
 
+  void _navigateBottomBar(int index) {
+    setState(() {
+      currentPage = index;
+    });
+  }
+
   List<Widget> pages = const [
     Home(
       description: '',
@@ -100,9 +108,16 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(
               width: 5,
             ),
-            const Text(
+            Text(
               "DrukPeytam",
-              style: TextStyle(fontSize: 27),
+              style: GoogleFonts.oswald(
+                textStyle: const TextStyle(
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold,
+                  // color: Colors.grey.shade700,
+                  color: Colors.white,
+                ),
+              ),
             ),
           ],
         ),
@@ -225,7 +240,7 @@ class _HomePageState extends State<HomePage> {
             ),
             ListTile(
               onTap: () {
-                nextScreenReplace(context, const AboutUs());
+                nextScreen(context, const AboutUs());
               },
               selectedColor: Theme.of(context).primaryColor,
               contentPadding:
@@ -280,31 +295,48 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      bottomNavigationBar: NavigationBar(
-        destinations: const [
-          NavigationDestination(
-            icon: Icon(Icons.home),
-            label: "Home",
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+            // borderRadius: BorderRadius.only(
+            //   topLeft: Radius.circular(40),
+            //   topRight: Radius.circular(40),
+            // ),
+            color: Colors.white,
+            boxShadow: [
+              BoxShadow(color: Colors.grey.withOpacity(0.5), spreadRadius: 1)
+            ]),
+        // color: Colors.white,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 40.0, vertical: 20),
+          child: GNav(
+            selectedIndex: currentPage,
+            // backgroundColor: Colors.white,
+            color: Colors.grey.shade700,
+            activeColor: Colors.white,
+            tabBackgroundColor: const Color(0xFFFFCC33),
+            gap: 8,
+            onTabChange: _navigateBottomBar,
+            padding: const EdgeInsets.all(5),
+            tabs: const [
+              GButton(
+                icon: Icons.home,
+                text: "Home",
+              ),
+              GButton(
+                icon: Icons.area_chart_rounded,
+                text: "Level",
+              ),
+              GButton(
+                icon: Icons.leaderboard_rounded,
+                text: "Leaderboard",
+              ),
+              GButton(
+                icon: Icons.favorite_rounded,
+                text: "Favorites",
+              ),
+            ],
           ),
-          NavigationDestination(
-            icon: Icon(Icons.category),
-            label: "Level",
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.bar_chart),
-            label: "Leaderboard",
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.favorite),
-            label: "Favorite",
-          ),
-        ],
-        onDestinationSelected: (int index) {
-          setState(() {
-            currentPage = index;
-          });
-        },
-        selectedIndex: currentPage,
+        ),
       ),
     );
   }

@@ -66,11 +66,19 @@ class _DetailScreenState extends State<DetailScreen> {
                   Padding(
                     padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
                     child: (widget.image).isNotEmpty
-                        ? Center(
-                            child: Image.network(
-                              widget.image,
-                              height: 400,
-                            ),
+                        ? Column(
+                            children: [
+                              Center(
+                                child: Image.network(
+                                  widget.image,
+                                  height: 400,
+                                ),
+                              ),
+                              const Divider(
+                                thickness: 1,
+                                color: Colors.grey,
+                              )
+                            ],
                           )
                         : const Center(child: CircularProgressIndicator()),
                   ),

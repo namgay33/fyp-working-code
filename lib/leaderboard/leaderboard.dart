@@ -44,6 +44,8 @@ class _LeaderboardState extends State<Leaderboard> {
     });
   }
 
+  
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -101,8 +103,36 @@ class _LeaderboardState extends State<Leaderboard> {
                               itemCount: _users.length,
                               itemBuilder: (context, index) {
                                 final user = _users[index];
+                                Widget leadingWidget;
+
+                                // Check if the current index is within the top 3
+                                if (index == 0) {
+                                  leadingWidget = Image.asset(
+                                    'assets/first.png',
+                                    width: 25,
+                                    height: 25,
+                                  );
+                                } else if (index == 1) {
+                                  leadingWidget = Image.asset(
+                                    'assets/second.png',
+                                    width: 25,
+                                    height: 25,
+                                  );
+                                } else if (index == 2) {
+                                  leadingWidget = Image.asset(
+                                    'assets/third.png',
+                                    width: 25,
+                                    height: 25,
+                                  );
+                                } else {
+                                  leadingWidget = Text(
+                                    '${index + 1}',
+                                    style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                                  );
+                                }
+
                                 return ListTile(
-                                  leading: Text('${index + 1}'),
+                                  leading: leadingWidget,
                                   title: Row(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
@@ -111,8 +141,17 @@ class _LeaderboardState extends State<Leaderboard> {
                                       Text(user.name),
                                     ],
                                   ),
-                                  trailing: Text(
-                                    '${user.points}',
+                                  trailing: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Image.asset(
+                                        'assets/point.png',
+                                        width: 20,
+                                        height: 20,
+                                      ),
+                                      const SizedBox(width: 4),
+                                      Text('${user.points}'),
+                                    ],
                                   ),
                                 );
                               },

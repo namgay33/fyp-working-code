@@ -1,15 +1,18 @@
+
 import 'dart:async';
 import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:http/http.dart' as http;
 
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+
 import 'const/colors.dart';
-import 'const/images.dart';
 import 'const/text_styles.dart';
+
 
 class QuizScreen extends StatefulWidget {
   final int index;
@@ -18,35 +21,43 @@ class QuizScreen extends StatefulWidget {
   State<QuizScreen> createState() => _QuizScreenState();
 }
 
+
 class _QuizScreenState extends State<QuizScreen> {
   var currentQuestionIndex = 0;
   int seconds = 60;
   Timer? timer;
   late Future quiz;
 
+
   int points = 0;
   int coinAmount = 0;
 
+
   var isLoaded = false;
+
 
   var optionsList = [];
 
+
   var optionsColor = [
-    Colors.white,
-    Colors.white,
-    Colors.white,
-    Colors.white,
-    Colors.white,
+    const Color(0xFFFFCC33),
+    const Color(0xFFFFCC33),
+    const Color(0xFFFFCC33),
+    const Color(0xFFFFCC33),
   ];
+
 
 // URI to access this JSON bin:
 // https://json.extendsclass.com/bin/fcddd3efa56d
 
+
 // URI to access this JSON in a text editor:
 // https://extendsclass.com/jsonstorage/fcddd3efa56d
 
-  // var link = "https://json.extendsclass.com/bin/fcddd3efa56d";
-  var link = "https://json.extendsclass.com/bin/28d963e9580c";
+
+  var link = "https://json.extendsclass.com/bin/fcddd3efa56d";
+  // var link = "https://json.extendsclass.com/bin/28d963e9580c";
+
 
   getQuiz() async {
     var res = await http.get(Uri.parse(link));
@@ -56,12 +67,15 @@ class _QuizScreenState extends State<QuizScreen> {
     }
   }
 
+
   addQuizPoints() {
     CollectionReference usersRef =
         FirebaseFirestore.instance.collection('users');
 
+
     FirebaseAuth auth = FirebaseAuth.instance;
     String userUid = auth.currentUser!.uid;
+
 
     usersRef.doc(userUid).set({'quizPoint': FieldValue.increment(points)},
         SetOptions(merge: true)).then((value) {
@@ -71,12 +85,15 @@ class _QuizScreenState extends State<QuizScreen> {
     });
   }
 
+
   // addQuizPoints(int level, int points) {
   //   CollectionReference usersRef =
   //       FirebaseFirestore.instance.collection('users');
 
+
   //   FirebaseAuth auth = FirebaseAuth.instance;
   //   String userUid = auth.currentUser!.uid;
+
 
   //   // Add the quiz points for the specified level as a field in the "quizPoints" collection
   //   usersRef.doc(userUid).collection('quizPoints').doc('level$level').set({
@@ -84,14 +101,17 @@ class _QuizScreenState extends State<QuizScreen> {
   //   }, SetOptions(merge: true));
   // }
 
+
   @override
   void initState() {
     super.initState();
     quiz = getQuiz();
     getCoinAmount();
 
+
     startTimer();
   }
+
 
   @override
   void dispose() {
@@ -99,12 +119,15 @@ class _QuizScreenState extends State<QuizScreen> {
     super.dispose();
   }
 
+
   getCoinAmount() async {
     CollectionReference usersRef =
         FirebaseFirestore.instance.collection('users');
 
+
     FirebaseAuth auth = FirebaseAuth.instance;
     String userUid = auth.currentUser!.uid;
+
 
     var userData = await usersRef.doc(userUid).get();
     Map<String, dynamic> userDataMap = userData.data() as Map<String, dynamic>;
@@ -115,30 +138,35 @@ class _QuizScreenState extends State<QuizScreen> {
     }
   }
 
+
   extendTime() {
     setState(() {
       seconds += 10;
       coinAmount -= 3;
     });
 
+
     CollectionReference usersRef =
         FirebaseFirestore.instance.collection('users');
+
 
     FirebaseAuth auth = FirebaseAuth.instance;
     String userUid = auth.currentUser!.uid;
 
+
     usersRef.doc(userUid).set({'coins': coinAmount}, SetOptions(merge: true));
   }
 
+
   resetColors() {
     optionsColor = [
-      Colors.white,
-      Colors.white,
-      Colors.white,
-      Colors.white,
-      Colors.white,
+      const Color(0xFFFFCC33),
+      const Color(0xFFFFCC33),
+      const Color(0xFFFFCC33),
+      const Color(0xFFFFCC33),
     ];
   }
+
 
   startTimer() {
     timer = Timer.periodic(const Duration(seconds: 1), (timer) {
@@ -152,6 +180,7 @@ class _QuizScreenState extends State<QuizScreen> {
     });
   }
 
+
   gotoNextQuestion() {
     isLoaded = false;
     currentQuestionIndex++;
@@ -160,6 +189,7 @@ class _QuizScreenState extends State<QuizScreen> {
     seconds = 60;
     startTimer();
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -182,7 +212,9 @@ class _QuizScreenState extends State<QuizScreen> {
               var data = snapshot.data["results"]
                   .where(
                       (element) => element['difficulty'] == '${widget.index}')
+                  .take(10)
                   .toList();
+
 
               if (isLoaded == false) {
                 optionsList = data[currentQuestionIndex]["incorrect_answers"];
@@ -191,57 +223,53 @@ class _QuizScreenState extends State<QuizScreen> {
                 isLoaded = true;
               }
 
+
               return SingleChildScrollView(
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(50),
-                            border: Border.all(color: lightgrey, width: 2),
-                          ),
-                          child: IconButton(
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                              icon: const Icon(
-                                CupertinoIcons.xmark,
-                                color: Colors.white,
-                                size: 28,
-                              )),
-                        ),
+                        IconButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            icon: const Icon(
+                              CupertinoIcons.xmark,
+                              color: Colors.red,
+                              size: 20,
+                            )),
                         Stack(
                           alignment: Alignment.center,
                           children: [
                             normalText(
-                                color: Colors.white,
+                                color: Colors.black,
                                 size: 24,
                                 text: "$seconds"),
                             SizedBox(
-                              width: 80,
-                              height: 80,
+                              width: 50,
+                              height: 50,
                               child: CircularProgressIndicator(
                                 value: seconds / 60,
                                 valueColor:
-                                    const AlwaysStoppedAnimation(Colors.white),
+                                    const AlwaysStoppedAnimation(Colors.green),
                               ),
                             ),
                           ],
                         ),
                         Container(
                           decoration: BoxDecoration(
-                            color: quizBgColorDark,
+                            color: const Color(0xFFFFCC33),
                             borderRadius: BorderRadius.circular(16),
-                            border: Border.all(color: quizBgColor, width: 2),
+                            border: Border.all(color: Colors.black, width: 2),
                           ),
                           child: TextButton.icon(
                             onPressed: coinAmount >= 3 ? extendTime : null,
                             icon: const Icon(CupertinoIcons.time,
-                                color: Colors.white, size: 18),
+                                color: Colors.black, size: 18),
                             label: normalText(
-                              color: Colors.white,
+                              color: Colors.black,
                               size: 14,
                               text: "Extend Time (-3 coins)",
                             ),
@@ -249,29 +277,38 @@ class _QuizScreenState extends State<QuizScreen> {
                         ),
                       ],
                     ),
-                    const SizedBox(height: 20),
-                    Image.asset(ideas, width: 200),
+                    const SizedBox(height: 40),
+                    // Image.asset(ideas, width: 200),
                     const SizedBox(height: 20),
                     Align(
-                        alignment: Alignment.centerLeft,
+                        alignment: Alignment.center,
                         child: normalText(
                             color: const Color.fromARGB(255, 39, 35, 35),
                             size: 15,
                             text:
                                 "Question ${currentQuestionIndex + 1} of ${data.length}")),
+                    const Divider(
+                      color: Colors.grey,
+                      thickness: 1,
+                    ),
                     const SizedBox(height: 20),
                     normalText(
-                      color: Colors.white,
+                      color: Colors.black,
                       size: 15,
                       text: data[currentQuestionIndex]["question"],
                     ),
-                    const SizedBox(height: 20),
+
+
+                    const SizedBox(height: 40),
+
+
                     ListView.builder(
                       shrinkWrap: true,
                       itemCount: optionsList.length,
                       itemBuilder: (BuildContext context, int index) {
                         var answer =
                             data[currentQuestionIndex]["correct_answer"];
+
 
                         return GestureDetector(
                           onTap: () {
@@ -284,6 +321,7 @@ class _QuizScreenState extends State<QuizScreen> {
                                 optionsColor[index] = Colors.red;
                               }
 
+
                               if (currentQuestionIndex < data.length - 1) {
                                 Future.delayed(const Duration(seconds: 1), () {
                                   gotoNextQuestion();
@@ -292,8 +330,10 @@ class _QuizScreenState extends State<QuizScreen> {
                                 Future.delayed(const Duration(seconds: 1), () {
                                   timer!.cancel();
 
+
                                   addQuizPoints();
                                   // addQuizPoints(widget.index, points);
+
 
                                   showDialog(
                                     context: context,
@@ -332,7 +372,7 @@ class _QuizScreenState extends State<QuizScreen> {
                             child: Text(
                               optionsList[index].toString(),
                               style: const TextStyle(
-                                color: blue,
+                                color: Colors.white,
                                 fontSize: 15,
                                 fontFamily:
                                     'Roboto', // replace with the desired font family
@@ -360,3 +400,5 @@ class _QuizScreenState extends State<QuizScreen> {
     );
   }
 }
+
+
