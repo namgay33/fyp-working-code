@@ -19,19 +19,6 @@ class AuthService {
     return doc.exists;
   }
 
-  // Add coins to user's account
-  Future<void> addCoins(int coinsToAdd) async {
-    CollectionReference usersRef =
-        FirebaseFirestore.instance.collection('users');
-
-    usersRef.doc(uid).set({'coins': FieldValue.increment(coinsToAdd)},
-        SetOptions(merge: true)).then((value) {
-      // print("Quiz point updated for user $uid");
-    }).catchError((error) {
-      // print("Failed to update quiz point for user $uid: $error");
-    });
-  }
-
   // login
   Future loginWithUserNameAndPassword(String email, String password) async {
     try {
@@ -58,20 +45,7 @@ class AuthService {
     }
   }
 
-  // register
-  // Future registerUserWithEmailAndPassword(
-  //     String fullName, String email, String password) async {
-  //   try {
-  //     User user = (await firebaseAuth.createUserWithEmailAndPassword(
-  //             email: email, password: password))
-  //         .user!;
-  //     await DatabaseService(uid: user.uid).savingUserData(fullName, email);
-  //     return true;
-  //   } on FirebaseAuthException catch (e) {
-  //     return e.message;
-  //   }
-  // }
-
+// register
   Future registerUserWithEmailAndPassword(
       String fullName, String email, String password) async {
     try {
@@ -85,12 +59,40 @@ class AuthService {
       // If user does not exist, add 5 coins to their account
       if (!userExists) {
         await AuthService(uid: user.uid).addCoins(5);
+        await AuthService(uid: user.uid).addLevels();
       }
 
       await DatabaseService(uid: user.uid).savingUserData(fullName, email);
       return true;
     } on FirebaseAuthException catch (e) {
       return e.message;
+    }
+  }
+
+  // Add coins to user's account on register
+  Future<void> addCoins(int coinsToAdd) async {
+    CollectionReference usersRef =
+        FirebaseFirestore.instance.collection('users');
+
+    usersRef.doc(uid).set({'coins': FieldValue.increment(coinsToAdd)},
+        SetOptions(merge: true)).then((value) {
+      // print("Quiz point updated for user $uid");
+    }).catchError((error) {
+      // print("Failed to update quiz point for user $uid: $error");
+    });
+  }
+
+// add levels on register
+  Future<void> addLevels() async {
+    CollectionReference usersRef =
+        FirebaseFirestore.instance.collection('users');
+
+    for (int level = 1; level <= 10; level++) {
+      usersRef
+          .doc(uid)
+          .collection('quizPoints')
+          .doc('level$level')
+          .set({'points': 0});
     }
   }
 

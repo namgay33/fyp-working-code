@@ -1,18 +1,14 @@
-
 import 'dart:async';
 import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:http/http.dart' as http;
 
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-
 import 'const/colors.dart';
 import 'const/text_styles.dart';
-
 
 class QuizScreen extends StatefulWidget {
   final int index;
@@ -21,23 +17,18 @@ class QuizScreen extends StatefulWidget {
   State<QuizScreen> createState() => _QuizScreenState();
 }
 
-
 class _QuizScreenState extends State<QuizScreen> {
   var currentQuestionIndex = 0;
   int seconds = 60;
   Timer? timer;
   late Future quiz;
 
-
   int points = 0;
   int coinAmount = 0;
 
-
   var isLoaded = false;
 
-
   var optionsList = [];
-
 
   var optionsColor = [
     const Color(0xFFFFCC33),
@@ -46,18 +37,14 @@ class _QuizScreenState extends State<QuizScreen> {
     const Color(0xFFFFCC33),
   ];
 
-
 // URI to access this JSON bin:
 // https://json.extendsclass.com/bin/fcddd3efa56d
-
 
 // URI to access this JSON in a text editor:
 // https://extendsclass.com/jsonstorage/fcddd3efa56d
 
-
   var link = "https://json.extendsclass.com/bin/fcddd3efa56d";
   // var link = "https://json.extendsclass.com/bin/28d963e9580c";
-
 
   getQuiz() async {
     var res = await http.get(Uri.parse(link));
@@ -67,40 +54,64 @@ class _QuizScreenState extends State<QuizScreen> {
     }
   }
 
-
-  addQuizPoints() {
-    CollectionReference usersRef =
-        FirebaseFirestore.instance.collection('users');
-
-
-    FirebaseAuth auth = FirebaseAuth.instance;
-    String userUid = auth.currentUser!.uid;
-
-
-    usersRef.doc(userUid).set({'quizPoint': FieldValue.increment(points)},
-        SetOptions(merge: true)).then((value) {
-      // print("Quiz point updated for user $userUid");
-    }).catchError((error) {
-      // print("Failed to update quiz point for user $userUid: $error");
-    });
-  }
-
-
-  // addQuizPoints(int level, int points) {
+  // addQuizPoints() {
   //   CollectionReference usersRef =
   //       FirebaseFirestore.instance.collection('users');
-
 
   //   FirebaseAuth auth = FirebaseAuth.instance;
   //   String userUid = auth.currentUser!.uid;
 
-
-  //   // Add the quiz points for the specified level as a field in the "quizPoints" collection
-  //   usersRef.doc(userUid).collection('quizPoints').doc('level$level').set({
-  //     'points': FieldValue.increment(points),
-  //   }, SetOptions(merge: true));
+  //   usersRef.doc(userUid).set({'quizPoint': FieldValue.increment(points)},
+  //       SetOptions(merge: true)).then((value) {
+  //     // print("Quiz point updated for user $userUid");
+  //   }).catchError((error) {
+  //     // print("Failed to update quiz point for user $userUid: $error");
+  //   });
   // }
 
+  // // addQuizPoints(int level, int points) {
+  // //   CollectionReference usersRef =
+  // //       FirebaseFirestore.instance.collection('users');
+
+  // //   FirebaseAuth auth = FirebaseAuth.instance;
+  // //   String userUid = auth.currentUser!.uid;
+
+  // //   // Add the quiz points for the specified level as a field in the "quizPoints" collection
+  // //   usersRef.doc(userUid).collection('quizPoints').doc('level$level').set({
+  // //     'points': FieldValue.increment(points),
+  // //   }, SetOptions(merge: true));
+  // // }
+
+  Future<void> addQuizPoints(int level, int points) async {
+    FirebaseFirestore firestore = FirebaseFirestore.instance;
+    FirebaseAuth auth = FirebaseAuth.instance;
+    String? userUid = auth.currentUser?.uid;
+
+    if (userUid != null) {
+      // Add the quiz points for the specified level as a field in the "quizPoints" collection
+      CollectionReference quizPointsRef =
+          firestore.collection('users').doc(userUid).collection('quizPoints');
+      await quizPointsRef.doc('level$level').set({
+        'points': FieldValue.increment(points),
+      }, SetOptions(merge: true));
+
+      // Retrieve the quiz points for all levels
+      final querySnapshot = await quizPointsRef.get();
+      final quizPoints = querySnapshot.docs
+          .map((doc) =>
+              (doc.data() as Map<String, dynamic>)['points'] as int? ?? 0)
+          .toList();
+
+      // Calculate the total points
+      int totalPoints = quizPoints.fold(0, (sum, points) => sum + points);
+
+      // Store the total points in the "users" collection
+      CollectionReference usersRef = firestore.collection('users');
+      await usersRef.doc(userUid).set({
+        'quizPoint': totalPoints,
+      }, SetOptions(merge: true));
+    }
+  }
 
   @override
   void initState() {
@@ -108,10 +119,8 @@ class _QuizScreenState extends State<QuizScreen> {
     quiz = getQuiz();
     getCoinAmount();
 
-
     startTimer();
   }
-
 
   @override
   void dispose() {
@@ -119,15 +128,12 @@ class _QuizScreenState extends State<QuizScreen> {
     super.dispose();
   }
 
-
   getCoinAmount() async {
     CollectionReference usersRef =
         FirebaseFirestore.instance.collection('users');
 
-
     FirebaseAuth auth = FirebaseAuth.instance;
     String userUid = auth.currentUser!.uid;
-
 
     var userData = await usersRef.doc(userUid).get();
     Map<String, dynamic> userDataMap = userData.data() as Map<String, dynamic>;
@@ -138,25 +144,20 @@ class _QuizScreenState extends State<QuizScreen> {
     }
   }
 
-
   extendTime() {
     setState(() {
       seconds += 10;
       coinAmount -= 3;
     });
 
-
     CollectionReference usersRef =
         FirebaseFirestore.instance.collection('users');
-
 
     FirebaseAuth auth = FirebaseAuth.instance;
     String userUid = auth.currentUser!.uid;
 
-
     usersRef.doc(userUid).set({'coins': coinAmount}, SetOptions(merge: true));
   }
-
 
   resetColors() {
     optionsColor = [
@@ -166,7 +167,6 @@ class _QuizScreenState extends State<QuizScreen> {
       const Color(0xFFFFCC33),
     ];
   }
-
 
   startTimer() {
     timer = Timer.periodic(const Duration(seconds: 1), (timer) {
@@ -180,7 +180,6 @@ class _QuizScreenState extends State<QuizScreen> {
     });
   }
 
-
   gotoNextQuestion() {
     isLoaded = false;
     currentQuestionIndex++;
@@ -189,7 +188,6 @@ class _QuizScreenState extends State<QuizScreen> {
     seconds = 60;
     startTimer();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -215,14 +213,12 @@ class _QuizScreenState extends State<QuizScreen> {
                   .take(10)
                   .toList();
 
-
               if (isLoaded == false) {
                 optionsList = data[currentQuestionIndex]["incorrect_answers"];
                 optionsList.add(data[currentQuestionIndex]["correct_answer"]);
                 optionsList.shuffle();
                 isLoaded = true;
               }
-
 
               return SingleChildScrollView(
                 child: Column(
@@ -298,9 +294,7 @@ class _QuizScreenState extends State<QuizScreen> {
                       text: data[currentQuestionIndex]["question"],
                     ),
 
-
                     const SizedBox(height: 40),
-
 
                     ListView.builder(
                       shrinkWrap: true,
@@ -308,7 +302,6 @@ class _QuizScreenState extends State<QuizScreen> {
                       itemBuilder: (BuildContext context, int index) {
                         var answer =
                             data[currentQuestionIndex]["correct_answer"];
-
 
                         return GestureDetector(
                           onTap: () {
@@ -321,7 +314,6 @@ class _QuizScreenState extends State<QuizScreen> {
                                 optionsColor[index] = Colors.red;
                               }
 
-
                               if (currentQuestionIndex < data.length - 1) {
                                 Future.delayed(const Duration(seconds: 1), () {
                                   gotoNextQuestion();
@@ -330,10 +322,8 @@ class _QuizScreenState extends State<QuizScreen> {
                                 Future.delayed(const Duration(seconds: 1), () {
                                   timer!.cancel();
 
-
-                                  addQuizPoints();
-                                  // addQuizPoints(widget.index, points);
-
+                                  // addQuizPoints();
+                                  addQuizPoints(widget.index, points);
 
                                   showDialog(
                                     context: context,
@@ -400,5 +390,3 @@ class _QuizScreenState extends State<QuizScreen> {
     );
   }
 }
-
-
