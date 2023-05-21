@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:http/http.dart' as http;
@@ -29,6 +30,7 @@ class _QuizScreenState extends State<QuizScreen> {
   var isLoaded = false;
 
   var optionsList = [];
+  List<dynamic> quizData = [];
 
   var optionsColor = [
     const Color(0xFFFFCC33),
@@ -46,11 +48,25 @@ class _QuizScreenState extends State<QuizScreen> {
   var link = "https://json.extendsclass.com/bin/fcddd3efa56d";
   // var link = "https://json.extendsclass.com/bin/28d963e9580c";
 
+  // getQuiz() async {
+  //   var res = await http.get(Uri.parse(link));
+  //   if (res.statusCode == 200) {
+  //     var data = jsonDecode(res.body.toString());
+  //     return data;
+  //   }
+  // }
   getQuiz() async {
     var res = await http.get(Uri.parse(link));
     if (res.statusCode == 200) {
       var data = jsonDecode(res.body.toString());
-      return data;
+      setState(() {
+        quizData = data["results"]
+            .where((element) => element['difficulty'] == '${widget.index}')
+            .toList();
+        quizData.shuffle(Random());
+        debugPrint(quizData.toString());
+      });
+      return quizData; // Add this line to return the fetched data
     }
   }
 
@@ -207,11 +223,8 @@ class _QuizScreenState extends State<QuizScreen> {
           future: quiz,
           builder: (BuildContext context, AsyncSnapshot snapshot) {
             if (snapshot.hasData) {
-              var data = snapshot.data["results"]
-                  .where(
-                      (element) => element['difficulty'] == '${widget.index}')
-                  .take(10)
-                  .toList();
+              var data = quizData.take(10).toList();
+              debugPrint(quizData.toString());
 
               if (isLoaded == false) {
                 optionsList = data[currentQuestionIndex]["incorrect_answers"];
