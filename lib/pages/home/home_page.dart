@@ -52,7 +52,7 @@ class _HomeState extends State<Home> {
     if (user != null) {
       // Load favorites and set up favoritesRef
       loadFavorites();
-      setFavorites();
+      // setFavorites();
 
       final String userId = getUserId();
 
@@ -74,14 +74,12 @@ class _HomeState extends State<Home> {
     return user.uid;
   }
 
-  setFavorites() async {
-    final userRef =
-        FirebaseFirestore.instance.collection('users').doc(getUserId());
-    final docSnapshot = await userRef.get();
-    if (!docSnapshot.exists || docSnapshot.get('favorites') == null) {
-      await userRef.set({'favorites': []}, SetOptions(merge: true));
-    }
-  }
+  // setFavorites() async {
+  //   FirebaseFirestore.instance
+  //       .collection('users')
+  //       .doc(getUserId())
+  //       .collection('favorites');
+  // }
 
   Future<void> getDataFromAPI() async {
     const url =

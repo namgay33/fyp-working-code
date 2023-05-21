@@ -19,7 +19,7 @@ class DatabaseService {
       "groups": [],
       "profilePic": "",
       'uid': uid,
-      'coins': 0,
+      'coins': 20,
       'quizPoint': 0
     });
   }

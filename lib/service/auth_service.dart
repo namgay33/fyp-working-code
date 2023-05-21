@@ -58,7 +58,6 @@ class AuthService {
 
       // If user does not exist, add 5 coins to their account
       if (!userExists) {
-        await AuthService(uid: user.uid).addCoins(5);
         await AuthService(uid: user.uid).addLevels();
       }
 
@@ -69,18 +68,12 @@ class AuthService {
     }
   }
 
-  // Add coins to user's account on register
-  Future<void> addCoins(int coinsToAdd) async {
-    CollectionReference usersRef =
-        FirebaseFirestore.instance.collection('users');
+  // // Add coins to user's account on register
+  // Future<void> addCoins() async {
+  //   final userRef = FirebaseFirestore.instance.collection('users').doc(uid);
 
-    usersRef.doc(uid).set({'coins': FieldValue.increment(coinsToAdd)},
-        SetOptions(merge: true)).then((value) {
-      // print("Quiz point updated for user $uid");
-    }).catchError((error) {
-      // print("Failed to update quiz point for user $uid: $error");
-    });
-  }
+  //   await userRef.set({'coins': 5}, SetOptions(merge: true));
+  // }
 
 // add levels on register
   Future<void> addLevels() async {
