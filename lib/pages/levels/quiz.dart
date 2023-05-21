@@ -64,7 +64,6 @@ class _QuizScreenState extends State<QuizScreen> {
             .where((element) => element['difficulty'] == '${widget.index}')
             .toList();
         quizData.shuffle(Random());
-        debugPrint(quizData.toString());
       });
       return quizData; // Add this line to return the fetched data
     }
@@ -224,7 +223,6 @@ class _QuizScreenState extends State<QuizScreen> {
           builder: (BuildContext context, AsyncSnapshot snapshot) {
             if (snapshot.hasData) {
               var data = quizData.take(10).toList();
-              debugPrint(quizData.toString());
 
               if (isLoaded == false) {
                 optionsList = data[currentQuestionIndex]["incorrect_answers"];
