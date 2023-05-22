@@ -1,6 +1,8 @@
 import 'dart:convert';
 
 import 'package:audioplayers/audioplayers.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:first_app/pages/levels/quiz.dart';
 import 'package:first_app/widgets/widget.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +24,12 @@ class LevelPages extends StatefulWidget {
 }
 
 class _LevelPagesState extends State<LevelPages> {
+  //
+  late int userPoints;
+  int userCoins = 0;
+  late FirebaseAuth auth;
+  late String userUid;
+
   final audioUrl = '';
   AudioPlayer audioPlayer = AudioPlayer();
 
@@ -41,6 +49,7 @@ class _LevelPagesState extends State<LevelPages> {
         setState(() {
           _isSignedIn = value;
         });
+        reattemptQuiz();
       }
     });
   }
@@ -56,6 +65,26 @@ class _LevelPagesState extends State<LevelPages> {
         _outerValues.add(outerValue);
       });
     });
+  }
+
+  // if point>0 in collection
+
+  void reattemptQuiz() async {
+    auth = FirebaseAuth.instance;
+    userUid = auth.currentUser!.uid;
+    int level = widget.index;
+    // Check if the user has already attempted the quiz
+    DocumentSnapshot userCoinsSnapshot =
+        await FirebaseFirestore.instance.collection('users').doc(userUid).get();
+    DocumentSnapshot levelPointSnapshot = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(userUid)
+        .collection('quizPoints')
+        .doc('level$level')
+        .get();
+
+    userPoints = levelPointSnapshot['points'];
+    userCoins = userCoinsSnapshot['coins'];
   }
 
   @override
@@ -186,12 +215,72 @@ class _LevelPagesState extends State<LevelPages> {
             padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),
             child: ElevatedButton(
               onPressed: () {
-                _isSignedIn
-                    ? nextScreen(context, QuizScreen(index: widget.index))
-                    : Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const LoginPage()));
+                if (_isSignedIn) {
+                  // reattemptQuiz();
+                  if (userPoints > 0) {
+                    if (userCoins >= 3) {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: const Text('Confirmation'),
+                            content: const Text(
+                                'Do you want to Re-attempt the quiz? \nPenalty: 3 coins deduction.'),
+                            actions: [
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: const Text('Cancel'),
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                  int updatedCoins = userCoins - 3;
+                                  FirebaseFirestore.instance
+                                      .collection('users')
+                                      .doc(userUid)
+                                      .update({'coins': updatedCoins});
+                                  nextScreen(
+                                      context, QuizScreen(index: widget.index));
+                                },
+                                child: const Text('Confirm'),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    } else {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: const Text('Not Enough Coins'),
+                            content: const Text(
+                                'You do not have enough coins to attempt the quiz again.'),
+                            actions: [
+                              ElevatedButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: const Text('OK'),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    }
+                  } else {
+                    nextScreen(context, QuizScreen(index: widget.index));
+                  }
+                } else {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const LoginPage(),
+                    ),
+                  );
+                }
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color.fromARGB(255, 238, 172, 59),

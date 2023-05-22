@@ -206,198 +206,277 @@ class _QuizScreenState extends State<QuizScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-          child: Container(
-        width: double.infinity,
-        height: double.infinity,
-        padding: const EdgeInsets.all(12),
-        decoration: const BoxDecoration(
-            gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [quizBgColor, quizBgColorDark],
-        )),
-        child: FutureBuilder(
-          future: quiz,
-          builder: (BuildContext context, AsyncSnapshot snapshot) {
-            if (snapshot.hasData) {
-              var data = quizData.take(10).toList();
-
-              if (isLoaded == false) {
-                optionsList = data[currentQuestionIndex]["incorrect_answers"];
-                optionsList.add(data[currentQuestionIndex]["correct_answer"]);
-                optionsList.shuffle();
-                isLoaded = true;
+    return WillPopScope(
+        onWillPop: () async {
+          return showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: const Text("Quit Quiz"),
+                content: const Text(
+                    "Are you sure you want to quit the quiz? \n Penalty: 3 coins deduction"),
+                actions: <Widget>[
+                  TextButton(
+                    child: const Text("Cancel"),
+                    onPressed: () {
+                      Navigator.of(context).pop(
+                          false); // Close the dialog and resume the QuizScreen
+                    },
+                  ),
+                  TextButton(
+                      child: const Text("Quit"),
+                      onPressed: () {
+                        if (coinAmount < 3) {
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                title: const Text('Not Enough Coins'),
+                                content: const Text(
+                                    'You do not have enough coins to quit the quiz.'),
+                                actions: [
+                                  ElevatedButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop(true);
+                                      Navigator.of(context).pop(true);
+                                    },
+                                    child: const Text('OK'),
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                        } else {
+                          Navigator.of(context).pop(true);
+                          Navigator.of(context).pop(true);
+                        }
+                      }),
+                ],
+              );
+            },
+          ).then((value) {
+            if (value == true) {
+              // Deduct 3 coins and perform necessary actions
+              if (coinAmount >= 3) {
+                // Deduct 3 coins
+                coinAmount -= 3;
+                CollectionReference usersRef =
+                    FirebaseFirestore.instance.collection('users');
+                FirebaseAuth auth = FirebaseAuth.instance;
+                String userUid = auth.currentUser!.uid;
+                usersRef
+                    .doc(userUid)
+                    .set({'coins': coinAmount}, SetOptions(merge: true));
+              } else {
+                // Not enough coins, user cannot go back
+                return false;
               }
 
-              return SingleChildScrollView(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              // Continue with the quiz
+              return true;
+            } else {
+              // Resume the QuizScreen
+              return false;
+            }
+          });
+        },
+        child: Scaffold(
+          body: SafeArea(
+              child: Container(
+            width: double.infinity,
+            height: double.infinity,
+            padding: const EdgeInsets.all(12),
+            decoration: const BoxDecoration(
+                gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [quizBgColor, quizBgColorDark],
+            )),
+            child: FutureBuilder(
+              future: quiz,
+              builder: (BuildContext context, AsyncSnapshot snapshot) {
+                if (snapshot.hasData) {
+                  var data = quizData.take(10).toList();
+
+                  if (isLoaded == false) {
+                    optionsList =
+                        data[currentQuestionIndex]["incorrect_answers"];
+                    optionsList
+                        .add(data[currentQuestionIndex]["correct_answer"]);
+                    optionsList.shuffle();
+                    isLoaded = true;
+                  }
+
+                  return SingleChildScrollView(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        IconButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            icon: const Icon(
-                              CupertinoIcons.xmark,
-                              color: Colors.red,
-                              size: 20,
-                            )),
-                        Stack(
-                          alignment: Alignment.center,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            normalText(
-                                color: Colors.black,
-                                size: 24,
-                                text: "$seconds"),
-                            SizedBox(
-                              width: 50,
-                              height: 50,
-                              child: CircularProgressIndicator(
-                                value: seconds / 60,
-                                valueColor:
-                                    const AlwaysStoppedAnimation(Colors.green),
+                            // IconButton(
+                            //     onPressed: () {
+                            //       Navigator.pop(context);
+                            //     },
+                            //     icon: const Icon(
+                            //       CupertinoIcons.xmark,
+                            //       color: Colors.red,
+                            //       size: 20,
+                            //     )),
+                            Stack(
+                              alignment: Alignment.center,
+                              children: [
+                                normalText(
+                                    color: Colors.black,
+                                    size: 24,
+                                    text: "$seconds"),
+                                SizedBox(
+                                  width: 50,
+                                  height: 50,
+                                  child: CircularProgressIndicator(
+                                    value: seconds / 60,
+                                    valueColor: const AlwaysStoppedAnimation(
+                                        Colors.green),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Container(
+                              decoration: BoxDecoration(
+                                color: const Color(0xFFFFCC33),
+                                borderRadius: BorderRadius.circular(16),
+                                border:
+                                    Border.all(color: Colors.black, width: 2),
+                              ),
+                              child: TextButton.icon(
+                                onPressed: coinAmount >= 3 ? extendTime : null,
+                                icon: const Icon(CupertinoIcons.time,
+                                    color: Colors.black, size: 18),
+                                label: normalText(
+                                  color: Colors.black,
+                                  size: 14,
+                                  text: "Extend Time (-3 coins)",
+                                ),
                               ),
                             ),
                           ],
                         ),
-                        Container(
-                          decoration: BoxDecoration(
-                            color: const Color(0xFFFFCC33),
-                            borderRadius: BorderRadius.circular(16),
-                            border: Border.all(color: Colors.black, width: 2),
-                          ),
-                          child: TextButton.icon(
-                            onPressed: coinAmount >= 3 ? extendTime : null,
-                            icon: const Icon(CupertinoIcons.time,
-                                color: Colors.black, size: 18),
-                            label: normalText(
-                              color: Colors.black,
-                              size: 14,
-                              text: "Extend Time (-3 coins)",
-                            ),
-                          ),
+                        const SizedBox(height: 40),
+                        // Image.asset(ideas, width: 200),
+                        const SizedBox(height: 20),
+                        Align(
+                            alignment: Alignment.center,
+                            child: normalText(
+                                color: const Color.fromARGB(255, 39, 35, 35),
+                                size: 15,
+                                text:
+                                    "Question ${currentQuestionIndex + 1} of ${data.length}")),
+                        const Divider(
+                          color: Colors.grey,
+                          thickness: 1,
+                        ),
+                        const SizedBox(height: 20),
+                        normalText(
+                          color: Colors.black,
+                          size: 15,
+                          text: data[currentQuestionIndex]["question"],
+                        ),
+
+                        const SizedBox(height: 40),
+
+                        ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: optionsList.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            var answer =
+                                data[currentQuestionIndex]["correct_answer"];
+
+                            return GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  if (answer.toString() ==
+                                      optionsList[index].toString()) {
+                                    optionsColor[index] = Colors.green;
+                                    points = points + 3;
+                                  } else {
+                                    optionsColor[index] = Colors.red;
+                                  }
+
+                                  if (currentQuestionIndex < data.length - 1) {
+                                    Future.delayed(const Duration(seconds: 1),
+                                        () {
+                                      gotoNextQuestion();
+                                    });
+                                  } else {
+                                    Future.delayed(const Duration(seconds: 1),
+                                        () {
+                                      timer!.cancel();
+
+                                      // addQuizPoints();
+                                      addQuizPoints(widget.index, points);
+
+                                      showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return AlertDialog(
+                                            title: const Text("Quiz completed"),
+                                            content: Text(
+                                                "Congratulations! You have completed the quiz.\n \n SCORE: $points/30"),
+                                            actions: <Widget>[
+                                              TextButton(
+                                                child: const Text("OK"),
+                                                onPressed: () {
+                                                  Navigator.of(context).pop();
+                                                  Navigator.of(context).pop();
+                                                  Navigator.of(context).pop();
+                                                },
+                                              ),
+                                            ],
+                                          );
+                                        },
+                                      );
+                                    });
+                                  }
+                                });
+                              },
+                              child: Container(
+                                margin: const EdgeInsets.only(bottom: 20),
+                                alignment: Alignment.center,
+                                width: 200,
+                                height: 50,
+                                padding: const EdgeInsets.all(8),
+                                decoration: BoxDecoration(
+                                  color: optionsColor[index],
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                child: Text(
+                                  optionsList[index].toString(),
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 15,
+                                    fontFamily:
+                                        'Roboto', // replace with the desired font family
+                                    fontWeight: FontWeight
+                                        .normal, // replace with the desired font weight
+                                  ),
+                                ),
+                              ),
+                            );
+                          },
                         ),
                       ],
                     ),
-                    const SizedBox(height: 40),
-                    // Image.asset(ideas, width: 200),
-                    const SizedBox(height: 20),
-                    Align(
-                        alignment: Alignment.center,
-                        child: normalText(
-                            color: const Color.fromARGB(255, 39, 35, 35),
-                            size: 15,
-                            text:
-                                "Question ${currentQuestionIndex + 1} of ${data.length}")),
-                    const Divider(
-                      color: Colors.grey,
-                      thickness: 1,
+                  );
+                } else {
+                  return const Center(
+                    child: CircularProgressIndicator(
+                      valueColor: AlwaysStoppedAnimation(Colors.white),
                     ),
-                    const SizedBox(height: 20),
-                    normalText(
-                      color: Colors.black,
-                      size: 15,
-                      text: data[currentQuestionIndex]["question"],
-                    ),
-
-                    const SizedBox(height: 40),
-
-                    ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: optionsList.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        var answer =
-                            data[currentQuestionIndex]["correct_answer"];
-
-                        return GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              if (answer.toString() ==
-                                  optionsList[index].toString()) {
-                                optionsColor[index] = Colors.green;
-                                points = points + 3;
-                              } else {
-                                optionsColor[index] = Colors.red;
-                              }
-
-                              if (currentQuestionIndex < data.length - 1) {
-                                Future.delayed(const Duration(seconds: 1), () {
-                                  gotoNextQuestion();
-                                });
-                              } else {
-                                Future.delayed(const Duration(seconds: 1), () {
-                                  timer!.cancel();
-
-                                  // addQuizPoints();
-                                  addQuizPoints(widget.index, points);
-
-                                  showDialog(
-                                    context: context,
-                                    builder: (BuildContext context) {
-                                      return AlertDialog(
-                                        title: const Text("Quiz completed"),
-                                        content: Text(
-                                            "Congratulations! You have completed the quiz.\n \n SCORE: $points/30"),
-                                        actions: <Widget>[
-                                          TextButton(
-                                            child: const Text("OK"),
-                                            onPressed: () {
-                                              Navigator.of(context).pop();
-                                              Navigator.of(context).pop();
-                                              Navigator.of(context).pop();
-                                            },
-                                          ),
-                                        ],
-                                      );
-                                    },
-                                  );
-                                });
-                              }
-                            });
-                          },
-                          child: Container(
-                            margin: const EdgeInsets.only(bottom: 20),
-                            alignment: Alignment.center,
-                            width: 200,
-                            height: 50,
-                            padding: const EdgeInsets.all(8),
-                            decoration: BoxDecoration(
-                              color: optionsColor[index],
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            child: Text(
-                              optionsList[index].toString(),
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 15,
-                                fontFamily:
-                                    'Roboto', // replace with the desired font family
-                                fontWeight: FontWeight
-                                    .normal, // replace with the desired font weight
-                              ),
-                            ),
-                          ),
-                        );
-                      },
-                    ),
-                  ],
-                ),
-              );
-            } else {
-              return const Center(
-                child: CircularProgressIndicator(
-                  valueColor: AlwaysStoppedAnimation(Colors.white),
-                ),
-              );
-            }
-          },
-        ),
-      )),
-    );
+                  );
+                }
+              },
+            ),
+          )),
+        ));
   }
 }
