@@ -20,7 +20,7 @@ class QuizScreen extends StatefulWidget {
 
 class _QuizScreenState extends State<QuizScreen> {
   var currentQuestionIndex = 0;
-  int seconds = 60;
+  int seconds = 5;
   Timer? timer;
   late Future quiz;
 
@@ -68,34 +68,6 @@ class _QuizScreenState extends State<QuizScreen> {
       return quizData; // Add this line to return the fetched data
     }
   }
-
-  // addQuizPoints() {
-  //   CollectionReference usersRef =
-  //       FirebaseFirestore.instance.collection('users');
-
-  //   FirebaseAuth auth = FirebaseAuth.instance;
-  //   String userUid = auth.currentUser!.uid;
-
-  //   usersRef.doc(userUid).set({'quizPoint': FieldValue.increment(points)},
-  //       SetOptions(merge: true)).then((value) {
-  //     // print("Quiz point updated for user $userUid");
-  //   }).catchError((error) {
-  //     // print("Failed to update quiz point for user $userUid: $error");
-  //   });
-  // }
-
-  // // addQuizPoints(int level, int points) {
-  // //   CollectionReference usersRef =
-  // //       FirebaseFirestore.instance.collection('users');
-
-  // //   FirebaseAuth auth = FirebaseAuth.instance;
-  // //   String userUid = auth.currentUser!.uid;
-
-  // //   // Add the quiz points for the specified level as a field in the "quizPoints" collection
-  // //   usersRef.doc(userUid).collection('quizPoints').doc('level$level').set({
-  // //     'points': FieldValue.increment(points),
-  // //   }, SetOptions(merge: true));
-  // // }
 
   Future<void> addQuizPoints(int level, int points) async {
     FirebaseFirestore firestore = FirebaseFirestore.instance;
@@ -200,7 +172,7 @@ class _QuizScreenState extends State<QuizScreen> {
     currentQuestionIndex++;
     resetColors();
     timer!.cancel();
-    seconds = 60;
+    seconds = 5;
     startTimer();
   }
 
@@ -342,23 +314,67 @@ class _QuizScreenState extends State<QuizScreen> {
                               ],
                             ),
                             Container(
-                              decoration: BoxDecoration(
-                                color: const Color(0xFFFFCC33),
-                                borderRadius: BorderRadius.circular(16),
-                                border:
-                                    Border.all(color: Colors.black, width: 2),
-                              ),
-                              child: TextButton.icon(
-                                onPressed: coinAmount >= 3 ? extendTime : null,
-                                icon: const Icon(CupertinoIcons.time,
-                                    color: Colors.black, size: 18),
-                                label: normalText(
-                                  color: Colors.black,
-                                  size: 14,
-                                  text: "Extend Time (-3 coins)",
+                                decoration: BoxDecoration(
+                                  color: const Color(0xFFFFCC33),
+                                  borderRadius: BorderRadius.circular(16),
+                                  border:
+                                      Border.all(color: Colors.black, width: 2),
                                 ),
-                              ),
-                            ),
+                                child: TextButton.icon(
+                                  onPressed: () {
+                                    if (coinAmount >= 3) {
+                                      showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return AlertDialog(
+                                            title: const Text('Deduct Coins'),
+                                            content: const Text(
+                                                'Deduction: 3 coins'),
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () {
+                                                  Navigator.pop(context);
+                                                },
+                                                child: const Text('No'),
+                                              ),
+                                              TextButton(
+                                                onPressed: () {
+                                                  extendTime();
+                                                  Navigator.pop(context);
+                                                },
+                                                child: const Text('Yes'),
+                                              ),
+                                            ],
+                                          );
+                                        },
+                                      );
+                                    } else {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        const SnackBar(
+                                          showCloseIcon: true,
+                                          closeIconColor: Colors.white,
+                                          backgroundColor: Colors.red,
+                                          content: Center(
+                                            child: Text(
+                                              'No Enough Coins',
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                          ),
+                                        ),
+                                      );
+                                    }
+                                  },
+                                  icon: const Icon(CupertinoIcons.time,
+                                      color: Colors.black, size: 18),
+                                  label: normalText(
+                                    color: Colors.black,
+                                    size: 14,
+                                    text: "+10s",
+                                  ),
+                                )),
                           ],
                         ),
                         const SizedBox(height: 40),
@@ -411,8 +427,6 @@ class _QuizScreenState extends State<QuizScreen> {
                                     Future.delayed(const Duration(seconds: 1),
                                         () {
                                       timer!.cancel();
-
-                                      // addQuizPoints();
                                       addQuizPoints(widget.index, points);
 
                                       showDialog(
