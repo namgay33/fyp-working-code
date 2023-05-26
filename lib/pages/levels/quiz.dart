@@ -20,14 +20,19 @@ class QuizScreen extends StatefulWidget {
 
 class _QuizScreenState extends State<QuizScreen> {
   var currentQuestionIndex = 0;
-  int seconds = 5;
+  int seconds = 10;
   Timer? timer;
   late Future quiz;
 
   int points = 0;
   int coinAmount = 0;
+  late int userPoints;
+  late FirebaseAuth auth;
+  late String userUid;
 
   var isLoaded = false;
+
+  var dataShuffled = [];
 
   var optionsList = [];
   List<dynamic> quizData = [];
@@ -48,13 +53,6 @@ class _QuizScreenState extends State<QuizScreen> {
   var link = "https://json.extendsclass.com/bin/fcddd3efa56d";
   // var link = "https://json.extendsclass.com/bin/28d963e9580c";
 
-  // getQuiz() async {
-  //   var res = await http.get(Uri.parse(link));
-  //   if (res.statusCode == 200) {
-  //     var data = jsonDecode(res.body.toString());
-  //     return data;
-  //   }
-  // }
   getQuiz() async {
     var res = await http.get(Uri.parse(link));
     if (res.statusCode == 200) {
@@ -65,7 +63,7 @@ class _QuizScreenState extends State<QuizScreen> {
             .toList();
         quizData.shuffle(Random());
       });
-      return quizData; // Add this line to return the fetched data
+      return quizData;
     }
   }
 
@@ -80,7 +78,7 @@ class _QuizScreenState extends State<QuizScreen> {
           firestore.collection('users').doc(userUid).collection('quizPoints');
       await quizPointsRef.doc('level$level').set({
         'points': FieldValue.increment(points),
-      }, SetOptions(merge: true));
+      });
 
       // Retrieve the quiz points for all levels
       final querySnapshot = await quizPointsRef.get();
@@ -100,11 +98,54 @@ class _QuizScreenState extends State<QuizScreen> {
     }
   }
 
+  // update score on reattempt in each level
+  Future<void> updateScore(String userUid, int level, int newScore) async {
+    int level = widget.index;
+
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(userUid)
+        .collection('quizPoints')
+        .doc('level$level')
+        .set({'points': newScore});
+  }
+
+  // Function to retrieve the previous score from Firestore
+  Future<int> getPreviousScore(String userUid, int level) async {
+    int level = widget.index;
+
+    DocumentSnapshot levelSnapshot = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(userUid)
+        .collection('quizPoints')
+        .doc('level$level')
+        .get();
+
+    if (levelSnapshot.exists) {
+      // If the level document exists, extract the previous score
+      Map<String, dynamic> data = levelSnapshot.data() as Map<String, dynamic>;
+      return data['points'] ?? 0;
+    } else {
+      return 0; // If the level document doesn't exist, assume previous score as 0
+    }
+  }
+
+  void handleQuizCompletion(int level, int reattemptScore) async {
+    String? userUid = FirebaseAuth.instance.currentUser?.uid;
+    if (userUid != null) {
+      int previousScore = await getPreviousScore(userUid, level);
+      if (reattemptScore > previousScore) {
+        updateScore(userUid, level, reattemptScore);
+      }
+    }
+  }
+
   @override
   void initState() {
     super.initState();
     quiz = getQuiz();
     getCoinAmount();
+    getUserPoints();
 
     startTimer();
   }
@@ -131,10 +172,24 @@ class _QuizScreenState extends State<QuizScreen> {
     }
   }
 
+  void getUserPoints() async {
+    auth = FirebaseAuth.instance;
+    userUid = auth.currentUser!.uid;
+    int level = widget.index;
+    DocumentSnapshot levelPointSnapshot = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(userUid)
+        .collection('quizPoints')
+        .doc('level$level')
+        .get();
+
+    userPoints = levelPointSnapshot['points'];
+  }
+
   extendTime() {
     setState(() {
-      seconds += 10;
-      coinAmount -= 3;
+      seconds += 20;
+      coinAmount -= 2;
     });
 
     CollectionReference usersRef =
@@ -155,13 +210,18 @@ class _QuizScreenState extends State<QuizScreen> {
     ];
   }
 
+//if last index, should not call gotoNextQuestion()
   startTimer() {
     timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       setState(() {
         if (seconds > 0) {
           seconds--;
-        } else {
-          gotoNextQuestion();
+
+          while (seconds == 0) {
+            if (currentQuestionIndex < quizData.length - 1) {
+              gotoNextQuestion();
+            }
+          }
         }
       });
     });
@@ -169,10 +229,11 @@ class _QuizScreenState extends State<QuizScreen> {
 
   gotoNextQuestion() {
     isLoaded = false;
+
     currentQuestionIndex++;
     resetColors();
     timer!.cancel();
-    seconds = 5;
+    seconds = 10;
     startTimer();
   }
 
@@ -228,9 +289,7 @@ class _QuizScreenState extends State<QuizScreen> {
             },
           ).then((value) {
             if (value == true) {
-              // Deduct 3 coins and perform necessary actions
               if (coinAmount >= 3) {
-                // Deduct 3 coins
                 coinAmount -= 3;
                 CollectionReference usersRef =
                     FirebaseFirestore.instance.collection('users');
@@ -268,13 +327,13 @@ class _QuizScreenState extends State<QuizScreen> {
               future: quiz,
               builder: (BuildContext context, AsyncSnapshot snapshot) {
                 if (snapshot.hasData) {
-                  var data = quizData.take(10).toList();
+                  dataShuffled = quizData.take(10).toList();
 
                   if (isLoaded == false) {
                     optionsList =
-                        data[currentQuestionIndex]["incorrect_answers"];
-                    optionsList
-                        .add(data[currentQuestionIndex]["correct_answer"]);
+                        dataShuffled[currentQuestionIndex]["incorrect_answers"];
+                    optionsList.add(
+                        dataShuffled[currentQuestionIndex]["correct_answer"]);
                     optionsList.shuffle();
                     isLoaded = true;
                   }
@@ -306,7 +365,7 @@ class _QuizScreenState extends State<QuizScreen> {
                                   width: 50,
                                   height: 50,
                                   child: CircularProgressIndicator(
-                                    value: seconds / 60,
+                                    value: seconds / 10,
                                     valueColor: const AlwaysStoppedAnimation(
                                         Colors.green),
                                   ),
@@ -329,7 +388,7 @@ class _QuizScreenState extends State<QuizScreen> {
                                           return AlertDialog(
                                             title: const Text('Deduct Coins'),
                                             content: const Text(
-                                                'Deduction: 3 coins'),
+                                                'Deduction: 2 coins'),
                                             actions: [
                                               TextButton(
                                                 onPressed: () {
@@ -372,7 +431,7 @@ class _QuizScreenState extends State<QuizScreen> {
                                   label: normalText(
                                     color: Colors.black,
                                     size: 14,
-                                    text: "+10s",
+                                    text: "+20s",
                                   ),
                                 )),
                           ],
@@ -386,7 +445,7 @@ class _QuizScreenState extends State<QuizScreen> {
                                 color: const Color.fromARGB(255, 39, 35, 35),
                                 size: 15,
                                 text:
-                                    "Question ${currentQuestionIndex + 1} of ${data.length}")),
+                                    "Question ${currentQuestionIndex + 1} of ${dataShuffled.length}")),
                         const Divider(
                           color: Colors.grey,
                           thickness: 1,
@@ -395,7 +454,7 @@ class _QuizScreenState extends State<QuizScreen> {
                         normalText(
                           color: Colors.black,
                           size: 15,
-                          text: data[currentQuestionIndex]["question"],
+                          text: dataShuffled[currentQuestionIndex]["question"],
                         ),
 
                         const SizedBox(height: 40),
@@ -404,8 +463,8 @@ class _QuizScreenState extends State<QuizScreen> {
                           shrinkWrap: true,
                           itemCount: optionsList.length,
                           itemBuilder: (BuildContext context, int index) {
-                            var answer =
-                                data[currentQuestionIndex]["correct_answer"];
+                            var answer = dataShuffled[currentQuestionIndex]
+                                ["correct_answer"];
 
                             return GestureDetector(
                               onTap: () {
@@ -418,38 +477,49 @@ class _QuizScreenState extends State<QuizScreen> {
                                     optionsColor[index] = Colors.red;
                                   }
 
-                                  if (currentQuestionIndex < data.length - 1) {
+                                  if (currentQuestionIndex <
+                                      dataShuffled.length - 1) {
                                     Future.delayed(const Duration(seconds: 1),
                                         () {
                                       gotoNextQuestion();
                                     });
                                   } else {
-                                    Future.delayed(const Duration(seconds: 1),
-                                        () {
-                                      timer!.cancel();
-                                      addQuizPoints(widget.index, points);
+                                    Future.delayed(
+                                      const Duration(seconds: 1),
+                                      () {
+                                        timer!.cancel();
 
-                                      showDialog(
-                                        context: context,
-                                        builder: (BuildContext context) {
-                                          return AlertDialog(
-                                            title: const Text("Quiz completed"),
-                                            content: Text(
-                                                "Congratulations! You have completed the quiz.\n \n SCORE: $points/30"),
-                                            actions: <Widget>[
-                                              TextButton(
-                                                child: const Text("OK"),
-                                                onPressed: () {
-                                                  Navigator.of(context).pop();
-                                                  Navigator.of(context).pop();
-                                                  Navigator.of(context).pop();
-                                                },
-                                              ),
-                                            ],
-                                          );
-                                        },
-                                      );
-                                    });
+                                        if (userPoints == 0) {
+                                          addQuizPoints(widget.index, points);
+                                        } else {
+                                          handleQuizCompletion(
+                                              widget.index, points);
+                                          addQuizPoints(widget.index, points);
+                                        }
+
+                                        showDialog(
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            return AlertDialog(
+                                              title:
+                                                  const Text("Quiz completed"),
+                                              content: Text(
+                                                  "Congratulations! You have completed the quiz.\n \n SCORE: $points/30"),
+                                              actions: <Widget>[
+                                                TextButton(
+                                                  child: const Text("OK"),
+                                                  onPressed: () {
+                                                    Navigator.of(context).pop();
+                                                    Navigator.of(context).pop();
+                                                    Navigator.of(context).pop();
+                                                  },
+                                                ),
+                                              ],
+                                            );
+                                          },
+                                        );
+                                      },
+                                    );
                                   }
                                 });
                               },

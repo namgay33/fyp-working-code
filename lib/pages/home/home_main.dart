@@ -11,7 +11,6 @@ import 'package:flutter/material.dart';
 import '../../leaderboard/leaderboard.dart';
 import '../../helper/helper_function.dart';
 import '../../widgets/widget.dart';
-import '../drawer_items/profile_page.dart';
 import '../levels/level_cards.dart';
 import 'home_page.dart';
 import '../favorite/favorite.dart';
@@ -29,6 +28,14 @@ class _HomePageState extends State<HomePage> {
   String userName = "";
   String email = "";
 
+  late FirebaseAuth auth;
+  String userId = '';
+
+  bool _isSignedIn = false;
+  bool hasCollectedCoin = false;
+  bool _showCoinNotification = true;
+  bool isReminderEnabled = false;
+
   AudioPlayer audioPlayer = AudioPlayer();
   AuthService authService = AuthService(uid: '');
 
@@ -37,6 +44,17 @@ class _HomePageState extends State<HomePage> {
     super.initState();
     gettingUserData();
     gettingQuizPointsAndCoinsFromFireStore();
+    getUserLoggedInStatus();
+  }
+
+  getUserLoggedInStatus() async {
+    await HelperFunctions.getUserLoggedInStatus().then((value) {
+      if (value != null) {
+        setState(() {
+          _isSignedIn = value;
+        });
+      }
+    });
   }
 
   gettingUserData() async {
@@ -130,7 +148,7 @@ class _HomePageState extends State<HomePage> {
           children: <Widget>[
             Icon(
               Icons.account_circle,
-              size: 150,
+              size: 100,
               color: Colors.grey[700],
             ),
             const SizedBox(
@@ -149,19 +167,6 @@ class _HomePageState extends State<HomePage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  // ElevatedButton(
-                  //   style: ElevatedButton.styleFrom(
-                  //       backgroundColor: const Color(0xFFFFCC33)),
-                  //   onPressed: () {
-                  //     nextScreenReplace(context, const LoginPage());
-                  //   },
-                  //   child: const Text(
-                  //     "Sign In",
-                  //     style: TextStyle(
-                  //       backgroundColor: Color(0xFFFFCC33),
-                  //     ),
-                  //   ),
-                  // ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -209,32 +214,181 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             ListTile(
-              onTap: () {},
+              onTap: () {
+                setState(() {
+                  isReminderEnabled = !isReminderEnabled;
+                });
+              },
               selectedColor: Theme.of(context).primaryColor,
-              selected: true,
-              contentPadding:
-                  const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-              leading: const Icon(Icons.home),
+              contentPadding: const EdgeInsets.symmetric(horizontal: 20),
+              leading: const Icon(Icons.timelapse),
               title: const Text(
-                "Home",
+                "Daily Reminder",
                 style: TextStyle(color: Colors.black),
+              ),
+              trailing: Switch(
+                value: isReminderEnabled,
+                onChanged: (value) {
+                  setState(() {
+                    isReminderEnabled = value;
+                  });
+                },
               ),
             ),
             ListTile(
-              onTap: () {
-                nextScreenReplace(
-                    context,
-                    ProfilePage(
-                      userName: userName,
-                      email: email,
-                    ));
+              onTap: () async {
+                if (_isSignedIn) {
+                  DocumentSnapshot userSnapshot = await FirebaseFirestore
+                      .instance
+                      .collection('users')
+                      .doc(userId)
+                      .get();
+
+                  // Get the last collection timestamp from the user's account data
+                  Timestamp lastCollectionTimestamp =
+                      userSnapshot['lastCollection'];
+
+                  // Convert the timestamp to a DateTime object
+                  DateTime lastCollectionDate =
+                      lastCollectionTimestamp.toDate();
+
+                  // Get the current date and time
+                  DateTime now = DateTime.now();
+
+                  // Check if the last collection date is not the same as the current date
+                  if (lastCollectionDate.year != now.year ||
+                      lastCollectionDate.month != now.month ||
+                      lastCollectionDate.day != now.day) {
+                    // Calculate the new coin balance
+                    int newCoinBalance = userSnapshot['coins'] + 5;
+
+                    // Update the coin balance in Firestore
+                    await FirebaseFirestore.instance
+                        .collection('users')
+                        .doc(userId)
+                        .update({
+                      'coins': newCoinBalance,
+                    });
+
+                    // Update the last collection timestamp in Firestore
+                    await FirebaseFirestore.instance
+                        .collection('users')
+                        .doc(userId)
+                        .update({
+                      'lastCollection': now,
+                    });
+                    // Show a success message or perform any other necessary actions
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        showCloseIcon: true,
+                        closeIconColor: Colors.white,
+                        backgroundColor: Colors.red,
+                        content: Center(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: const [
+                              Image(
+                                image: AssetImage('assets/coin.png'),
+                                height: 25,
+                              ),
+                              SizedBox(width: 8),
+                              Text(
+                                'Reward Collected',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    );
+
+                    // Delay the removal of the coin notification for better visual effect
+                    Future.delayed(const Duration(seconds: 1), () {
+                      setState(() {
+                        // Set a flag to hide the coin notification
+                        _showCoinNotification = false;
+                      });
+                    });
+
+                    // Update the coins value in Firestore
+                  } else {
+                    // Show a message informing the user that they have already collected the reward today
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        showCloseIcon: true,
+                        closeIconColor: Colors.white,
+                        backgroundColor: Colors.red,
+                        content: Center(
+                          child: Text(
+                            'You have already collected your daily reward today!',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
+                    );
+                  }
+                } else {
+                  // Prompt the user to log in before collecting the reward
+                  Navigator.of(context).pop();
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      showCloseIcon: true,
+                      closeIconColor: Colors.white,
+                      backgroundColor: Colors.red,
+                      content: Center(
+                        child: Text(
+                          'Please log in to collect your daily reward.',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                  );
+                }
               },
               selectedColor: Theme.of(context).primaryColor,
-              contentPadding:
-                  const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-              leading: const Icon(Icons.person),
+              contentPadding: const EdgeInsets.symmetric(horizontal: 20),
+              leading: Stack(
+                alignment: Alignment.center,
+                children: [
+                  const Image(
+                    image: AssetImage('assets/coin.png'),
+                    height: 25,
+                  ),
+                  if (_showCoinNotification && _isSignedIn)
+                    Positioned(
+                      bottom: 10,
+                      left: 10,
+                      child: Container(
+                        width: 15,
+                        height: 15,
+                        decoration: const BoxDecoration(
+                          color: Colors.red,
+                          shape: BoxShape.circle,
+                        ),
+                        child: const Center(
+                          child: Text(
+                            '2',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                ],
+              ),
               title: const Text(
-                "Profile",
+                "Daily Reward",
                 style: TextStyle(color: Colors.black),
               ),
             ),
@@ -243,55 +397,61 @@ class _HomePageState extends State<HomePage> {
                 nextScreen(context, const AboutUs());
               },
               selectedColor: Theme.of(context).primaryColor,
-              contentPadding:
-                  const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+              contentPadding: const EdgeInsets.symmetric(
+                horizontal: 20,
+              ),
               leading: const Icon(Icons.group),
               title: const Text(
                 "About Us",
                 style: TextStyle(color: Colors.black),
               ),
             ),
-            ListTile(
-              onTap: () async {
-                return showDialog(
-                    barrierDismissible: false,
-                    context: context,
-                    builder: (context) {
-                      return AlertDialog(
-                        title: const Text("Logout"),
-                        content: const Text("Are you sure you want to logout?"),
-                        actions: [
-                          IconButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            icon: const Icon(Icons.cancel),
-                            color: Colors.red,
-                          ),
-                          IconButton(
-                            onPressed: () async {
-                              await authService.signOut();
-                              Navigator.of(context).pushAndRemoveUntil(
-                                  MaterialPageRoute(
-                                      builder: (context) => const HomePage()),
-                                  (route) => false);
-                            },
-                            icon: const Icon(Icons.done),
-                            color: Colors.green,
-                          ),
-                        ],
-                      );
-                    });
-              },
-              selectedColor: Theme.of(context).primaryColor,
-              contentPadding:
-                  const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-              leading: const Icon(Icons.exit_to_app),
-              title: const Text(
-                "Logout",
-                style: TextStyle(color: Colors.black),
-              ),
-            ),
+            _isSignedIn
+                ? ListTile(
+                    onTap: () async {
+                      return showDialog(
+                          barrierDismissible: false,
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              title: const Text("Logout"),
+                              content: const Text(
+                                  "Are you sure you want to logout?"),
+                              actions: [
+                                IconButton(
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                  icon: const Icon(Icons.cancel),
+                                  color: Colors.red,
+                                ),
+                                IconButton(
+                                  onPressed: () async {
+                                    await authService.signOut();
+                                    Navigator.of(context).pushAndRemoveUntil(
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                const HomePage()),
+                                        (route) => false);
+                                  },
+                                  icon: const Icon(Icons.done),
+                                  color: Colors.green,
+                                ),
+                              ],
+                            );
+                          });
+                    },
+                    selectedColor: Theme.of(context).primaryColor,
+                    contentPadding: const EdgeInsets.symmetric(
+                      horizontal: 20,
+                    ),
+                    leading: const Icon(Icons.exit_to_app),
+                    title: const Text(
+                      "Logout",
+                      style: TextStyle(color: Colors.black),
+                    ),
+                  )
+                : Container(),
           ],
         ),
       ),

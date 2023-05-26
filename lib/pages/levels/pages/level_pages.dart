@@ -218,14 +218,14 @@ class _LevelPagesState extends State<LevelPages> {
                 if (_isSignedIn) {
                   // reattemptQuiz();
                   if (userPoints > 0) {
-                    if (userCoins >= 3) {
+                    if (userCoins >= 5) {
                       showDialog(
                         context: context,
                         builder: (BuildContext context) {
                           return AlertDialog(
                             title: const Text('Confirmation'),
                             content: const Text(
-                                'Do you want to Re-attempt the quiz? \nPenalty: 3 coins deduction.'),
+                                'Do you want to Re-attempt the quiz? \nPenalty: 5 coins deduction.'),
                             actions: [
                               TextButton(
                                 onPressed: () {
@@ -236,7 +236,7 @@ class _LevelPagesState extends State<LevelPages> {
                               TextButton(
                                 onPressed: () {
                                   Navigator.pop(context);
-                                  int updatedCoins = userCoins - 3;
+                                  int updatedCoins = userCoins - 5;
                                   FirebaseFirestore.instance
                                       .collection('users')
                                       .doc(userUid)

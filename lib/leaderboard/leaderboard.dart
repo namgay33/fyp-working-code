@@ -27,8 +27,11 @@ class _LeaderboardState extends State<Leaderboard> {
   }
 
   void _getUsers() async {
-    final querySnapshot =
-        await FirebaseFirestore.instance.collection('users').get();
+    final querySnapshot = await FirebaseFirestore.instance
+        .collection('users')
+        .orderBy('quizPoint', descending: true)
+        .limit(50)
+        .get();
     final users = querySnapshot.docs
         .map(
           (doc) => User(
@@ -38,13 +41,10 @@ class _LeaderboardState extends State<Leaderboard> {
           ),
         )
         .toList();
-    users.sort((a, b) => b.points.compareTo(a.points)); // sort users by points
     setState(() {
       _users = users;
     });
   }
-
-  
 
   @override
   Widget build(BuildContext context) {
@@ -127,7 +127,9 @@ class _LeaderboardState extends State<Leaderboard> {
                                 } else {
                                   leadingWidget = Text(
                                     '${index + 1}',
-                                    style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                                    style: const TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold),
                                   );
                                 }
 

@@ -8,9 +8,6 @@ class DatabaseService {
   final CollectionReference userCollection =
       FirebaseFirestore.instance.collection("users");
 
-  final CollectionReference groupCollection =
-      FirebaseFirestore.instance.collection("groups");
-
   // saving the userdata
   Future savingUserData(String fullName, String email) async {
     return await userCollection.doc(uid).set({
@@ -20,7 +17,8 @@ class DatabaseService {
       "profilePic": "",
       'uid': uid,
       'coins': 20,
-      'quizPoint': 0
+      'quizPoint': 0,
+      'lastCollection': DateTime.now(),
     });
   }
 
