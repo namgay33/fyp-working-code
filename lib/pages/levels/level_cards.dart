@@ -3,6 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'pages/level_pages.dart';
+import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
+
 
 const int itemCount = 10;
 
@@ -65,58 +67,69 @@ class _LevelsHomeState extends State<LevelsHome> {
     return userScore;
   }
 
+  Future<void> _handleRefresh() async {
+    return await Future.delayed(const Duration(seconds: 2), () => checkAndIncrementUnlockedLevels());
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          ListView.builder(
-            itemCount: itemCount,
-            itemBuilder: (BuildContext context, int index) {
-              return Padding(
-                padding: const EdgeInsets.fromLTRB(40.0, 10, 40, 0),
-                child: Card(
-                  elevation: 4,
-                  child: ListTile(
-                    leading: Icon(
-                      index < unlockedLevels ? Icons.lock_open : Icons.lock,
+      body: LiquidPullToRefresh(
+        onRefresh: _handleRefresh,
+      color: Colors.orange,
+      animSpeedFactor: 4,
+      height: 100,
+      showChildOpacityTransition: true,
+        child: Stack(
+          children: [
+            ListView.builder(
+              itemCount: itemCount,
+              itemBuilder: (BuildContext context, int index) {
+                return Padding(
+                  padding: const EdgeInsets.fromLTRB(40.0, 10, 40, 0),
+                  child: Card(
+                    elevation: 4,
+                    child: ListTile(
+                      leading: Icon(
+                        index < unlockedLevels ? Icons.lock_open : Icons.lock,
+                      ),
+                      title: Center(
+                        child: Text('Level ${(index + 1)}'),
+                      ),
+                      onTap: () {
+                        if (index < unlockedLevels) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => LevelPages(index: index + 1),
+                            ),
+                          );
+                        } else {
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                title: const Text('Level Locked'),
+                                content: const Text(
+                                    'You need to clear the previous levels to unlock this level.'),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () => Navigator.pop(context),
+                                    child: const Text('OK'),
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                        }
+                      },
                     ),
-                    title: Center(
-                      child: Text('Level ${(index + 1)}'),
-                    ),
-                    onTap: () {
-                      if (index < unlockedLevels) {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => LevelPages(index: index + 1),
-                          ),
-                        );
-                      } else {
-                        showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return AlertDialog(
-                              title: const Text('Level Locked'),
-                              content: const Text(
-                                  'You need to clear the previous levels to unlock this level.'),
-                              actions: [
-                                TextButton(
-                                  onPressed: () => Navigator.pop(context),
-                                  child: const Text('OK'),
-                                ),
-                              ],
-                            );
-                          },
-                        );
-                      }
-                    },
                   ),
-                ),
-              );
-            },
-          ),
-        ],
+                );
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

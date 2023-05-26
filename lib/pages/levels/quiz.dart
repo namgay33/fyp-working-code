@@ -136,6 +136,7 @@ class _QuizScreenState extends State<QuizScreen> {
       int previousScore = await getPreviousScore(userUid, level);
       if (reattemptScore > previousScore) {
         updateScore(userUid, level, reattemptScore);
+        addQuizPoints(level, points);
       }
     }
   }
@@ -494,7 +495,6 @@ class _QuizScreenState extends State<QuizScreen> {
                                         } else {
                                           handleQuizCompletion(
                                               widget.index, points);
-                                          addQuizPoints(widget.index, points);
                                         }
 
                                         showDialog(

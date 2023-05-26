@@ -284,7 +284,7 @@ class _LevelPagesState extends State<LevelPages> {
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color.fromARGB(255, 238, 172, 59),
-                minimumSize: Size(MediaQuery.of(context).size.width / 2, 50),
+                minimumSize: Size(MediaQuery.of(context).size.width/1.2 , 50),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
