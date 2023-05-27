@@ -33,7 +33,7 @@ class _HomePageState extends State<HomePage> {
 
   bool _isSignedIn = false;
   bool hasCollectedCoin = false;
-  bool _showCoinNotification = true;
+  bool _showCoinNotification = false;
   bool isReminderEnabled = false;
 
   AudioPlayer audioPlayer = AudioPlayer();
@@ -130,6 +130,20 @@ class _HomePageState extends State<HomePage> {
     await prefs.setInt('lastCollectionTime', time.millisecondsSinceEpoch);
   }
 
+  void checkRewardReady() async {
+    DateTime now = DateTime.now();
+    DateTime? lastCollectionTime = await getLastCollectionTime();
+
+    if (lastCollectionTime == null ||
+        lastCollectionTime.day != now.day ||
+        lastCollectionTime.month != now.month ||
+        lastCollectionTime.year != now.year) {
+      setState(() {
+        _showCoinNotification = true;
+      });
+    }
+  }
+
 // Example usage
   void collectDailyReward() async {
     if (_isSignedIn) {
@@ -160,6 +174,9 @@ class _HomePageState extends State<HomePage> {
         await setLastCollectionTime(now);
 
         // Show a success message or perform any other necessary actions
+        //
+        Navigator.of(context).pop();
+
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             showCloseIcon: true,
@@ -190,12 +207,17 @@ class _HomePageState extends State<HomePage> {
         // Delay the removal of the coin notification for better visual effect
         Future.delayed(const Duration(seconds: 1), () {
           setState(() {
-            // Set a flag to hide the coin notification
             _showCoinNotification = false;
           });
         });
       } else {
         // Show a message informing the user that they have already collected the reward today
+        Navigator.of(context).pop();
+
+        setState(() {
+          _showCoinNotification = false;
+        });
+
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             showCloseIcon: true,
@@ -284,18 +306,32 @@ class _HomePageState extends State<HomePage> {
                       size: 100,
                       color: Colors.grey[700],
                     )
-                  : TextButton(
-                      style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all<Color>(Colors.orange),
+                  : Padding(
+                      padding: const EdgeInsets.fromLTRB(50.0, 0, 50, 0),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          nextScreen(context, const LoginPage());
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor:
+                              const Color.fromARGB(255, 238, 172, 59),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                        child: const Padding(
+                          padding: EdgeInsets.fromLTRB(0, 12, 0, 12),
+                          child: Text(
+                            'Login',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
                       ),
-                      onPressed: () {
-                        nextScreen(context, const LoginPage());
-                      },
-                      child: const Text(
-                        'Login',
-                        style: TextStyle(color: Colors.black),
-                      )),
+                    ),
               const SizedBox(
                 height: 15,
               ),
@@ -394,7 +430,7 @@ class _HomePageState extends State<HomePage> {
                       image: AssetImage('assets/coin.png'),
                       height: 25,
                     ),
-                    if (_showCoinNotification && _isSignedIn)
+                    if (_showCoinNotification == true && _isSignedIn)
                       Positioned(
                         bottom: 10,
                         left: 10,
