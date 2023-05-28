@@ -141,6 +141,10 @@ class _HomePageState extends State<HomePage> {
       setState(() {
         _showCoinNotification = true;
       });
+    } else {
+      setState(() {
+        _showCoinNotification = false;
+      });
     }
   }
 
