@@ -1,22 +1,28 @@
+import 'dart:io';
 import 'package:audioplayers/audioplayers.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:first_app/pages/auth/login_page.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter_image_compress/flutter_image_compress.dart';
+import 'package:image_picker/image_picker.dart';
 
-import 'package:first_app/pages/drawer_items/about_us.dart';
-import 'package:first_app/service/auth_service.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../leaderboard/leaderboard.dart';
+import 'package:first_app/pages/auth/login_page.dart';
+import 'package:first_app/pages/drawer_items/about_us.dart';
+
 import '../../helper/helper_function.dart';
+import '../../leaderboard/leaderboard.dart';
+import '../../service/auth_service.dart';
 import '../../widgets/widget.dart';
+import '../favorite/favorite.dart';
 import '../levels/level_cards.dart';
 import 'home_page.dart';
-import '../favorite/favorite.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -30,6 +36,9 @@ class _HomePageState extends State<HomePage> {
   int _coinPoints = 0;
   String userName = "";
   String email = "";
+
+  String? _profilePhotoUrl;
+  final picker = ImagePicker();
 
   bool _isSignedIn = false;
   bool hasCollectedCoin = false;
@@ -45,6 +54,28 @@ class _HomePageState extends State<HomePage> {
     gettingUserData();
     gettingQuizPointsAndCoinsFromFireStore();
     getUserLoggedInStatus();
+    gettingProfilePic();
+  }
+
+  void gettingProfilePic() async {
+    if (FirebaseAuth.instance.currentUser != null) {
+      final currentUser = FirebaseAuth.instance.currentUser;
+      final storageRef = FirebaseStorage.instance
+          .ref()
+          .child('profile_photos')
+          .child('${currentUser!.uid}.jpg');
+
+      try {
+        final downloadUrl = await storageRef.getDownloadURL();
+        setState(() {
+          _profilePhotoUrl = downloadUrl;
+        });
+      } catch (error) {
+        setState(() {
+          _profilePhotoUrl = null;
+        });
+      }
+    }
   }
 
   getUserLoggedInStatus() async {
@@ -305,10 +336,65 @@ class _HomePageState extends State<HomePage> {
             padding: const EdgeInsets.symmetric(vertical: 50),
             children: <Widget>[
               (FirebaseAuth.instance.currentUser != null)
-                  ? Icon(
-                      Icons.account_circle,
-                      size: 100,
-                      color: Colors.grey[700],
+                  ? GestureDetector(
+                      onTap: () async {
+                        final pickedImage =
+                            await picker.pickImage(source: ImageSource.gallery);
+
+                        if (pickedImage != null) {
+                          // Upload the selected image to Firebase Storage
+                          final file = File(pickedImage.path);
+
+                          // Perform cropping logic here if needed
+
+                          // Update the profile photo URL in Firestore
+                          final currentUser = FirebaseAuth.instance.currentUser;
+                          final storageRef = FirebaseStorage.instance
+                              .ref()
+                              .child('profile_photos')
+                              .child('${currentUser!.uid}.jpg');
+                          try {
+                            await storageRef.putFile(file);
+                            final downloadUrl =
+                                await storageRef.getDownloadURL();
+
+                            // Update the profile photo URL in the current state
+                            setState(() {
+                              _profilePhotoUrl = downloadUrl;
+                            });
+
+                            // Show a success message or perform any other necessary actions
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text(
+                                    'Profile photo uploaded successfully.'),
+                              ),
+                            );
+                          } catch (error) {
+                            // Handle any errors that occur during the upload process
+                          }
+                        }
+                      },
+                      child: CircleAvatar(
+                        radius: 50,
+                        backgroundColor: Colors.grey,
+                        child: Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            (_profilePhotoUrl != null)
+                                ? CircleAvatar(
+                                    radius: 50,
+                                    backgroundImage:
+                                        NetworkImage(_profilePhotoUrl!),
+                                  )
+                                : const Icon(
+                                    Icons.account_circle,
+                                    size: 100,
+                                    color: Colors.black,
+                                  ),
+                          ],
+                        ),
+                      ),
                     )
                   : Padding(
                       padding: const EdgeInsets.fromLTRB(50.0, 0, 50, 0),

@@ -14,8 +14,14 @@ class User {
   String id = '';
   String name = '';
   int points = 0;
+  String imageUrl = '';
 
-  User({required this.id, required this.points, required this.name});
+  User({
+    required this.id,
+    required this.name,
+    required this.points,
+    required this.imageUrl,
+  });
 }
 
 class _LeaderboardState extends State<Leaderboard> {
@@ -33,15 +39,15 @@ class _LeaderboardState extends State<Leaderboard> {
         .orderBy('quizPoint', descending: true)
         .limit(50)
         .get();
-    final users = querySnapshot.docs
-        .map(
-          (doc) => User(
-            id: doc.id,
-            name: doc.data()['fullName']?.toString() ?? '',
-            points: doc.data()['quizPoint']?.toInt() ?? 0,
-          ),
-        )
-        .toList();
+    final users = querySnapshot.docs.map((doc) {
+      final imageUrl = doc.data()['profilePhotoUrl']?.toString() ?? '';
+      return User(
+        id: doc.id,
+        name: doc.data()['fullName']?.toString() ?? '',
+        points: doc.data()['quizPoint']?.toInt() ?? 0,
+        imageUrl: imageUrl,
+      );
+    }).toList();
     setState(() {
       _users = users;
     });
@@ -149,7 +155,20 @@ class _LeaderboardState extends State<Leaderboard> {
                                     title: Row(
                                       mainAxisSize: MainAxisSize.min,
                                       children: [
-                                        const Icon(Icons.account_circle),
+                                        if (user.imageUrl.isNotEmpty)
+                                          CircleAvatar(
+                                            backgroundColor: Colors.grey,
+                                            backgroundImage:
+                                                NetworkImage(user.imageUrl),
+                                          )
+                                        else
+                                          const CircleAvatar(
+                                            backgroundColor: Colors.grey,
+                                            child: Icon(
+                                              Icons.account_circle,
+                                              color: Colors.black,
+                                            ),
+                                          ),
                                         const SizedBox(width: 4),
                                         Text(user.name),
                                       ],

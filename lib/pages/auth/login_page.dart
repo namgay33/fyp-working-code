@@ -196,3 +196,164 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
 }
+
+// import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'package:flutter/material.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
+// import 'package:google_sign_in/google_sign_in.dart';
+
+// import '../../helper/helper_function.dart';
+// import '../../service/database_service.dart';
+// import '../../widgets/widget.dart';
+// import '../home/home_main.dart';
+
+// class LoginPage extends StatefulWidget {
+//   const LoginPage({Key? key}) : super(key: key);
+
+//   @override
+//   State<LoginPage> createState() => _LoginPageState();
+// }
+
+// class _LoginPageState extends State<LoginPage> {
+//   final FirebaseAuth _auth = FirebaseAuth.instance;
+//   final GoogleSignIn _googleSignIn = GoogleSignIn();
+
+//   bool _isLoading = false;
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body: Center(
+//         child: Column(
+//           mainAxisAlignment: MainAxisAlignment.center,
+//           children: [
+//             ElevatedButton.icon(
+//               onPressed: _isLoading ? null : _signInWithGoogle,
+//               icon: const Icon(Icons.login),
+//               label: const Text('Sign in with Google'),
+//             ),
+//             const SizedBox(height: 16),
+//             ElevatedButton.icon(
+//               onPressed: _isLoading ? null : _registerWithGoogle,
+//               icon: const Icon(Icons.person_add),
+//               label: const Text('Register with Google'),
+//             ),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+
+//   Future<void> _signInWithGoogle() async {
+//     setState(() {
+//       _isLoading = true;
+//     });
+
+//     try {
+//       final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+
+//       if (googleUser != null) {
+//         final GoogleSignInAuthentication googleAuth =
+//             await googleUser.authentication;
+
+//         final AuthCredential credential = GoogleAuthProvider.credential(
+//           accessToken: googleAuth.accessToken,
+//           idToken: googleAuth.idToken,
+//         );
+
+//         final UserCredential userCredential =
+//             await _auth.signInWithCredential(credential);
+
+//         final User? user = userCredential.user;
+//         if (user != null) {
+//           await _saveUserToFirestore(user);
+
+//           await HelperFunctions.saveUserLoggedInStatus(true);
+//           await HelperFunctions.saveUserEmailSF(user.email ?? '');
+//           await HelperFunctions.saveUserNameSF(user.displayName ?? '');
+
+//           nextScreen(context, const HomePage());
+//         }
+//       }
+//     } catch (error) {
+//       debugPrint('Error signing in with Google: $error');
+//       // Show an error message to the user or perform any other necessary actions
+//     } finally {
+//       setState(() {
+//         _isLoading = false;
+//       });
+//     }
+//   }
+
+//   Future<void> _registerWithGoogle() async {
+//     setState(() {
+//       _isLoading = true;
+//     });
+
+//     try {
+//       final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+
+//       if (googleUser != null) {
+//         final GoogleSignInAuthentication googleAuth =
+//             await googleUser.authentication;
+
+//         final AuthCredential credential = GoogleAuthProvider.credential(
+//           accessToken: googleAuth.accessToken,
+//           idToken: googleAuth.idToken,
+//         );
+
+//         final UserCredential userCredential =
+//             await _auth.signInWithCredential(credential);
+
+//         final User? user = userCredential.user;
+//         if (user != null) {
+//           final snapshot = await FirebaseFirestore.instance
+//               .collection('users')
+//               .where('email', isEqualTo: user.email)
+//               .get();
+
+//           if (snapshot.docs.isEmpty) {
+//             await _saveUserToFirestore(user);
+
+//             await HelperFunctions.saveUserLoggedInStatus(true);
+//             await HelperFunctions.saveUserEmailSF(user.email ?? '');
+//             await HelperFunctions.saveUserNameSF(user.displayName ?? '');
+
+//             nextScreen(context, const HomePage());
+//           } else {
+//             // User already registered
+//             debugPrint('User already registered');
+
+//             ScaffoldMessenger.of(context).showSnackBar(
+//               const SnackBar(
+//                 content: Text('User already registered'),
+//                 duration: Duration(seconds: 2),
+//               ),
+//             );
+//           }
+//         }
+//       }
+//     } catch (error) {
+//       debugPrint('Error registering with Google: $error');
+//       // Show an error message to the user or perform any other necessary actions
+//     } finally {
+//       setState(() {
+//         _isLoading = false;
+//       });
+//     }
+//   }
+
+//   Future<void> _saveUserToFirestore(User user) async {
+//     final DatabaseService databaseService = DatabaseService(uid: user.uid);
+
+//     try {
+//       await databaseService.savingUserData(
+//           user.displayName ?? '', user.email ?? '');
+//     } catch (error) {
+//       debugPrint('Error saving user data to Firestore: $error');
+//       rethrow;
+//     }
+//   }
+// }
+
+

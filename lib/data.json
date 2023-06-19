@@ -1563,6 +1563,558 @@
         "Always be happy when receiving something",
         "None"
     ]
+},{
+    "difficulty": "4",
+    "question": "ས་སྟོང་བསུབ། “ལྟོགས་རུང་ཕ་གཞི་མ་བཙོང་།། སྐོམ་རུང་་་་་་་་་་་་་་་་་་་་་་་་་་་།།”",
+    "correct_answer": "ཉོ་ཆང་མ་འཐུང",
+    "incorrect_answers": [
+        "བསིལ་ཆུ་མ་འཐུང",
+        "རོང་ཆུ་མ འཐུང",
+        "མཚོ་ཆུ་མ་འཐུང"
+    ]
+},
+
+{
+    "difficulty": "4",
+    "question": "According to the translated proverb “Even if destitute, sell not the ancestral land; Even if thirsty, drink not paid alcohol”, what does 'ancestral land' refer to?",
+    "correct_answer": "Property inherited from ancestors",
+    "incorrect_answers": [
+        "Farmland used for cultivation",
+        "Forest area with historical significance",
+        "A plot of land in a residential area"
+    ]
+},
+
+{
+    "difficulty": "4",
+    "question": "“ལྟོགས་རུང་ཕ་གཞི་མ་བཙོང་།།” ཟེར་མི་འདི་ ཨིང་སྐད་ནང་ལས་འབད་བ་ཅིན་",
+    "correct_answer": "Even if destitute, sell not the ancestral land",
+    "incorrect_answers": [
+        "Even if thirsty, drink not paid alcohol",
+        "Even if abundant, sell not the ancestral land",
+        "Even if thirsty, drink not salt water"
+    ]
+},
+
+{
+    "difficulty": "4",
+    "question": "“སྐོམ་རུང་ཉོ་ཆང་མ་འཐུང་།།” ཟེར་མི་འདི་ ཨིང་སྐད་ནང་ལས་འབད་བ་ཅིན་",
+    "correct_answer": "Even if thirsty, drink not paid alcohol",
+    "incorrect_answers": [
+        "Even if destitute, sell not the ancestral land",
+        "Even if abundant, sell not the ancestral land",
+        "Even if thirsty, drink not salt water"
+    ]
+},
+
+
+
+{
+    "difficulty": "4",
+    "question": "Which of the following is an example of mistreating someone's pet?",
+    "correct_answer": "Kicking it",
+    "incorrect_answers": [
+        "Feeding it",
+        "Playing with it",
+        "Taking it for a walk"
+    ]
+},
+
+{
+    "difficulty": "4",
+    "question": "ས་སྟོང་བསུབ། “་་་་་་་་་་་་་་་་་་་་་་་་་་་་་་་འགྲང་རུང་།། བ་དང་བོ་ཅུང་ངོ་མི་འཛོལ།།”",
+    "correct_answer": "འབྱོགཔ་ཆང་གྱི",
+    "incorrect_answers": [
+        "སྦྱིན་བདག་ཆང་གྱི",
+        "ནོར་རྫིཔ་ཆང་གི་",
+        "བ་རྫིཔ་ཆང་གི"
+    ]
+},
+
+{
+    "difficulty": "4",
+    "question": "According to the proverb, who can tell apart the cow and its calf, even if drunk?",
+    "correct_answer": "A nomad",
+    "incorrect_answers": [
+        "A herder",
+        "A farmer",
+        "A villager"
+    ]
+},
+
+
+{
+    "difficulty": "4",
+    "question": "འབྱོགཔ་ཆང་གྱི་འགྲང་རུང་ ཟེར་མི་ནང་ འགྲང་ ཟེར་བའི་ཚིག་འདི་ཨིང་སྐད་ནང་འབད་བ་ཅིན་",
+    "correct_answer": "Drunk",
+    "incorrect_answers": [
+        "Beat",
+        "Full",
+        "Offer"
+    ]
+},
+
+
+{
+    "difficulty": "4",
+    "question": "“འབྱོགཔ་ཆང་གྱི་འགྲང་རུང་།། བ་དང་བོ་ཅུང་ངོ་མི་འཛོལ།།” ཟེར་མི་འདི་ ཨིང་སྐད་ནང་ལས་འབད་བ་ཅིན་",
+    "correct_answer": "Even if drunk, the nomad will tell apart the cow and its calf",
+    "incorrect_answers": [
+        "Even if drunk, the owner will tell apart the cow and its calf",
+        "Even if owner beats, the cow and its calf will forgive the owner",
+        "Even if nomad beats, the cow and its calf will forgive the owner"
+    ]
+},
+
+{
+    "difficulty": "4",
+    "question": "Which of the following is an example of a 'bristly ear' in the translated proverb “Bristly the ear that has not heard the teachings; Flat the head that has not received the sacred blessings”?",
+    "correct_answer": "Someone who has never attended school",
+    "incorrect_answers": [
+        "Someone who is hard of hearing",
+        "Someone who is deaf",
+        "Someone who dislikes learning"
+    ]
+},
+
+{
+    "difficulty": "4",
+    "question": "ས་སྟོང་བསུབ། “་་་་་་་་་་་་་་་་་་་་་་་་་་་།། མགྱོགས་རུང་རྟ་ལུ་བཞོན།།” ",
+    "correct_answer": "ཤེས་རུང་མི་ལུ་དྲིས",
+    "incorrect_answers": [
+        "མཐོང་རུང་མི་ལུ་དྲིས",
+        "གོ་རུང་མི་ལུ་དྲིས",
+        "ཧ་གོ་རུང་མི་ལུ་དྲིས"
+    ]
+},
+
+{
+    "difficulty": "4",
+    "question": "What does the translated proverb 'Even if knowledgeable, ask others' suggest? ",
+    "correct_answer": "Seeking advice from others improves knowledge",
+    "incorrect_answers": [
+        "Knowledgeable people should not ask for help",
+        "Asking questions is a sign of weakness",
+        "Knowledge is subjective and unreliable"
+    ]
+},
+
+{
+    "difficulty": "4",
+    "question": "“ ཤེས་རུང་མི་ལུ་དྲིས།། ”  ཟེར་མི་འདི་ཨིང་སྐད་ལས་འབད་བ་ཅིན",
+    "correct_answer": "Even if knowledgeable, ask others",
+    "incorrect_answers": [
+        "Even if aware of places, ask others",
+        "Though roamed already, ask others",
+        "Though shared already, ask others"
+    ]
+},
+
+{
+    "difficulty": "4",
+    "question": " མགྱོགས་རུང་རྟ་ལུ་བཞོན ཟེར་མི་ནང་ མགྱོགས་རུང་ ཟེར་བའི་ཚིག་འདི་ཨིང་སྐད་ནང་འབད་བ་ཅིན་",
+    "correct_answer": "Even if faster",
+    "incorrect_answers": [
+        "Even if knowledgeable",
+        "Even if taller",
+        "Even if better"
+    ]
+},
+
+{
+    "difficulty": "4",
+    "question": "In which context can the proverb 'Brandish the sword after the bear is departed; Burn the incense after the lama is departed' be applied?",
+    "correct_answer": "When someone got too late in doing something",
+    "incorrect_answers": [
+        "When paying respect to someone who has passed away",
+        "When making a decision in a hurry",
+        "When taking advantage of an opportunity"
+    ]
+},
+
+{
+    "difficulty": "4",
+    "question": "ས་སྟོང་བསུབ། 'ཁ་སྦོམ་རུང་ལྷ་པའི་འོག་ལུ་ཨིན།།་་་་་་་་་་་་་་་་་་་་་་་་་་་་་་་་' ",
+    "correct_answer": "ཆུ་སྦོམ་རུང་ཟམ་པའི་འོག་ལུ་ཨིན།།",
+    "incorrect_answers": [
+        "ཆུ་སྦོམ་རུང་ལམ་གྱི་འོག་ལུ་ཨིན།།",
+        "ར་ཏོ་སྦོམ་རུང་ཤིང་གི་འོག་ལུ་ཨིན།།",
+        "ར་ཏོ་སྦོམ རུང་སའི་འོག་ལུ་ཨིན།།"
+    ]
+},
+
+{
+    "difficulty": "4",
+    "question": "ཁ་སྦོམ་རུང་ལྷ་པའི་འོག་ལུ་ཨིན།། ཆུ་སྦོམ་རུང་ཟམ་པའི་འོག་ལུ་ཨིན།།  ཟེར་མི་ནང་ ཆུ་སྦོམ་རུང་ ཟེར་བའི་ཚིག་འདི་ཨིང་སྐད་ནང་འབད་བ་ཅིན་",
+    "correct_answer": "Even if river is big",
+    "incorrect_answers": [
+        "Even if mouth is big",
+        "Even if water droplet is big",
+        "Even if raindrop is big"
+    ]
+},
+
+{
+    "difficulty": "4",
+    "question": " ཁ་སྦོམ་རུང་ལྷ་པའི་འོག་ལུ་ཨིན།། ཟེར་མི་འདི་ཨིང་སྐད་ལས་འབད་བ་ཅིན",
+    "correct_answer": "Even if large, the mouth is below the nose",
+    "incorrect_answers": [
+        "Even if large, the river is under the bridge",
+        "Even if large, the water is below the tape",
+        "Even if large, the chin is below mouth"
+    ]
+},
+
+{
+    "difficulty": "4",
+    "question": " ཆུ་སྦོམ་རུང་ཟམ་པའི་འོག་ལུ་ཨིན།།",
+    "correct_answer": "Even if large, the river is under the bridge",
+    "incorrect_answers": [
+        "Even if large, the mouth is below the nose",
+        "Even if large, the water is below the tape",
+        "Even if large, the chin is below mouth"
+    ]
+},
+
+{
+    "difficulty": "4",
+    "question": "What does the proverb 'Borrowed rice may not be repaid; But borrowed flour can be repaid teach us?",
+    "correct_answer": "To be careful when borrowing",
+    "incorrect_answers": [
+        "To be generous when lending",
+        "To be resourceful when in debt",
+        "To be grateful for what we have"
+    ]
+},
+
+{
+    "difficulty": "4",
+    "question": "ས་སྟོང་བསུབ། དཔྱེ་བཟངམ་དགྲ་ལས་ཨིན་རུན་ལེན།། ་་་་་་་་་་་་་་་་་་་་་་་་་་་་་་་་་་་་་་་་་།། ",
+    "correct_answer": "དཔྱེ་ངནམ་ཕམ་གི་ཨིན་རུང་སྤང་",
+    "incorrect_answers": [
+        "དཔྱེ་ངནམ་གཉེན་ལས་ཨིན་རུང་སྤང་",
+        "དཔྱེ་ངན་པ་ཆ་རོགས་ལས་ཨིན་རུན་སྤང་",
+        "དཔྱེ་ངན་པ་འཆམ་འཐུན་ལས་ཨིན་རུང་སྤང་"
+    ]
+},
+
+{
+    "difficulty": "4",
+    "question": "What does the translated  proverb 'Take a good example even if they are the enemy's' emphasize?",
+    "correct_answer": "Learning from everyone, regardless of their background",
+    "incorrect_answers": [
+        "Accepting the influence of positive role models",
+        "Recognizing the value of enemies' knowledge",
+        "Being cautious about following bad examples"
+    ]
+},
+
+
+{
+    "difficulty": "4",
+    "question": "What should one do when encountering a bad example from their parents?",
+    "correct_answer": " Ignore the bad example and focus on positive influences",
+    "incorrect_answers": [
+        "Confront their parents and criticize their behavior",
+        " Emulate the bad behavior to maintain a strong bond",
+        " Seek advice from enemies to counteract the parental influence"
+    ]
+},
+
+{
+    "difficulty": "4",
+    "question": " དཔྱེ་བཟངམ་དགྲ་ལས་ཨིན་རུན་ལེན།། ཟེར་མི་འདི་ ཨིང་སྐད་ནང་ལས་འབད་བ་ཅིན་",
+    "correct_answer": " Take a good examples even if they are the enemy’s",
+    "incorrect_answers": [
+        "Take a good examples even if they are the competitors",
+        "Take a bad examples even if they are the parent’s",
+        "Take a bad examples even if they are the friend’s"
+    ]
+},
+
+{
+    "difficulty": "4",
+    "question": " Which of the following phrases is similar in meaning to 'Do not teach everything that one knows; Others might become learned; Do not show everything that one discovers; Others might own it'?",
+    "correct_answer": "Keep your cards close to your chest",
+    "incorrect_answers": [
+        "Two heads are better than one",
+        "All is fair in love and war",
+        "You can't make an omelet without breaking eggs"
+    ]
+},
+
+{
+    "difficulty": "4",
+    "question": " ས་སྟོང་བསུབ།  ་་་་་་་་་་་་་་་་་་་་་་་་་་་་་་་་་་།། སྤྱོད་པ་མི་དང་བསྟུན་དགོ།",
+    "correct_answer": "རྟོགས་པ་ལྷ་དང་མཉམ་རུང་",
+    "incorrect_answers": [
+        "སྟོབས་ལྷ་དང་མཉམ་རུང་",
+        "སྟོབས་དཔོན་དང་མཉམ་རུང་",
+        "རྟོགས་པ་དཔོན་དང་མཉམ་རུང་"
+    ]
+},
+
+{
+    "difficulty": "4",
+    "question": " What does the proverb imply about spiritual attainment?",
+    "correct_answer": "It can lead to arrogance if not balanced",
+    "incorrect_answers": [
+        "It should be kept hidden from others",
+        "It should be celebrated and flaunted",
+        "It is unattainable for ordinary people"
+    ]
+},
+
+{
+    "difficulty": "4",
+    "question": " What is the significance of 'letting the behavior be in accordance with that of common people'?",
+    "correct_answer": "Maintaining humility and relatability",
+    "incorrect_answers": [
+        "Ignoring societal norms and expectations",
+        "Acting superior to common people",
+        "Rejecting spiritual attainment altogether"
+    ]
+},
+
+{
+    "difficulty": "4",
+    "question": " རྟོགས་པ་ལྷ་དང་མཉམ་རུང་  ཟེར་མི་ནང་ རྟོགས་པ་ ཟེར་བའི་ཚིག་འདི་ཨིང་སྐད་ནང་འབད་བ་ཅིན་",
+    "correct_answer": "Maintaining humility and relatability",
+    "incorrect_answers": [
+        "Ability",
+        "Strength",
+        "Height"
+    ]
+},
+
+{
+    "difficulty": "4",
+    "question": "Which of the following best describes the message of the proverb 'Cross one mountain pass; And there is still the dark canopy of a valley to cross'?",
+    "correct_answer": "Obstacles are a natural part of the journey.",
+    "incorrect_answers": [
+        "Life is unpredictable.",
+        "The journey is more important than the destination.",
+        "Success is often followed by failure."
+    ]
+},
+
+{
+    "difficulty": "4",
+    "question": " བྱི་ལི་གཉིད་ཁུག་རུང་མནོ་བསམ་བྱི་རྩི་གུ་རང་།།  ཟེར་མི་འདི་ཨིང་སྐད་ལས་འབད་བ་ཅིན",
+    "correct_answer": "Even if the cat is asleep, it thinks of the rat. ",
+    "incorrect_answers": [
+        "Even if the cat is daydreaming, it thinks of rat. .",
+        "Even if the rat is asleep, it fears the cat. ",
+        "Even if the rat is daydreaming, it dreads the cat."
+    ]
+},
+
+{
+    "difficulty": "4",
+    "question": " བྱི་ལི་གཉིད་ཁུག་རུང་མནོ་བསམ་བྱི་རྩི་གུ་རང་།། ” ཟེར་མི་ནང་ གཉིད་ཁུག་ ཟེར་བའི་ཚིག་འདི་ཨིང་སྐད་ནང་འབད་བ་ཅིན་",
+    "correct_answer": "Asleep",
+    "incorrect_answers": [
+        "Awake",
+        "Daydreaming",
+        "Lazy"
+    ]
+},
+
+{
+    "difficulty": "4",
+    "question": "What does the translated proverb 'Even if the cat is asleep' mean?",
+    "correct_answer": "Cats are always alert and vigilant",
+    "incorrect_answers": [
+        "Cats are lazy and sleepy creatures",
+        "Cats are unpredictable and cunning",
+        "Cats are nocturnal animals"
+    ]
+},
+{
+    "difficulty": "4",
+    "question": "What does the proverb suggest about the cat's awareness?",
+    "correct_answer": "It is aware of its surroundings even when seemingly inactive",
+    "incorrect_answers": [
+        "It is oblivious to its surroundings when sleeping",
+        "It is highly attuned to its environment during sleep",
+        "It is vulnerable to external threats when asleep"
+    ]
+},
+{
+    "difficulty": "4",
+    "question": "Which of the following best summarizes the message of the proverb 'Let children be with others and cattle be with oneself'?",
+    "correct_answer": "Children should be allowed to socialize with others while cattle should be kept under one's own care",
+    "incorrect_answers": [
+        "Children should be raised with animals",
+        "Cattle should not be socialized with other animals",
+        "Children should be kept away from others while cattle should be allowed to socialize with others"
+    ]
+},
+
+{
+    "difficulty": "4",
+    "question": "ས་ལས་ས་ཆུ་མ་འཐོན་ན།། གནམ་ལས་་་་་་་་་་་་་་་་་་་་མི་འབུད།།",
+    "correct_answer": "གནམ་ལྕགས་",
+    "incorrect_answers": [
+        "ཆརཔ་",
+        "ནམ་ལྕག་",
+        "ཆཔ་"
+    ]
+},
+
+{
+    "difficulty": "4",
+    "question": "What does the proverb imply about the relationship between water and thunderbolts?",
+    "correct_answer": "Water and thunderbolts have a cause-and-effect relationship",
+    "incorrect_answers": [
+        "Thunderbolts are a result of water evaporation",
+        "Thunderbolts cause water to evaporate from the ground",
+        "Water and thunderbolts are unrelated phenomena"
+    ]
+},
+
+{
+    "difficulty": "4",
+    "question": "What is the potential lesson behind the proverb?",
+    "correct_answer": "Natural events are interconnected and interdependent",
+    "incorrect_answers": [
+        "Thunderbolts are a result of human actions",
+        "Water evaporation causes thunderbolts to occur",
+        "Thunderbolts are a symbol of divine intervention"
+    ]
+},
+
+
+{
+    "difficulty": "4",
+    "question": " ས་ལས་ས་ཆུ་མ་འཐོན་ན།། ཟེར་མི་འདི་ཨིང་སྐད་ལས་འབད་བ་ཅིན",
+    "correct_answer": "If there is no water evaporating from the ground",
+    "incorrect_answers": [
+        "If there is no erosion from ground",
+        "If there is no thunderbolt from the sky",
+        "If there is no landslides from the hill"
+    ]
+},
+
+{
+    "difficulty": "4",
+    "question": "How might the proverb 'Douse the fire when it is small; Tame the enemy while still young' apply to business or entrepreneurship?",
+    "correct_answer": "It is important to be proactive in addressing potential challenges or problems",
+    "incorrect_answers": [
+        " It is better to wait for problems to become more serious before taking action",
+        "Business and entrepreneurship do not involve potential challenges or problems",
+        "It is impossible to address potential challenges or problems in business or entrepreneurship"
+    ]
+},
+
+{
+    "difficulty": "4",
+    "question": "སྐྱེ་ནི་ཡོདན་ཤི་ནི་ཡོད།། ་་་་་་་་་་་་་་་་་་་་་་་་་་་་་་་་་་།། བསགས་ནི་ཡོདན་ཟད་ནི་ཡོད།། ",
+    "correct_answer": "འཛོམ་ནི་ཡོདན་འབྱལ་ནི་ཡོད",
+    "incorrect_answers": [
+        "ན་ནི་ཡོདན་དྲག་ནི་ཡོད",
+        "འཐོབ་ནི་ཡོདན་བརླག་ནི་ཡོད",
+        "འཐབ་ནི་ཡོདན་འཆམ་ནི་ཡོད"
+    ]
+},
+
+{
+    "difficulty": "4",
+    "question": "What does the proverb suggest about the cycle of life?",
+    "correct_answer": "Birth and death are interconnected",
+    "incorrect_answers": [
+        "Birth and death are unrelated events",
+        "Birth and death occur simultaneously",
+        "Birth and death are unpredictable events"
+    ]
+},
+
+{
+    "difficulty": "4",
+    "question": " འཛོམ་ནི་ཡོདན་འབྱལ་ནི་ཡོད ” ཟེར་མི་འདི་ཨིང་སྐད་ལས་འབད་བ་ཅིན",
+    "correct_answer": "If there's meeting, there's parting",
+    "incorrect_answers": [
+        "If there’s birth, there’s death",
+        "If there’s accumulation, there’s wearing out",
+        "If there’s sickness, there’s cure"
+    ]
+},
+
+{
+    "difficulty": "4",
+    "question": "What is the significance of the proverb's focus on meeting and parting?",
+    "correct_answer": "Meetings and partings signify the impermanence of relationships",
+    "incorrect_answers": [
+        "Meetings and partings lead to emotional distress",
+        "Meetings and partings occur only in specific situations",
+        "Meetings and partings are rare occurrences"
+    ]
+},
+
+{
+    "difficulty": "4",
+    "question": "How can parents provide good counsel to their children?",
+    "correct_answer": "By being empathetic and understanding",
+    "incorrect_answers": [
+        "Meetings and partings lead to emotional distress",
+        "Meetings and partings occur only in specific situations",
+        "Meetings and partings are rare occurrences"
+    ]
+},
+
+{
+    "difficulty": "4",
+    "question": " ཕ་མར་བཀའ་མེདན།། བུ་ཚར་སྒྲིག་མེད།། ” ཟེར་མིའི་གོ་བ་འདི་ ཨིང་སྐད་ལས་འབད་བ་ཅིན་",
+    "correct_answer": "Parental commands are necessary for instilling discipline in children",
+    "incorrect_answers": [
+        "Parents should never give commands to their children",
+        "Children are naturally disciplined without parental commands",
+        "Children are resistant to following any form of discipline"
+    ]
+},
+
+{
+    "difficulty": "4",
+    "question": "What can be inferred about a child's discipline in the absence of parental commands?",
+    "correct_answer": "The child will lack discipline without any guidance",
+    "incorrect_answers": [
+        "The child will demonstrate strong discipline on their own",
+        "Discipline is irrelevant if parental commands are absent",
+        "The child's discipline is not influenced by parental commands"
+    ]
+},
+
+{
+    "difficulty": "4",
+    "question": " ཕ་མར་བཀའ་མེདན། ” ཟེར་མི་ནང་ བཀའ་ ཟེར་བའི་ཚིག་འདི་ཨིང་སྐད་ནང་འབད་བ་ཅིན་",
+    "correct_answer": "Command",
+    "incorrect_answers": [
+        "Advise",
+        "Scolding",
+        "Lie"
+    ]
+},
+
+{
+    "difficulty": "4",
+    "question": " བུ་ཚར་སྒྲིག་མེད།། ” ཟེར་མི་འདི་ཨིང་སྐད་ལས་འབད་བ་ཅིན",
+    "correct_answer": "The child shows no discipline",
+    "incorrect_answers": [
+        "The child shows no respect",
+        "The child will be oblivion about the surrounding",
+        "The child will have anger issues"
+    ]
+},
+
+{
+    "difficulty": "4",
+    "question": "What is the message of the proverb 'Encouraging reckless habits in the child is not affection'?",
+    "correct_answer": "Reckless behavior should not be encouraged",
+    "incorrect_answers": [
+        "It is better to be strict with children",
+        "Parents should spoil their children",
+        "Children should be allowed to make their own mistakes"
+    ]
 }
 
 

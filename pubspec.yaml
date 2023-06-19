@@ -39,12 +39,14 @@ dependencies:
   firebase_storage: ^11.0.14
   flutter:
     sdk: flutter
+  flutter_image_compress: ^2.0.3
   flutter_native_splash: ^2.2.19
   font_awesome_flutter: ^10.2.1
   google_fonts: ^4.0.3
   google_nav_bar: ^5.0.6
   google_sign_in: ^6.1.0
   http: ^0.13.5
+  image_picker: ^0.8.7
   liquid_pull_to_refresh: ^3.0.1
   share_plus: ^6.3.1
   shared_preferences: ^2.0.20
