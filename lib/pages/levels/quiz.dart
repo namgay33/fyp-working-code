@@ -20,7 +20,7 @@ class QuizScreen extends StatefulWidget {
 
 class _QuizScreenState extends State<QuizScreen> {
   var currentQuestionIndex = 0;
-  int seconds = 10;
+  int seconds = 60;
   Timer? timer;
   late Future quiz;
 
@@ -234,7 +234,7 @@ class _QuizScreenState extends State<QuizScreen> {
     currentQuestionIndex++;
     resetColors();
     timer!.cancel();
-    seconds = 10;
+    seconds = 60;
     startTimer();
   }
 
@@ -366,7 +366,7 @@ class _QuizScreenState extends State<QuizScreen> {
                                   width: 50,
                                   height: 50,
                                   child: CircularProgressIndicator(
-                                    value: seconds / 10,
+                                    value: seconds / 60,
                                     valueColor: const AlwaysStoppedAnimation(
                                         Colors.green),
                                   ),

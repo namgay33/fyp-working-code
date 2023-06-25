@@ -91,16 +91,16 @@ class _LevelPagesState extends State<LevelPages> {
   Widget build(BuildContext context) {
     List<Map<String, dynamic>> items;
     if (widget.index == 1) {
-      items = _outerValues.length >= 2
-          ? _outerValues.sublist(0, 5).cast<Map<String, dynamic>>()
+      items = _outerValues.length >= 10
+          ? _outerValues.sublist(0, 10).cast<Map<String, dynamic>>()
           : [];
     } else if (widget.index == 2) {
-      items = _outerValues.length >= 4
-          ? _outerValues.sublist(1, 2).cast<Map<String, dynamic>>()
+      items = _outerValues.length >= 20
+          ? _outerValues.sublist(10, 20).cast<Map<String, dynamic>>()
           : [];
     } else if (widget.index == 3) {
-      items = _outerValues.length >= 4
-          ? _outerValues.sublist(2, 3).cast<Map<String, dynamic>>()
+      items = _outerValues.length >= 20
+          ? _outerValues.sublist(20, 29).cast<Map<String, dynamic>>()
           : [];
     } else if (widget.index == 4) {
       items = _outerValues.length >= 4

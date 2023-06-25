@@ -75,8 +75,6 @@ class _HomeState extends State<Home> {
     return user.uid;
   }
 
-
-
   Future<void> getDataFromAPI() async {
     const url =
         'https://paytam-490fa-default-rtdb.firebaseio.com/DrukPaytam.json';
@@ -135,7 +133,7 @@ class _HomeState extends State<Home> {
               height: 100,
               showChildOpacityTransition: true,
               child: ListView.builder(
-                itemCount: _outerValues.length,
+                itemCount: 10,
                 itemBuilder: (BuildContext context, int index) {
                   return Card(
                     elevation: 2,
